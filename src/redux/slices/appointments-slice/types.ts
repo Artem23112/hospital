@@ -7,44 +7,38 @@ export interface IAppointmentsInitialState {
 	busyDates: string[]
 }
 
-export type GeneralAppointmentT = {
+export type StatusAppointmentT = 'waiting' | 'accepted' | 'canceled'
+
+export interface GeneralAppointmentT {
 	status: StatusAppointmentT
 	fullDateISO: string
 }
 
-export type DoctorInfoT = {
+export interface DoctorInfoT {
 	name: string
 	specialization: string
 }
-export type UniqueDoctorInfoT = DoctorInfoT & { id: string }
+export interface UniqueDoctorInfoT extends DoctorInfoT {
+	id: string
+}
 
-export type DoctorAppointmentT = GeneralAppointmentT & {
+export interface DoctorAppointmentT extends GeneralAppointmentT {
 	userId: string
 }
-export type UniqueDoctorAppointmentT = DoctorAppointmentT & {
+export interface UniqueDoctorAppointmentT extends DoctorAppointmentT {
 	id: string
 }
 
-export type UserInfoT = {
+export interface UserInfoT {
 	name: string
 }
-export type UniqueUserInfoT = UserInfoT & { id: string }
-
-export type UserAppointmentT = GeneralAppointmentT & {
-	doctorId: string
-}
-export type UniqueUserAppointmentT = UserAppointmentT & {
+export interface UniqueUserInfoT extends UserInfoT {
 	id: string
 }
 
-export type StatusAppointmentT = 'waiting' | 'accepted' | 'canceled'
-
-export type NotificationType = {
-	status: StatusAppointmentT
-	date: string
-	userID?: string
+export interface UserAppointmentT extends GeneralAppointmentT {
+	doctorId: string
 }
-
-export type NotificationListType = {
-	[key: string]: NotificationType
+export interface UniqueUserAppointmentT extends UserAppointmentT {
+	id: string
 }
