@@ -1,10 +1,10 @@
 import { ReactNode } from 'react'
 import { Navigate } from 'react-router-dom'
-import { RootState, useAppSelector } from '../../../redux/store'
+import {  useAppSelector } from '../../../redux/store'
 
 const RequireAuth = ({ children }: { children: ReactNode }) => {
 	const isAuth = useAppSelector<boolean>(
-		(state: RootState) => state.authentication.isAuth
+		(state) => state.authentication.isAuth
 	)
 
 	if (!isAuth) {

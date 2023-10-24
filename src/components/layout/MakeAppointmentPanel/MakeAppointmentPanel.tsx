@@ -7,7 +7,7 @@ import { userSubscribeToBusyDates } from '../../../redux/slices/appointments-sli
 import { clearSubmitStatus } from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
 import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/types.ts'
 import { showPopupMessage } from '../../../redux/slices/popupMessages-slice/popupMessagesSlice'
-import { RootState, useAppSelector } from '../../../redux/store'
+import { useAppSelector } from '../../../redux/store'
 import { useAppDispatch } from '../../../redux/store.ts'
 import DateTimePicker, {
 	ChosenDateT
@@ -20,14 +20,12 @@ const MakeAppointmentPanel = () => {
 	const [chosenDate, setChosenDate] = useState<ChosenDateT>(null)
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
-	const { doctorsInfo, isSuccess } = useAppSelector<SelectedT>(
-		(state: RootState) => {
-			return {
-				doctorsInfo: state.appointment.doctorsInfo,
-				isSuccess: state.appointment.isSuccessSubmit
-			}
+	const { doctorsInfo, isSuccess } = useAppSelector<SelectedT>(state => {
+		return {
+			doctorsInfo: state.appointment.doctorsInfo,
+			isSuccess: state.appointment.isSuccessSubmit
 		}
-	)
+	})
 
 	useEffect(() => {
 		if (!isSuccess) return

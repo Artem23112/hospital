@@ -1,11 +1,11 @@
 import { UniquePopupMessageT } from '../../../redux/slices/popupMessages-slice/types'
-import { RootState, useAppSelector } from '../../../redux/store'
+import { useAppSelector } from '../../../redux/store'
 import PopupMessage from '../../UI/PopupMessage/PopupMessage'
 import s from './PopupMessages.module.scss'
 
 const PopupMessages = () => {
 	const messages = useAppSelector<UniquePopupMessageT[]>(
-		(state: RootState) => state.popupMessage
+		(state: ) => state.popupMessage
 	)
 
 	return (

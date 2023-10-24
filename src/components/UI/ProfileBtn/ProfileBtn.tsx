@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import arrow from '../../../assets/images/icons/arrow.svg'
 import { exit } from '../../../redux/slices/authentication-slice/additionalThunks/exit'
 import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
-import { RootState, useAppDispatch, useAppSelector } from '../../../redux/store'
+import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import s from './ProfileBtn.module.scss'
 
 const ProfileBtn = () => {
 	const email = useAppSelector<IAuthInitialState['email']>(
-		(state: RootState) => state.authentication.email
+		(state: ) => state.authentication.email
 	)
 	const [showSubmenu, setShowSubmenu] = useState(false)
 	const dispatch = useAppDispatch()

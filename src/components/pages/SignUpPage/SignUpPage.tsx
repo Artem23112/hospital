@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { signUp } from '../../../redux/slices/authentication-slice/additionalThunks/signUp'
 import { clearError } from '../../../redux/slices/authentication-slice/authenticationSlice'
 import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
-import { RootState, useAppDispatch, useAppSelector } from '../../../redux/store'
+import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import AuthForm from '../../UI/AuthForm/AuthForm'
 import CentredContainer from '../../layout/CentredContainer/CentredContainer'
 import Loader from '../../utils/Loader/Loader'
@@ -15,7 +15,7 @@ const SignUpPage = () => {
 	const [name, setname] = useState<string>('')
 	const [emptyFields, setEmptyFields] = useState<boolean>(false)
 	const dispatch = useAppDispatch()
-	const { loading, error } = useAppSelector<SelectedT>((state: RootState) => {
+	const { loading, error } = useAppSelector<SelectedT>(state => {
 		return {
 			loading: state.authentication.loading,
 			error: state.authentication.error

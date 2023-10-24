@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { connectToServer } from '../../../redux/slices/authentication-slice/additionalThunks/connectToServer'
 import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
-import { RootState, useAppDispatch, useAppSelector } from '../../../redux/store'
+import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import DoctorProfile from '../../layout/DoctorProfile/DoctorProfile'
 import UserProfile from '../../layout/UserProfile/UserProfile'
 
 const HomePage = () => {
 	const dispatch = useAppDispatch()
-	const { rights, id } = useAppSelector<SelectedT>((state: RootState) => {
+	const { rights, id } = useAppSelector<SelectedT>(state => {
 		return {
 			rights: state.authentication.rights,
 			id: state.authentication.id
