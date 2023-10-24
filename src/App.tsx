@@ -1,6 +1,6 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useEffect } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import RequireAuth from './components/HOC/RequireAuth/RequireAuth'
 import LoginPage from './components/pages/LoginPage/LoginPage'
 import ProfilePage from './components/pages/ProfilePage/ProfilePage'
@@ -46,6 +46,7 @@ function App() {
 				/>
 				<Route path='/signup' element={<SignUpPage />} />
 				<Route path='/login' element={<LoginPage />} />
+				<Route path='/' element={<Navigate to={'/login'} />}></Route>
 			</Routes>
 		</>
 	)
