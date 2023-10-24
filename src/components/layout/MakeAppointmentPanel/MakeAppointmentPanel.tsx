@@ -22,12 +22,12 @@ export const ManageAppointmentData = createContext<IManageAppointmentData>({
 })
 
 const MakeAppointmentPanel = () => {
-	const [{ chosenDoctor, chosenDate, chosenTime }, setAppointmentData] =
-		useState<IAppointmentData>({
-			chosenDoctor: null,
-			chosenDate: null,
-			chosenTime: null
-		})
+	const [appointmentData, setAppointmentData] = useState<IAppointmentData>({
+		chosenDoctor: null,
+		chosenDate: null,
+		chosenTime: null
+	})
+	const { chosenDoctor, chosenDate, chosenTime } = appointmentData
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 	const { doctorsInfo, isSuccess } = useAppSelector<SelectedT>(state => {
@@ -59,11 +59,12 @@ const MakeAppointmentPanel = () => {
 			return
 		}
 
-		const appointmentInfo = {
-			doctorId: chosenDoctor,
-			fullDateISO: additionDateWithTime(chosenDate, chosenTime)
-		}
-		dispatch(userSendAppointment(appointmentInfo))
+		dispatch(
+			userSendAppointment({
+				doctorId: chosenDoctor,
+				fullDateISO: additionDateWithTime(chosenDate, chosenTime)
+			})
+		)
 	}
 
 	return (
@@ -71,9 +72,7 @@ const MakeAppointmentPanel = () => {
 			<div className={s['content-wrapper']}>
 				<ManageAppointmentData.Provider
 					value={{
-						chosenDoctor,
-						chosenDate,
-						chosenTime,
+						...appointmentData,
 						changeData: setAppointmentData
 					}}
 				>
