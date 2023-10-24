@@ -1,27 +1,29 @@
 @import '../../../assets/scss/variables.scss';
 
 .react-calendar {
-	user-select: none;
 	max-width: 294px;
-
 	font-family: $comfortaa;
 	text-align: center;
+	user-select: none;
+
 	&__navigation {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		margin-bottom: 18px;
 	}
+
 	&__navigation__label {
 		font-size: 20px;
 		font-weight: 600;
-		flex-grow: 0 !important;
 		transition: transform 0.3s;
+		flex-grow: 0 !important;
 		transform: scale(1);
 		&:hover {
 			transform: scale(1.03);
 		}
 	}
+
 	&__navigation__next-button,
 	&__navigation__prev-button {
 		width: 22px;
@@ -31,7 +33,6 @@
 		position: relative;
 
 		&::disabled::after {
-			/* background-color: #ededed; */
 			opacity: 0.3;
 		}
 		&:hover {
@@ -47,16 +48,18 @@
 			left: 0;
 			background-image: url('../../../assets/images/icons/arrow-stick.svg');
 			background-repeat: no-repeat;
+			transition: transform 0.3s;
 			content: '';
 			position: absolute;
 			background-size: 100% 100%;
 			transform: scale(1);
-			transition: transform 0.3s;
 		}
 	}
+
 	&__navigation__prev-button {
 		transform: rotate(180deg);
 	}
+
 	&__navigation__next2-button,
 	&__navigation__prev2-button {
 		display: none;
@@ -66,6 +69,7 @@
 		margin-bottom: 7px;
 		color: #6d6d6d;
 	}
+
 	&__month-view__weekdays__weekday abbr {
 		text-decoration: none;
 	}
@@ -125,9 +129,11 @@
 			background-color: transparent;
 		}
 	}
+
 	& button:enabled:hover {
 		cursor: pointer;
 	}
+
 	&__navigation button:disabled {
 		opacity: 0.3;
 	}
@@ -136,6 +142,7 @@
 	&__tile--active:enabled:focus {
 		background: $main-color;
 	}
+
 	&__month-view__days__day--neighboringMonth {
 		color: #c8c8c8;
 	}

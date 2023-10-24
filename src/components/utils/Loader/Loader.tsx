@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import s from './Loader.module.scss'
 
-interface IProps {
+interface ILoaderProps {
 	size: number
 	color: string
 }
 
-const Loader: FC<IProps> = ({ size, color }) => {
+const Loader: FC<ILoaderProps> = ({ size, color }) => {
 	const styles = {
 		width: `${size}px`,
 		height: `${size}px`,

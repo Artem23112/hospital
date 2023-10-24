@@ -1,9 +1,10 @@
 import clsx from 'clsx'
 import moment from 'moment'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import { v4 } from 'uuid'
+import { ManageAppointmentData } from '../../layout/MakeAppointmentPanel/MakeAppointmentPanel'
 import { ChosenTimeT } from '../DateTimePicker/DateTimePicker'
-import s from './AppointmentTimeSelector.module.scss'
+import s from './TimeSelector.module.scss'
 
 interface IProps {
 	from: TimeInfoT
@@ -14,16 +15,16 @@ interface IProps {
 	setChosenTimeCb?: React.Dispatch<React.SetStateAction<ChosenTimeT>>
 }
 
-const AppointmentTimeSelector: FC<IProps> = ({
+const TimeSelector: FC<IProps> = ({
 	from,
 	to,
 	stepSize,
 	chosenDate,
-	busyDates,
-	setChosenTimeCb
+	busyDates
 }) => {
+	const appointmentData = useContext(ManageAppointmentData)
+	const { chosenTime, changeData } = appointmentData
 	const [times, setTimes] = useState<GeneratedTimeT[]>([])
-	const [chosenBtn, setChosenBtn] = useState<number | null>(null)
 
 	useEffect(() => {
 		const timeList: GeneratedTimeT[] = []
@@ -49,26 +50,26 @@ const AppointmentTimeSelector: FC<IProps> = ({
 		setTimes(timeList)
 	}, [from, to, stepSize])
 
-	function choosingTime(i: number) {
-		if (i === chosenBtn) {
-			setChosenBtn(null)
-			setChosenTimeCb && setChosenTimeCb(null)
-		} else {
-			setChosenBtn(i)
-			setChosenTimeCb && setChosenTimeCb(times[i].text)
-		}
+	function choosingTime(timeText: string) {
+		changeData &&
+			changeData({
+				...appointmentData,
+				chosenTime: timeText !== chosenTime ? timeText : null
+			})
 	}
 
 	return (
 		<div className={s['btns-wrapper']}>
-			{times.map((time, i) => {
+			{times.map(time => {
 				return (
 					<button
-						className={clsx(s['btn'], { [s['chosen']]: i === chosenBtn })}
+						className={clsx(s['btn'], {
+							[s['chosen']]: time.text === chosenTime
+						})}
 						key={v4()}
 						disabled={time.isDisabled}
 						onClick={() => {
-							choosingTime(i)
+							choosingTime(time.text)
 						}}
 					>
 						{time.text}
@@ -89,5 +90,5 @@ type GeneratedTimeT = {
 	isDisabled: boolean
 }
 
-const MemoizedAppointmentTimeSelector = React.memo(AppointmentTimeSelector)
+const MemoizedAppointmentTimeSelector = React.memo(TimeSelector)
 export default MemoizedAppointmentTimeSelector

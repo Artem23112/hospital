@@ -6,12 +6,12 @@
 
 .calendar {
 	align-self: start;
+	margin-top: 20px;
 	padding: 26px 5px 13px 25px;
 	border-radius: 20px 0 0 20px;
 	-webkit-box-shadow: -8px 0px 10px -4px rgba(34, 60, 80, 0.2);
 	-moz-box-shadow: -8px 0px 10px -4px rgba(34, 60, 80, 0.2);
 	box-shadow: -8px 0px 10px -4px rgba(34, 60, 80, 0.2);
-	margin-top: 20px;
 	grid-column: 2;
 	grid-row: 2;
 }

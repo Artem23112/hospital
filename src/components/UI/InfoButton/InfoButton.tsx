@@ -9,14 +9,19 @@ import s from './InfoButton.module.scss'
 import closeImg from '../../../assets/images/icons/close.svg'
 import { deleteAppointment } from '../../../redux/slices/appointments-slice/additionalThunks/deleteAppointment'
 
-interface IProps {
+interface IInfoButtonProps {
 	isSelected?: boolean
 	id: string
 	info: InfoT
 	handleClick?: (arg: string) => void
 }
 
-const InfoButton: FC<IProps> = ({ id, isSelected, info, handleClick }) => {
+const InfoButton: FC<IInfoButtonProps> = ({
+	id,
+	isSelected,
+	info,
+	handleClick
+}) => {
 	const dispatch = useAppDispatch()
 	const [textDate, textTime] = useParseDate(info?.fullDateISO, {
 		count: 30,
@@ -69,7 +74,7 @@ const InfoButton: FC<IProps> = ({ id, isSelected, info, handleClick }) => {
 				>
 					<img src={closeImg} />
 				</button>
-			)}{' '}
+			)}
 			{info.userId && info?.status === 'waiting' && (
 				<div className={s['functional-btns-wrapper']}>
 					<button

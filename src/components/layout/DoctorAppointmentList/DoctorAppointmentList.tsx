@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { FC, useEffect, useState } from 'react'
+import { selectAppointmentsForDate } from '../../../assets/functions/sortingHelper'
 import { useSort } from '../../../hooks/useSort'
 import {
 	StatusAppointmentT,
@@ -9,13 +10,14 @@ import SortButtons, { SortItemConfigT } from '../../UI/SortButtons/SortButtons'
 import StyledCalendar from '../../UI/StyledCalendar/StyledCalendar'
 import AppointmentList from '../AppointmentList/AppointmentList'
 import s from './DoctorAppointmentList.module.scss'
-import { selectAppointmentsForDate } from '../../../assets/functions/sortingHelper'
 
-interface IProps {
+interface IDoctorAppointmentListProps {
 	doctorAppointments: UniqueDoctorAppointmentT[]
 }
 
-const DoctorAppointmentList: FC<IProps> = ({ doctorAppointments }) => {
+const DoctorAppointmentList: FC<IDoctorAppointmentListProps> = ({
+	doctorAppointments
+}) => {
 	const [chosenDate, setChosenDate] = useState<Date>(
 		moment().startOf('day').toDate()
 	)

@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react'
 import { IAuthErrorInfo } from '../../../assets/functions/getAuthErrorInfo'
 import s from './AuthForm.module.scss'
 
-interface IProps {
+interface IAuthFormProps {
 	children?: ReactNode
 	email: string
 	pw: string
@@ -17,7 +17,7 @@ interface IProps {
 	} | null
 }
 
-const AuthForm: FC<IProps> = ({
+const AuthForm: FC<IAuthFormProps> = ({
 	children,
 	email,
 	pw,

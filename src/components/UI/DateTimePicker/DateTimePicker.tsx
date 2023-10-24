@@ -1,20 +1,17 @@
 import moment from 'moment'
-import { FC, useEffect, useMemo, useState } from 'react'
+import { useContext, useMemo } from 'react'
 import { useAppSelector } from '../../../redux/store.ts'
-import AppointmentTimeSelector from '../AppointmentTimeSelector/AppointmentTimeSelector.tsx'
+import { ManageAppointmentData } from '../../layout/MakeAppointmentPanel/MakeAppointmentPanel.tsx'
+import TimeSelector from '../TimeSelector/TimeSelector.tsx'
 import StyledCalendar from '../StyledCalendar/StyledCalendar.tsx'
 import s from './DateTimePicker.module.scss'
 
-interface IProps {
-	selectedDate?: ChosenDateT
-	choiceDateCb?: (arg?: unknown) => unknown | void
-}
 export type ChosenDateT = Date | null
 export type ChosenTimeT = string | null
 
-const Record: FC<IProps> = ({ choiceDateCb, selectedDate = null }) => {
-	const [chosenDate, setChosenDate] = useState<ChosenDateT>(selectedDate)
-	const [chosenTime, setChosenTime] = useState<ChosenTimeT>(null)
+const DateTimePicker = () => {
+	const appointmentData = useContext(ManageAppointmentData)
+	const { chosenDate, changeData } = appointmentData
 	const busyDates = useAppSelector(state => state.appointment.busyDates)
 	const timeSelectorProps = useMemo(() => {
 		return {
@@ -26,29 +23,15 @@ const Record: FC<IProps> = ({ choiceDateCb, selectedDate = null }) => {
 		}
 	}, [busyDates, chosenDate])
 
-	useEffect(() => {
-		if (!chosenTime || !chosenDate) {
-			choiceDateCb && choiceDateCb(null)
-			return
-		}
-
-		const hoursAndMinutes = moment(chosenTime, 'HH:mm')
-		const fullDate = moment(chosenDate)
-			.hours(hoursAndMinutes.hours())
-			.minutes(hoursAndMinutes.minutes())
-			.seconds(0)
-			.millisecond(0)
-			.toDate()
-
-		choiceDateCb && choiceDateCb(fullDate)
-	}, [chosenTime, chosenDate])
-
 	function choosingDate(curValue: ChosenDateT) {
-		if (chosenDate?.toLocaleString() === curValue?.toLocaleString()) {
-			setChosenDate(null)
-		} else {
-			setChosenDate(curValue)
-		}
+		changeData &&
+			changeData({
+				...appointmentData,
+				chosenDate:
+					chosenDate?.toLocaleString() !== curValue?.toLocaleString()
+						? curValue
+						: null
+			})
 	}
 
 	return (
@@ -71,15 +54,10 @@ const Record: FC<IProps> = ({ choiceDateCb, selectedDate = null }) => {
 						)
 					}}
 				/>
-				{chosenDate && (
-					<AppointmentTimeSelector
-						{...timeSelectorProps}
-						setChosenTimeCb={setChosenTime}
-					/>
-				)}
+				{chosenDate && <TimeSelector {...timeSelectorProps} />}
 			</div>
 		</div>
 	)
 }
 
-export default Record
+export default DateTimePicker

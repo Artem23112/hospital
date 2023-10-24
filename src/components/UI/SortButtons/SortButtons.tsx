@@ -4,13 +4,13 @@ import { v4 } from 'uuid'
 import { FiltersT } from '../../layout/DoctorAppointmentList/DoctorAppointmentList'
 import s from './SortButtons.module.scss'
 
-interface IProps {
+interface ISortButtonsProps {
 	className?: string
 	sortConfig: SortItemConfigT[]
 	chosenFilter: FiltersT
 	handleClick: (filter: FiltersT) => void
 }
-const SortButtons: FC<IProps> = ({
+const SortButtons: FC<ISortButtonsProps> = ({
 	className,
 	sortConfig,
 	chosenFilter,

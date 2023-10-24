@@ -1,8 +1,8 @@
 @import '../../../assets/scss/variables.scss';
 
 .popup-message {
-	max-width: $max-width-layout;
 	width: 100%;
+	max-width: $max-width-layout;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

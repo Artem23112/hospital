@@ -10,13 +10,13 @@ import { useAppSelector } from '../../../redux/store'
 import InfoButton from '../../UI/InfoButton/InfoButton'
 import s from './AppointmentList.module.scss'
 
-interface IProps {
+interface IAppointmentListProps {
 	className?: string
 	userAppointments?: UniqueUserAppointmentT[]
 	doctorAppointments?: UniqueDoctorAppointmentT[]
 }
 
-const AppointmentList: FC<IProps> = ({
+const AppointmentList: FC<IAppointmentListProps> = ({
 	className,
 	userAppointments,
 	doctorAppointments

@@ -38,6 +38,7 @@
 	background-color: gainsboro;
 	border: none;
 	border-radius: 8px;
+
 	&.login-err,
 	&.pw-err {
 		border: 1px solid $err-red;

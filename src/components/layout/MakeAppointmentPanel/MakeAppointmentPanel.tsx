@@ -1,7 +1,7 @@
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { additionDateWithTime } from '../../../assets/functions/additionDateWithTime.ts'
 import { userSendAppointment } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userSendAppointment.ts'
 import { userSubscribeToBusyDates } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userSubscribeToBusyDates.ts'
 import { clearSubmitStatus } from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
@@ -9,15 +9,25 @@ import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/type
 import { showPopupMessage } from '../../../redux/slices/popupMessages-slice/popupMessagesSlice'
 import { useAppSelector } from '../../../redux/store'
 import { useAppDispatch } from '../../../redux/store.ts'
-import DateTimePicker, {
-	ChosenDateT
-} from '../../UI/DateTimePicker/DateTimePicker'
-import DoctorsList, { DoctorValueT } from '../../UI/DoctorsList/DoctorsList'
+import DateTimePicker from '../../UI/DateTimePicker/DateTimePicker'
+import DoctorsList from '../../UI/DoctorsList/DoctorsList'
 import s from './MakeAppointmentPanel.module.scss'
+import { IAppointmentData, IManageAppointmentData } from './types.ts'
+
+export const ManageAppointmentData = createContext<IManageAppointmentData>({
+	chosenDoctor: null,
+	chosenDate: null,
+	chosenTime: null,
+	changeData: null
+})
 
 const MakeAppointmentPanel = () => {
-	const [chosenDoctor, setChosenDoctor] = useState<DoctorValueT>(null)
-	const [chosenDate, setChosenDate] = useState<ChosenDateT>(null)
+	const [{ chosenDoctor, chosenDate, chosenTime }, setAppointmentData] =
+		useState<IAppointmentData>({
+			chosenDoctor: null,
+			chosenDate: null,
+			chosenTime: null
+		})
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 	const { doctorsInfo, isSuccess } = useAppSelector<SelectedT>(state => {
@@ -29,31 +39,20 @@ const MakeAppointmentPanel = () => {
 
 	useEffect(() => {
 		if (!isSuccess) return
-
 		navigate('/profile/appointment-list')
 		dispatch(clearSubmitStatus())
 	}, [isSuccess])
 
 	useEffect(() => {
 		if (!chosenDoctor) return
-
 		dispatch(userSubscribeToBusyDates(chosenDoctor))
 	}, [chosenDoctor])
 
 	function makeAppointment() {
-		if (!chosenDoctor) {
+		if (!chosenDoctor || !chosenDate || !chosenTime) {
 			dispatch(
 				showPopupMessage({
-					text: 'Извините, но вы не выбрали доктора',
-					type: 'warning'
-				})
-			)
-			return
-		}
-		if (!chosenDate) {
-			dispatch(
-				showPopupMessage({
-					text: 'Извините, но вы не выбрали дату или время посещения',
+					text: 'Извините, но вы выбрали не все, что необходимо для записи',
 					type: 'warning'
 				})
 			)
@@ -62,7 +61,7 @@ const MakeAppointmentPanel = () => {
 
 		const appointmentInfo = {
 			doctorId: chosenDoctor,
-			fullDateISO: chosenDate.toISOString()
+			fullDateISO: additionDateWithTime(chosenDate, chosenTime)
 		}
 		dispatch(userSendAppointment(appointmentInfo))
 	}
@@ -70,19 +69,17 @@ const MakeAppointmentPanel = () => {
 	return (
 		<>
 			<div className={s['content-wrapper']}>
-				<DoctorsList
-					doctorsInfo={doctorsInfo}
-					selectedDoctor={chosenDoctor}
-					choiceDoctorCb={docId => {
-						setChosenDoctor(docId as DoctorValueT)
+				<ManageAppointmentData.Provider
+					value={{
+						chosenDoctor,
+						chosenDate,
+						chosenTime,
+						changeData: setAppointmentData
 					}}
-				/>
-				<DateTimePicker
-					selectedDate={chosenDate}
-					choiceDateCb={date => {
-						setChosenDate(date as ChosenDateT)
-					}}
-				/>
+				>
+					<DoctorsList doctorsInfo={doctorsInfo} />
+					<DateTimePicker />
+				</ManageAppointmentData.Provider>
 				<button
 					className={clsx(s['btn'], s['end'])}
 					onClick={() => {

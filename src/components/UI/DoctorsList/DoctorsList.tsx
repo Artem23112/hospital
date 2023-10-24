@@ -1,30 +1,24 @@
-import { FC, useState } from 'react'
+import { FC, useContext } from 'react'
 import { v4 } from 'uuid'
 import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/types'
+import { ManageAppointmentData } from '../../layout/MakeAppointmentPanel/MakeAppointmentPanel'
 import InfoButton from '../InfoButton/InfoButton'
 import s from './DoctorsList.module.scss'
 
-interface IProps {
+interface IDoctorsListProps {
 	doctorsInfo: UniqueDoctorInfoT[]
-	selectedDoctor?: DoctorValueT
-	choiceDoctorCb?: (arg?: unknown) => void
 }
 
-const DoctorsList: FC<IProps> = ({
-	doctorsInfo,
-	choiceDoctorCb,
-	selectedDoctor = null
-}) => {
-	const [chosenDoctor, setChosenDoctor] = useState<DoctorValueT>(selectedDoctor)
+const DoctorsList: FC<IDoctorsListProps> = ({ doctorsInfo }) => {
+	const appointmentData = useContext(ManageAppointmentData)
+	const { chosenDoctor, changeData } = appointmentData
 
 	function choosingDoctor(id: string) {
-		if (chosenDoctor === id) {
-			setChosenDoctor(null)
-			choiceDoctorCb && choiceDoctorCb(null)
-		} else {
-			setChosenDoctor(id)
-			choiceDoctorCb && choiceDoctorCb(id)
-		}
+		changeData &&
+			changeData({
+				...appointmentData,
+				chosenDoctor: chosenDoctor !== id ? id : null
+			})
 	}
 
 	return (

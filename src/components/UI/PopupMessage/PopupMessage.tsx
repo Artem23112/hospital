@@ -6,13 +6,13 @@ import { useAppDispatch } from '../../../redux/store'
 import s from './PopupMessage.module.scss'
 import { FC } from 'react'
 
-interface IProps {
+interface IPopupMessageProps {
 	type: PopupStatusT
 	text: string
 	id: string
 }
 
-const PopupMessage: FC<IProps> = ({ type, text, id }) => {
+const PopupMessage: FC<IPopupMessageProps> = ({ type, text, id }) => {
 	const dispatch = useAppDispatch()
 
 	return (

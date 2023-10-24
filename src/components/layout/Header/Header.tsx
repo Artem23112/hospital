@@ -3,11 +3,11 @@ import ProfileBtn from '../../UI/ProfileBtn/ProfileBtn'
 import CentredContainer from '../CentredContainer/CentredContainer'
 import s from './Header.module.scss'
 
-interface IProps {
+interface IHeaderProps {
 	title: string
 }
 
-const Header: FC<IProps> = ({ title }) => {
+const Header: FC<IHeaderProps> = ({ title }) => {
 	return (
 		<div className={s['header']}>
 			<CentredContainer>

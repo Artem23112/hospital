@@ -1,12 +1,11 @@
+import { Navigate } from 'react-router-dom'
 import { v4 } from 'uuid'
 import { UniqueDoctorAppointmentT } from '../../../redux/slices/appointments-slice/types'
 import { useAppSelector } from '../../../redux/store'
 import Tabs from '../../UI/Tabs/Tabs'
 import CentredContainer from '../CentredContainer/CentredContainer'
-import Header from '../Header/Header'
-import s from './DoctorProfile.module.scss'
-import { Navigate } from 'react-router-dom'
 import DoctorAppointmentList from '../DoctorAppointmentList/DoctorAppointmentList'
+import Header from '../Header/Header'
 
 const AdminPanel = () => {
 	const doctorAppointments = useAppSelector<UniqueDoctorAppointmentT[]>(
@@ -33,12 +32,12 @@ const AdminPanel = () => {
 	]
 
 	return (
-		<div className={s['admin-panel']}>
+		<>
 			<Header title='Добро пожаловать' />
 			<CentredContainer>
 				<Tabs tabsConfig={tabsConfig} />
 			</CentredContainer>
-		</div>
+		</>
 	)
 }
 

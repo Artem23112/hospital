@@ -5,7 +5,7 @@ import s from './PopupMessages.module.scss'
 
 const PopupMessages = () => {
 	const messages = useAppSelector<UniquePopupMessageT[]>(
-		(state: ) => state.popupMessage
+		state => state.popupMessage
 	)
 
 	return (

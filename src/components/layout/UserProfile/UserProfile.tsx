@@ -1,4 +1,3 @@
-import React from 'react'
 import { Navigate } from 'react-router-dom'
 import { v4 } from 'uuid'
 import { UniqueUserAppointmentT } from '../../../redux/slices/appointments-slice/types'
@@ -9,9 +8,7 @@ import CentredContainer from '../CentredContainer/CentredContainer'
 import Header from '../Header/Header'
 import MakeAppointmentPanel from '../MakeAppointmentPanel/MakeAppointmentPanel'
 
-interface IProps {}
-
-const UserProfile: React.FC<IProps> = () => {
+const UserProfile = () => {
 	const appointmentList = useAppSelector<UniqueUserAppointmentT[]>(
 		state => state.appointment.userAppointments
 	)
