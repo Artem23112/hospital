@@ -1,0 +1,6 @@
+@import '../../../assets/scss/variables.scss';
+
+.title {
+	@extend %title;
+	margin-bottom: 15px;
+}

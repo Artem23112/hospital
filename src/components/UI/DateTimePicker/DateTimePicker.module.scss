@@ -1,0 +1,24 @@
+@import '../../../assets/scss/variables.scss';
+
+.title {
+	margin-bottom: 15px;
+	@extend %title;
+}
+
+.content-container {
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	background-color: #fff;
+	align-self: center;
+	padding: 26px 5px 13px 25px;
+	border-radius: 20px 0 0 20px;
+	-webkit-box-shadow: -8px 0px 10px -4px rgba(34, 60, 80, 0.2);
+	-moz-box-shadow: -8px 0px 10px -4px rgba(34, 60, 80, 0.2);
+	box-shadow: -8px 0px 10px -4px rgba(34, 60, 80, 0.2);
+	gap: 10px;
+}
+
+.record-calendary {
+	text-align: center;
+}

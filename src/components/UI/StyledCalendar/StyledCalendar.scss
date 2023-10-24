@@ -1,0 +1,154 @@
+@import '../../../assets/scss/variables.scss';
+
+.react-calendar {
+	user-select: none;
+	max-width: 294px;
+
+	font-family: $comfortaa;
+	text-align: center;
+	&__navigation {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 18px;
+	}
+	&__navigation__label {
+		font-size: 20px;
+		font-weight: 600;
+		flex-grow: 0 !important;
+		transition: transform 0.3s;
+		transform: scale(1);
+		&:hover {
+			transform: scale(1.03);
+		}
+	}
+	&__navigation__next-button,
+	&__navigation__prev-button {
+		width: 22px;
+		height: 20px;
+		margin: auto;
+		color: transparent;
+		position: relative;
+
+		&::disabled::after {
+			/* background-color: #ededed; */
+			opacity: 0.3;
+		}
+		&:hover {
+			background-color: transparent;
+			&:not([disabled])::after {
+				transform: scale(1.1);
+			}
+		}
+		&::after {
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-image: url('../../../assets/images/icons/arrow-stick.svg');
+			background-repeat: no-repeat;
+			content: '';
+			position: absolute;
+			background-size: 100% 100%;
+			transform: scale(1);
+			transition: transform 0.3s;
+		}
+	}
+	&__navigation__prev-button {
+		transform: rotate(180deg);
+	}
+	&__navigation__next2-button,
+	&__navigation__prev2-button {
+		display: none;
+	}
+
+	&__month-view__weekdays {
+		margin-bottom: 7px;
+		color: #6d6d6d;
+	}
+	&__month-view__weekdays__weekday abbr {
+		text-decoration: none;
+	}
+
+	&__tile {
+		padding: 8px 0;
+		line-height: 22px;
+		text-align: center;
+	}
+
+	&__tile:disabled {
+		color: #ffc9c9;
+	}
+
+	&__tile:enabled:hover,
+	&__tile:enabled:focus {
+		background-color: #e6e6e6;
+	}
+
+	&__tile--now.react-calendar__month-view__days__day abbr {
+		display: inline-block;
+		font-size: 16px;
+		line-height: 19px;
+		border-radius: 50%;
+		position: relative;
+		&::after {
+			width: 30px;
+			height: 30px;
+			top: -7px;
+			left: -7px;
+			background: #ffff76;
+			border-radius: 50%;
+			content: '';
+			position: absolute;
+			z-index: -1;
+		}
+	}
+
+	&__tile--now:enabled:hover,
+	&__tile--now:enabled:focus {
+		background: #ffffac;
+	}
+
+	&__tile--hasActive {
+		background: #76baff;
+	}
+
+	&__tile--hasActive:enabled:hover,
+	&__tile--hasActive:enabled:focus {
+		background: #a9d4ff;
+	}
+
+	&__tile--active {
+		color: white;
+		background: $main-color;
+		&.react-calendar__tile--now abbr {
+			background-color: transparent;
+		}
+	}
+	& button:enabled:hover {
+		cursor: pointer;
+	}
+	&__navigation button:disabled {
+		opacity: 0.3;
+	}
+
+	&__tile--active:enabled:hover,
+	&__tile--active:enabled:focus {
+		background: $main-color;
+	}
+	&__month-view__days__day--neighboringMonth {
+		color: #c8c8c8;
+	}
+
+	&--selectRange &__tile--hover {
+		background-color: #e6e6e6;
+	}
+
+	&--selectRange &__tile--hover {
+		background-color: #e6e6e6;
+	}
+
+	& *::first-letter {
+		text-transform: uppercase;
+	}
+}

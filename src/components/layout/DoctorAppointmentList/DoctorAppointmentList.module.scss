@@ -1,0 +1,27 @@
+.wrapper {
+	display: grid;
+	grid-template-columns: 1fr 300px;
+	gap: 15px;
+}
+
+.calendar {
+	align-self: start;
+	padding: 26px 5px 13px 25px;
+	border-radius: 20px 0 0 20px;
+	-webkit-box-shadow: -8px 0px 10px -4px rgba(34, 60, 80, 0.2);
+	-moz-box-shadow: -8px 0px 10px -4px rgba(34, 60, 80, 0.2);
+	box-shadow: -8px 0px 10px -4px rgba(34, 60, 80, 0.2);
+	margin-top: 20px;
+	grid-column: 2;
+	grid-row: 2;
+}
+
+.sort-btns-wrapper {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.appointment-list {
+	grid-column: 1;
+	grid-row: 2;
+}

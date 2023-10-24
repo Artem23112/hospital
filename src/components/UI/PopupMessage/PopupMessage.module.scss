@@ -1,0 +1,40 @@
+@import '../../../assets/scss/variables.scss';
+
+.popup-message {
+	max-width: $max-width-layout;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 13px 20px;
+	font-family: 'Open sans';
+	background-color: #ccc;
+	border-radius: 20px;
+
+	& .title {
+		font-size: 18px;
+		font-weight: 600;
+	}
+}
+
+.close-btn {
+	opacity: 0.3;
+	color: #fff;
+	cursor: pointer;
+}
+
+.error {
+	background-color: #ffcfcb;
+}
+
+.warning {
+	background-color: #ffdea6;
+}
+
+.success {
+	background-color: #baf7d8;
+}
+
+.information {
+	background-color: #cde5ff;
+}

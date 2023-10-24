@@ -1,0 +1,32 @@
+@import '../../../assets/scss/variables.scss';
+
+.btns-wrapper {
+	max-width: 320px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-self: center;
+	gap: 11px 31px;
+	padding-bottom: 12px;
+}
+
+.btn {
+	font-family: $roboto;
+	font-size: 20px;
+	color: #7e7e7e;
+	transition: 0.3s;
+	padding: 1px 5px;
+	&[disabled] {
+		color: #ffc9c9;
+	}
+	&:not([disabled]) {
+		cursor: pointer;
+		&.chosen {
+			color: #fff;
+			background-color: $main-color;
+		}
+		&:not(.chosen):hover {
+			color: $main-color;
+		}
+	}
+}

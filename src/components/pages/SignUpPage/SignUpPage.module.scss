@@ -1,0 +1,40 @@
+@import '../../../assets/scss/variables.scss';
+
+.signup-wrapper {
+	@extend %access-form;
+}
+
+.link-wrapper {
+	@extend %form-link-wrapper;
+}
+
+.title {
+	margin-bottom: 11px;
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 31px;
+	color: #4a4a4a;
+}
+
+.err-message {
+	padding: 0 0 0 5px;
+	font-family: 'Open Sans';
+	font-size: 10px;
+	color: $err-red;
+}
+
+.input {
+	width: 100%;
+	max-width: 300px;
+	margin-bottom: 8px;
+	padding: 8px 12px;
+	background-color: gainsboro;
+	border: none;
+	border-radius: 8px;
+	&.login-err,
+	&.pw-err {
+		border: 1px solid $err-red;
+	}
+	&::placeholder {
+		color: #9a9a9a;
+	}
+}

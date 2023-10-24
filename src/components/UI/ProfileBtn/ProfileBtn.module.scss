@@ -1,0 +1,56 @@
+@import '../../../assets/scss/variables.scss';
+
+.profile-btn-container {
+	position: relative;
+}
+
+.profile-btn {
+	display: flex;
+	align-items: center;
+	font-family: $roboto;
+	color: #fff;
+	cursor: pointer;
+	&__name {
+		margin-right: 10px;
+	}
+	&__arrow {
+		width: 12px;
+		height: 12px;
+		transform: rotate(90deg);
+	}
+	&__submenu {
+		min-width: 100%;
+		display: none;
+		right: 0;
+		padding: 15px 10px;
+		background-color: #fff;
+		border-radius: 10px;
+		-webkit-box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.2);
+		-moz-box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.2);
+		box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.2);
+		position: absolute;
+		z-index: 10000;
+		&.active {
+			display: inline-block;
+		}
+	}
+	&__submenu-item {
+		font-family: sans-serif;
+
+		& + & {
+			margin-top: 3px;
+		}
+
+		& > button {
+			padding: 5px 6px;
+			background-color: #fff;
+			border-radius: 5px;
+			transition: background-color 0.3s;
+			cursor: pointer;
+			white-space: nowrap;
+			&:hover {
+				background-color: #d9d5d5;
+			}
+		}
+	}
+}
