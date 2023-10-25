@@ -1,24 +1,33 @@
-import { FC, useContext } from 'react'
+import { FC, useEffect } from 'react'
 import { v4 } from 'uuid'
-import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/types'
-import { ManageAppointmentData } from '../../layout/MakeAppointmentPanel/MakeAppointmentPanel'
+import {
+	IAppointmentsInitialState,
+	UniqueDoctorInfoT
+} from '../../../redux/slices/appointments-slice/types'
 import InfoButton from '../InfoButton/InfoButton'
 import s from './DoctorsList.module.scss'
+import { useAppSelector } from '../../../redux/store'
+import { useDispatch } from 'react-redux'
+import { setChosenAppointmentData } from '../../../redux/slices/appointments-slice/appointmentsSlice'
+import { userSubscribeToBusyDates } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userSubscribeToBusyDates'
 
 interface IDoctorsListProps {
 	doctorsInfo: UniqueDoctorInfoT[]
 }
 
 const DoctorsList: FC<IDoctorsListProps> = ({ doctorsInfo }) => {
-	const appointmentData = useContext(ManageAppointmentData)
-	const { chosenDoctor, changeData } = appointmentData
+	const dispatch = useDispatch()
+	const chosenDoctor = useAppSelector<SelectedT>(
+		state => state.appointment.appointmentData.chosenDoctor
+	)
+
+	useEffect(() => {
+		if (!chosenDoctor) return
+		dispatch(userSubscribeToBusyDates(chosenDoctor))
+	}, [chosenDoctor])
 
 	function choosingDoctor(id: string) {
-		changeData &&
-			changeData({
-				...appointmentData,
-				chosenDoctor: chosenDoctor !== id ? id : null
-			})
+		dispatch(setChosenAppointmentData({ chosenDoctor: id }))
 	}
 
 	return (
@@ -41,6 +50,8 @@ const DoctorsList: FC<IDoctorsListProps> = ({ doctorsInfo }) => {
 		</div>
 	)
 }
+
+type SelectedT = IAppointmentsInitialState['appointmentData']['chosenDoctor']
 
 export type DoctorValueT = string | null
 

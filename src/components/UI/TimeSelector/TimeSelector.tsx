@@ -1,8 +1,10 @@
 import clsx from 'clsx'
 import moment from 'moment'
-import React, { FC, useContext, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { v4 } from 'uuid'
-import { ManageAppointmentData } from '../../layout/MakeAppointmentPanel/MakeAppointmentPanel'
+import { setChosenAppointmentData } from '../../../redux/slices/appointments-slice/appointmentsSlice'
+import { IAppointmentsInitialState } from '../../../redux/slices/appointments-slice/types'
+import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { ChosenTimeT } from '../DateTimePicker/DateTimePicker'
 import s from './TimeSelector.module.scss'
 
@@ -10,20 +12,18 @@ interface IProps {
 	from: TimeInfoT
 	to: TimeInfoT
 	stepSize: TimeInfoT
-	chosenDate: Date | null
 	busyDates: string[]
 	setChosenTimeCb?: React.Dispatch<React.SetStateAction<ChosenTimeT>>
 }
 
-const TimeSelector: FC<IProps> = ({
-	from,
-	to,
-	stepSize,
-	chosenDate,
-	busyDates
-}) => {
-	const appointmentData = useContext(ManageAppointmentData)
-	const { chosenTime, changeData } = appointmentData
+const TimeSelector: FC<IProps> = ({ from, to, stepSize, busyDates }) => {
+	const dispatch = useAppDispatch()
+	const { chosenDate, chosenTime } = useAppSelector<SelectedT>(state => {
+		return {
+			chosenDate: state.appointment.appointmentData.chosenDate,
+			chosenTime: state.appointment.appointmentData.chosenTime
+		}
+	})
 	const [times, setTimes] = useState<GeneratedTimeT[]>([])
 
 	useEffect(() => {
@@ -51,11 +51,7 @@ const TimeSelector: FC<IProps> = ({
 	}, [from, to, stepSize])
 
 	function choosingTime(timeText: string) {
-		changeData &&
-			changeData({
-				...appointmentData,
-				chosenTime: timeText !== chosenTime ? timeText : null
-			})
+		dispatch(setChosenAppointmentData({ chosenTime: timeText }))
 	}
 
 	return (
@@ -78,6 +74,11 @@ const TimeSelector: FC<IProps> = ({
 			})}
 		</div>
 	)
+}
+
+type SelectedT = {
+	chosenTime: IAppointmentsInitialState['appointmentData']['chosenTime']
+	chosenDate: IAppointmentsInitialState['appointmentData']['chosenDate']
 }
 
 type TimeInfoT = {

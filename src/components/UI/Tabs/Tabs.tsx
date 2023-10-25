@@ -1,7 +1,5 @@
 import { FC } from 'react'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
-import { UniqueUserAppointmentT } from '../../../redux/slices/appointments-slice/types'
-import { useAppSelector } from '../../../redux/store'
 import s from './Tabs.module.scss'
 import clsx from 'clsx'
 

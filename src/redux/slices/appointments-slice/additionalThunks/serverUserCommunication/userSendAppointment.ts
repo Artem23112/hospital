@@ -1,24 +1,39 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getDatabase, ref, set } from 'firebase/database'
 import { v4 } from 'uuid'
+import { additionDateWithTime } from '../../../../../assets/functions/additionDateWithTime'
 import { checkDuplicateAppointment } from '../../../../../assets/functions/checkDuplicateAppointment'
 import { RootState } from '../../../../store'
 import { showPopupMessage } from '../../../popupMessages-slice/popupMessagesSlice'
-import { GeneralAppointmentT, StatusAppointmentT } from '../../types'
+import { GeneralAppointmentT } from '../../types'
 
 export const userSendAppointment = createAsyncThunk(
 	'appointments/sendApplication',
-	async (
-		{ doctorId, fullDateISO }: SendApplicationParams,
-		{ getState, dispatch, rejectWithValue }
-	) => {
-		const db = getDatabase()
+	async (_, { getState, dispatch, rejectWithValue }) => {
 		const state = getState() as RootState
+		const {
+			chosenDoctor: doctorId,
+			chosenDate,
+			chosenTime
+		} = state.appointment.appointmentData
+		if (!doctorId || !chosenDate || !chosenTime) {
+			dispatch(
+				showPopupMessage({
+					text: 'Извините, но вы выбрали не все, что необходимо для записи',
+					type: 'warning'
+				})
+			)
+			return rejectWithValue('Данных недостаточно')
+		}
+
+		const db = getDatabase()
+		const fullDateISO = additionDateWithTime(chosenDate, chosenTime)
 		const userId = state.authentication.id
 		const messagePattern: GeneralAppointmentT = {
-			status: 'waiting' as StatusAppointmentT,
+			status: 'waiting',
 			fullDateISO
 		}
+
 		const id = v4()
 		const docAppointmentPath = ref(db, `doctors/${doctorId}/appointments/${id}`)
 		const userAppointmentPath = ref(db, `users/${userId}/appointments/${id}`)
@@ -57,8 +72,3 @@ export const userSendAppointment = createAsyncThunk(
 		}
 	}
 )
-
-type SendApplicationParams = {
-	doctorId: string
-	fullDateISO: string
-}

@@ -12,7 +12,7 @@ import s from './SignUpPage.module.scss'
 const SignUpPage = () => {
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
-	const [name, setname] = useState<string>('')
+	const [name, setName] = useState<string>('')
 	const [emptyFields, setEmptyFields] = useState<boolean>(false)
 	const dispatch = useAppDispatch()
 	const { loading, error } = useAppSelector<SelectedT>(state => {
@@ -54,7 +54,7 @@ const SignUpPage = () => {
 						className={s['input']}
 						type='name'
 						value={name}
-						onChange={e => setname(e.target.value)}
+						onChange={e => setName(e.target.value)}
 						placeholder='ФИО'
 					/>
 				</AuthForm>

@@ -14,7 +14,12 @@ const initialState: IAppointmentsInitialState = {
 	doctorsInfo: [],
 	usersInfo: [],
 	isSuccessSubmit: false,
-	busyDates: []
+	busyDates: [],
+	appointmentData: {
+		chosenDoctor: null,
+		chosenDate: null,
+		chosenTime: null
+	}
 }
 
 const appointmentsSlice = createSlice({
@@ -33,11 +38,25 @@ const appointmentsSlice = createSlice({
 		) {
 			state.doctorAppointments = action.payload
 		},
+
 		setBusyDates(state, action) {
 			state.busyDates = action.payload
 		},
+
 		clearSubmitStatus(state) {
 			state.isSuccessSubmit = false
+		},
+
+		setChosenAppointmentData(
+			state,
+			action: PayloadAction<
+				Partial<IAppointmentsInitialState['appointmentData']>
+			>
+		) {
+			state.appointmentData = {
+				...state.appointmentData,
+				...action.payload
+			}
 		}
 	},
 	extraReducers: builder => {
@@ -58,7 +77,8 @@ export const {
 	setUserAppointments,
 	setDoctorAppointments,
 	clearSubmitStatus,
-	setBusyDates
+	setBusyDates,
+	setChosenAppointmentData
 } = appointmentsSlice.actions
 
 export default appointmentsSlice.reducer

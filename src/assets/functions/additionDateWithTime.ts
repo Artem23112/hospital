@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-export const additionDateWithTime = (date: Date, time: string): string => {
+export const additionDateWithTime = (date: string, time: string): string => {
 	const hoursAndMinutes = moment(time, 'HH:mm')
 	const newDate = moment(date)
 		.hours(hoursAndMinutes.hours())

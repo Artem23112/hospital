@@ -5,6 +5,11 @@ export interface IAppointmentsInitialState {
 	usersInfo: UniqueUserInfoT[]
 	isSuccessSubmit: boolean
 	busyDates: string[]
+	appointmentData: {
+		chosenDoctor: string | null
+		chosenDate: string | null
+		chosenTime: string | null
+	}
 }
 
 export type StatusAppointmentT = 'waiting' | 'accepted' | 'canceled'

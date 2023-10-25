@@ -1,18 +1,23 @@
 import moment from 'moment'
-import { useContext, useMemo } from 'react'
-import { useAppSelector } from '../../../redux/store.ts'
-import { ManageAppointmentData } from '../../layout/MakeAppointmentPanel/MakeAppointmentPanel.tsx'
+import { useMemo } from 'react'
+import { setChosenAppointmentData } from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
+import { IAppointmentsInitialState } from '../../../redux/slices/appointments-slice/types.ts'
+import { useAppDispatch, useAppSelector } from '../../../redux/store.ts'
+import StyledCalendar, { Value } from '../StyledCalendar/StyledCalendar.tsx'
 import TimeSelector from '../TimeSelector/TimeSelector.tsx'
-import StyledCalendar from '../StyledCalendar/StyledCalendar.tsx'
 import s from './DateTimePicker.module.scss'
 
 export type ChosenDateT = Date | null
 export type ChosenTimeT = string | null
 
 const DateTimePicker = () => {
-	const appointmentData = useContext(ManageAppointmentData)
-	const { chosenDate, changeData } = appointmentData
-	const busyDates = useAppSelector(state => state.appointment.busyDates)
+	const dispatch = useAppDispatch()
+	const { busyDates, chosenDate } = useAppSelector<SelectedT>(state => {
+		return {
+			busyDates: state.appointment.busyDates,
+			chosenDate: state.appointment.appointmentData.chosenDate
+		}
+	})
 	const timeSelectorProps = useMemo(() => {
 		return {
 			from: { hours: 8, minutes: 0 },
@@ -23,15 +28,9 @@ const DateTimePicker = () => {
 		}
 	}, [busyDates, chosenDate])
 
-	function choosingDate(curValue: ChosenDateT) {
-		changeData &&
-			changeData({
-				...appointmentData,
-				chosenDate:
-					chosenDate?.toLocaleString() !== curValue?.toLocaleString()
-						? curValue
-						: null
-			})
+	function choosingDate(v: Value) {
+		if (!(v instanceof Date)) return
+		dispatch(setChosenAppointmentData({ chosenDate: v.toISOString() }))
 	}
 
 	return (
@@ -44,9 +43,9 @@ const DateTimePicker = () => {
 					minDate={moment().toDate()}
 					maxDetail={'month'}
 					minDetail={'year'}
-					value={chosenDate}
+					value={chosenDate && moment(chosenDate).toDate()}
 					onChange={v => {
-						if (v instanceof Date) choosingDate(v)
+						choosingDate(v)
 					}}
 					tileDisabled={({ date, view }) => {
 						return (
@@ -58,6 +57,11 @@ const DateTimePicker = () => {
 			</div>
 		</div>
 	)
+}
+
+type SelectedT = {
+	busyDates: IAppointmentsInitialState['busyDates']
+	chosenDate: IAppointmentsInitialState['appointmentData']['chosenDate']
 }
 
 export default DateTimePicker
