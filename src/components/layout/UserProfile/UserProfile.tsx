@@ -1,13 +1,13 @@
 import { Navigate } from 'react-router-dom'
 import { v4 } from 'uuid'
 import { useAppSelector } from '../../../redux/store'
-import Tabs from '../../UI/Tabs/Tabs'
-import AppointmentList from '../AppointmentList/AppointmentList'
-import CentredContainer from '../CentredContainer/CentredContainer'
-import Header from '../Header/Header'
-import MakeAppointmentPanel from '../MakeAppointmentPanel/MakeAppointmentPanel'
+import { Tabs } from '../../UI/Tabs/Tabs'
+import { AppointmentList } from '../AppointmentList/AppointmentList'
+import { CentredContainer } from '../CentredContainer/CentredContainer'
+import { Header } from '../Header/Header'
+import { MakeAppointmentPanel } from '../MakeAppointmentPanel/MakeAppointmentPanel'
 
-const UserProfile = () => {
+export const UserProfile = () => {
 	const appointmentList = useAppSelector(
 		state => state.appointment.userAppointments
 	)
@@ -45,5 +45,3 @@ const UserProfile = () => {
 		</>
 	)
 }
-
-export default UserProfile

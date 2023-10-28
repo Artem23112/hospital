@@ -6,16 +6,16 @@ import {
 	StatusAppointmentT,
 	UniqueDoctorAppointmentT
 } from '../../../redux/slices/appointments-slice/types'
-import SortButtons, { SortItemConfigT } from '../../UI/SortButtons/SortButtons'
-import StyledCalendar from '../../UI/StyledCalendar/StyledCalendar'
-import AppointmentList from '../AppointmentList/AppointmentList'
+import { SortButtons, SortItemConfigT } from '../../UI/SortButtons/SortButtons'
+import { StyledCalendar } from '../../UI/StyledCalendar/StyledCalendar'
+import { AppointmentList } from '../AppointmentList/AppointmentList'
 import s from './DoctorAppointmentList.module.scss'
 
 interface IDoctorAppointmentListProps {
 	doctorAppointments: UniqueDoctorAppointmentT[]
 }
 
-const DoctorAppointmentList: FC<IDoctorAppointmentListProps> = ({
+export const DoctorAppointmentList: FC<IDoctorAppointmentListProps> = ({
 	doctorAppointments
 }) => {
 	const [chosenDate, setChosenDate] = useState<Date>(
@@ -77,5 +77,3 @@ const DoctorAppointmentList: FC<IDoctorAppointmentListProps> = ({
 }
 
 export type FiltersT = StatusAppointmentT | 'all'
-
-export default DoctorAppointmentList

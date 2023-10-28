@@ -1,13 +1,13 @@
+import clsx from 'clsx'
 import { FC } from 'react'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import s from './Tabs.module.scss'
-import clsx from 'clsx'
 
 interface IProps {
 	tabsConfig: TabConfigT[]
 }
 
-const Tabs: FC<IProps> = ({ tabsConfig }) => {
+export const Tabs: FC<IProps> = ({ tabsConfig }) => {
 	const { pathname } = useLocation()
 
 	function isActive(link: string): boolean {
@@ -56,5 +56,3 @@ type TabConfigT = {
 	routePath: string
 	component: JSX.Element
 }
-
-export default Tabs

@@ -1,32 +1,24 @@
-import { FC, ReactNode } from 'react'
-import { IAuthErrorInfo } from '../../../assets/functions/getAuthErrorInfo'
-import s from './AuthForm.module.scss'
-import Input from './Input/Input'
+import { FC, ReactNode, useState } from 'react'
+import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
+import { Input } from '../Input/Input'
+import s from './Form.module.scss'
 
 interface IAuthFormProps {
 	children?: ReactNode
-	email: string
-	pw: string
-	setEmail: React.Dispatch<React.SetStateAction<string>>
-	setPw: React.Dispatch<React.SetStateAction<string>>
 	submitBtnContent: ReactNode
-	submitHandler: () => void
-	error: {
-		type: IAuthErrorInfo['type']
-		message: IAuthErrorInfo['message']
-	} | null
+	submitHandler: (email: string, password: string) => void
+	error: IAuthInitialState['error']
 }
 
-const AuthForm: FC<IAuthFormProps> = ({
+export const Form: FC<IAuthFormProps> = ({
 	children,
-	email,
-	pw,
-	setEmail,
-	setPw,
 	submitBtnContent,
 	submitHandler,
 	error
 }) => {
+	const [email, setEmail] = useState<string>('')
+	const [pw, setPw] = useState<string>('')
+
 	const emailErr: boolean = error?.type === 'email-error'
 	const pwErr: boolean = error?.type === 'pw-error'
 
@@ -34,7 +26,7 @@ const AuthForm: FC<IAuthFormProps> = ({
 		<form
 			onSubmit={e => {
 				e.preventDefault()
-				submitHandler()
+				submitHandler(email, pw)
 			}}
 		>
 			{children}
@@ -62,5 +54,3 @@ const AuthForm: FC<IAuthFormProps> = ({
 		</form>
 	)
 }
-
-export default AuthForm

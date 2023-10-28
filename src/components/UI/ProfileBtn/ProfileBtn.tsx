@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import arrow from '../../../assets/images/icons/arrow.svg'
 import { exit } from '../../../redux/slices/authentication-slice/additionalThunks/exit'
-import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import s from './ProfileBtn.module.scss'
 
-const ProfileBtn = () => {
+export const ProfileBtn = () => {
 	const email = useAppSelector(state => state.authentication.email)
 	const [showSubmenu, setShowSubmenu] = useState(false)
 	const dispatch = useAppDispatch()
@@ -64,5 +63,3 @@ const ProfileBtn = () => {
 		</div>
 	)
 }
-
-export default ProfileBtn

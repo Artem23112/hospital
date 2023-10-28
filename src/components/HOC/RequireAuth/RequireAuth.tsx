@@ -6,7 +6,7 @@ interface IRequireAuthProps {
 	children: ReactNode
 }
 
-const RequireAuth: FC<IRequireAuthProps> = ({ children }) => {
+export const RequireAuth: FC<IRequireAuthProps> = ({ children }) => {
 	const isAuth = useAppSelector(state => state.authentication.isAuth)
 
 	if (!isAuth) {
@@ -14,5 +14,3 @@ const RequireAuth: FC<IRequireAuthProps> = ({ children }) => {
 	}
 	return <>{children}</>
 }
-
-export default RequireAuth

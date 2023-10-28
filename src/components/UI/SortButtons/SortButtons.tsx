@@ -10,7 +10,8 @@ interface ISortButtonsProps {
 	chosenFilter: FiltersT
 	handleClick: (filter: FiltersT) => void
 }
-const SortButtons: FC<ISortButtonsProps> = ({
+
+export const SortButtons: FC<ISortButtonsProps> = ({
 	className,
 	sortConfig,
 	chosenFilter,
@@ -42,5 +43,3 @@ export type SortItemConfigT = {
 	filter: FiltersT
 	btnText: string
 }
-
-export default SortButtons

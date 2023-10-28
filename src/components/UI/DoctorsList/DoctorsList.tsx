@@ -1,17 +1,17 @@
 import { FC, useEffect } from 'react'
 import { v4 } from 'uuid'
-import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/types'
-import InfoButton from '../InfoButton/InfoButton'
-import s from './DoctorsList.module.scss'
-import { useAppDispatch, useAppSelector } from '../../../redux/store'
-import { setChosenAppointmentData } from '../../../redux/slices/appointments-slice/appointmentsSlice'
 import { userSubscribeToBusyDates } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userSubscribeToBusyDates'
+import { setChosenAppointmentData } from '../../../redux/slices/appointments-slice/appointmentsSlice'
+import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/types'
+import { useAppDispatch, useAppSelector } from '../../../redux/store'
+import { InfoButton } from '../InfoButton/InfoButton'
+import s from './DoctorsList.module.scss'
 
 interface IDoctorsListProps {
 	doctorsInfo: UniqueDoctorInfoT[]
 }
 
-const DoctorsList: FC<IDoctorsListProps> = ({ doctorsInfo }) => {
+export const DoctorsList: FC<IDoctorsListProps> = ({ doctorsInfo }) => {
 	const dispatch = useAppDispatch()
 	const chosenDoctor = useAppSelector(
 		state => state.appointment.appointmentData.chosenDoctor
@@ -48,5 +48,3 @@ const DoctorsList: FC<IDoctorsListProps> = ({ doctorsInfo }) => {
 }
 
 export type DoctorValueT = string | null
-
-export default DoctorsList

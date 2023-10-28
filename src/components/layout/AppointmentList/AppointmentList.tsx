@@ -5,7 +5,7 @@ import {
 	UniqueUserAppointmentT
 } from '../../../redux/slices/appointments-slice/types'
 import { useAppSelector } from '../../../redux/store'
-import InfoButton from '../../UI/InfoButton/InfoButton'
+import { InfoButton } from '../../UI/InfoButton/InfoButton'
 import s from './AppointmentList.module.scss'
 
 interface IAppointmentListProps {
@@ -14,7 +14,7 @@ interface IAppointmentListProps {
 	doctorAppointments?: UniqueDoctorAppointmentT[]
 }
 
-const AppointmentList: FC<IAppointmentListProps> = ({
+export const AppointmentList: FC<IAppointmentListProps> = ({
 	className,
 	userAppointments,
 	doctorAppointments
@@ -56,5 +56,3 @@ const AppointmentList: FC<IAppointmentListProps> = ({
 		</ul>
 	)
 }
-
-export default AppointmentList
