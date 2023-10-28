@@ -2,14 +2,14 @@ import moment from 'moment'
 import { useMemo } from 'react'
 import { setChosenAppointmentData } from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
 import { useAppDispatch, useAppSelector } from '../../../redux/store.ts'
-import StyledCalendar, { Value } from '../StyledCalendar/StyledCalendar.tsx'
-import TimeSelector from '../TimeSelector/TimeSelector.tsx'
+import { StyledCalendar, Value } from '../StyledCalendar/StyledCalendar.tsx'
+import { MemoizedAppointmentTimeSelector as TimeSelector } from '../TimeSelector/TimeSelector.tsx'
 import s from './DateTimePicker.module.scss'
 
 export type ChosenDateT = Date | null
 export type ChosenTimeT = string | null
 
-const DateTimePicker = () => {
+export const DateTimePicker = () => {
 	const dispatch = useAppDispatch()
 	const { busyDates, chosenDate } = useAppSelector(state => {
 		return {
@@ -57,5 +57,3 @@ const DateTimePicker = () => {
 		</div>
 	)
 }
-
-export default DateTimePicker

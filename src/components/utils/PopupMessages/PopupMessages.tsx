@@ -1,9 +1,8 @@
-import { UniquePopupMessageT } from '../../../redux/slices/popupMessages-slice/types'
 import { useAppSelector } from '../../../redux/store'
 import PopupMessage from '../../UI/PopupMessage/PopupMessage'
 import s from './PopupMessages.module.scss'
 
-const PopupMessages = () => {
+export const PopupMessages = () => {
 	const messages = useAppSelector(state => state.popupMessage)
 
 	return (
@@ -15,4 +14,4 @@ const PopupMessages = () => {
 	)
 }
 
-export default PopupMessages
+export PopupMessages

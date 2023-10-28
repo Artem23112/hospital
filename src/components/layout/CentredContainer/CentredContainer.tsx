@@ -7,11 +7,9 @@ interface ICentredContainerProps {
 	className?: string
 }
 
-const CentredContainer: FC<ICentredContainerProps> = ({
+export const CentredContainer: FC<ICentredContainerProps> = ({
 	children,
 	className
 }) => {
 	return <div className={clsx(s['container'], className)}>{children}</div>
 }
-
-export default CentredContainer

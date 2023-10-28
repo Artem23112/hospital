@@ -3,16 +3,14 @@ import { Link } from 'react-router-dom'
 import { signUp } from '../../../redux/slices/authentication-slice/additionalThunks/signUp'
 import { clearError } from '../../../redux/slices/authentication-slice/authenticationSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
-import AuthForm from '../../UI/AuthForm/AuthForm'
-import CentredContainer from '../../layout/CentredContainer/CentredContainer'
-import Loader from '../../utils/Loader/Loader'
+import { Form } from '../../UI/Form/Form'
+import { Input } from '../../UI/Input/Input'
+import { CentredContainer } from '../../layout/CentredContainer/CentredContainer'
+import { Loader } from '../../utils/Loader/Loader'
 import s from './SignUpPage.module.scss'
 
-const SignUpPage = () => {
-	const [email, setEmail] = useState<string>('')
-	const [password, setPassword] = useState<string>('')
+export const SignUpPage = () => {
 	const [name, setName] = useState<string>('')
-	const [emptyFields, setEmptyFields] = useState<boolean>(false)
 	const dispatch = useAppDispatch()
 	const { loading, error } = useAppSelector(state => {
 		return {
@@ -21,13 +19,7 @@ const SignUpPage = () => {
 		}
 	})
 
-	function trySingUp() {
-		if (!email || !password || !name) {
-			setEmptyFields(true)
-			return
-		}
-
-		setEmptyFields(false)
+	function trySingUp(email: string, password: string) {
 		dispatch(signUp({ email, password, name }))
 	}
 
@@ -35,30 +27,23 @@ const SignUpPage = () => {
 		<CentredContainer>
 			<div className={s['signup-wrapper']}>
 				<h3 className={s['title']}>Регистрация</h3>
-				<p className={s['err-message']}>
-					{emptyFields && 'Заполните все поля'}
-				</p>
-				<AuthForm
-					email={email}
-					pw={password}
-					setEmail={setEmail}
-					setPw={setPassword}
+				<Form
 					submitHandler={trySingUp}
 					submitBtnContent={
 						loading ? <Loader size={24} color='#fff' /> : 'Зарегистрироваться'
 					}
 					error={error && { type: error.type, message: error.message }}
 				>
-					<input
-						className={s['input']}
+					<Input
 						type='name'
 						value={name}
-						onChange={e => setName(e.target.value)}
+						onChange={setName}
 						placeholder='ФИО'
+						required
 					/>
-				</AuthForm>
+				</Form>
 				<p className={s['link-wrapper']}>
-					Уже есть аккаунт?{' '}
+					Уже есть аккаунт
 					<Link
 						to='/login'
 						onClick={() => {
@@ -72,5 +57,3 @@ const SignUpPage = () => {
 		</CentredContainer>
 	)
 }
-
-export default SignUpPage

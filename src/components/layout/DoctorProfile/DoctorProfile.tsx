@@ -1,12 +1,12 @@
 import { Navigate } from 'react-router-dom'
 import { v4 } from 'uuid'
 import { useAppSelector } from '../../../redux/store'
-import Tabs from '../../UI/Tabs/Tabs'
-import CentredContainer from '../CentredContainer/CentredContainer'
-import DoctorAppointmentList from '../DoctorAppointmentList/DoctorAppointmentList'
-import Header from '../Header/Header'
+import { Tabs } from '../../UI/Tabs/Tabs'
+import { CentredContainer } from '../CentredContainer/CentredContainer'
+import { DoctorAppointmentList } from '../DoctorAppointmentList/DoctorAppointmentList'
+import { Header } from '../Header/Header'
 
-const AdminPanel = () => {
+export const DoctorProfile = () => {
 	const doctorAppointments = useAppSelector(
 		state => state.appointment.doctorAppointments
 	)
@@ -39,5 +39,3 @@ const AdminPanel = () => {
 		</>
 	)
 }
-
-export default AdminPanel

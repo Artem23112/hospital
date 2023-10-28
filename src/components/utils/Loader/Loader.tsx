@@ -6,7 +6,7 @@ interface ILoaderProps {
 	color: string
 }
 
-const Loader: FC<ILoaderProps> = ({ size, color }) => {
+export const Loader: FC<ILoaderProps> = ({ size, color }) => {
 	const styles = {
 		width: `${size}px`,
 		height: `${size}px`,
@@ -17,5 +17,3 @@ const Loader: FC<ILoaderProps> = ({ size, color }) => {
 
 	return <span className={s['loader']} style={styles}></span>
 }
-
-export default Loader

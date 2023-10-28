@@ -1,14 +1,14 @@
 import clsx from 'clsx'
 import { FC } from 'react'
 import { convertStatus } from '../../../assets/functions/convertStatus'
+import closeImg from '../../../assets/images/icons/close.svg'
 import { useParseDate } from '../../../hooks/useParseDate'
+import { deleteAppointment } from '../../../redux/slices/appointments-slice/additionalThunks/deleteAppointment'
 import { doctorAnswer } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/doctorAnswer'
 import { StatusAppointmentT } from '../../../redux/slices/appointments-slice/types'
 import { useAppDispatch } from '../../../redux/store'
 import s from './InfoButton.module.scss'
-import closeImg from '../../../assets/images/icons/close.svg'
-import { deleteAppointment } from '../../../redux/slices/appointments-slice/additionalThunks/deleteAppointment'
-
+console.log(closeImg)
 interface IInfoButtonProps {
 	isSelected?: boolean
 	id: string
@@ -16,7 +16,7 @@ interface IInfoButtonProps {
 	handleClick?: (arg: string) => void
 }
 
-const InfoButton: FC<IInfoButtonProps> = ({
+export const InfoButton: FC<IInfoButtonProps> = ({
 	id,
 	isSelected,
 	info,
@@ -108,5 +108,3 @@ type InfoT = {
 	userId?: string
 	fullDateISO?: string
 }
-
-export default InfoButton

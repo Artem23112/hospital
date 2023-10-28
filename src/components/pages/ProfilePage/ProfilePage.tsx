@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { connectToServer } from '../../../redux/slices/authentication-slice/additionalThunks/connectToServer'
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
-import DoctorProfile from '../../layout/DoctorProfile/DoctorProfile'
-import UserProfile from '../../layout/UserProfile/UserProfile'
+import { DoctorProfile } from '../../layout/DoctorProfile/DoctorProfile'
+import { UserProfile } from '../../layout/UserProfile/UserProfile'
 
 const ProfilePage = () => {
 	const dispatch = useAppDispatch()
@@ -28,4 +28,4 @@ const ProfilePage = () => {
 	)
 }
 
-export default ProfilePage
+export { ProfilePage }

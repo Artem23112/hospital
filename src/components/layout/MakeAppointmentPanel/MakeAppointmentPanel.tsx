@@ -5,11 +5,11 @@ import { userSendAppointment } from '../../../redux/slices/appointments-slice/ad
 import { clearSubmitStatus } from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
 import { useAppSelector } from '../../../redux/store'
 import { useAppDispatch } from '../../../redux/store.ts'
-import DateTimePicker from '../../UI/DateTimePicker/DateTimePicker'
-import DoctorsList from '../../UI/DoctorsList/DoctorsList'
+import { DateTimePicker } from '../../UI/DateTimePicker/DateTimePicker'
+import { DoctorsList } from '../../UI/DoctorsList/DoctorsList'
 import s from './MakeAppointmentPanel.module.scss'
 
-const MakeAppointmentPanel = () => {
+export const MakeAppointmentPanel = () => {
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 	const { doctorsInfo, isSuccess } = useAppSelector(state => {
@@ -42,5 +42,3 @@ const MakeAppointmentPanel = () => {
 		</>
 	)
 }
-
-export default MakeAppointmentPanel

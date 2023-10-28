@@ -4,12 +4,10 @@ import './StyledCalendar.scss'
 
 type StyledCalendarPropsT = CalendarProps & React.RefAttributes<unknown>
 
-const StyledCalendar: FC<StyledCalendarPropsT> = props => (
+export const StyledCalendar: FC<StyledCalendarPropsT> = props => (
 	<Calendar className={'react-calendar'} {...props} />
 )
 
 export type ValuePiece = Date | null
 
 export type Value = ValuePiece | [ValuePiece, ValuePiece]
-
-export default StyledCalendar

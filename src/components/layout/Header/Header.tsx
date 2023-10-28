@@ -1,13 +1,13 @@
 import { FC } from 'react'
-import ProfileBtn from '../../UI/ProfileBtn/ProfileBtn'
-import CentredContainer from '../CentredContainer/CentredContainer'
+import { ProfileBtn } from '../../UI/ProfileBtn/ProfileBtn'
+import { CentredContainer } from '../CentredContainer/CentredContainer'
 import s from './Header.module.scss'
 
 interface IHeaderProps {
 	title: string
 }
 
-const Header: FC<IHeaderProps> = ({ title }) => {
+export const Header: FC<IHeaderProps> = ({ title }) => {
 	return (
 		<div className={s['header']}>
 			<CentredContainer>
@@ -19,5 +19,3 @@ const Header: FC<IHeaderProps> = ({ title }) => {
 		</div>
 	)
 }
-
-export default Header

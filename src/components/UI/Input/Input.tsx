@@ -13,7 +13,7 @@ interface IInputProps {
 	required?: boolean
 }
 
-const Input: FC<IInputProps> = ({
+export const Input: FC<IInputProps> = ({
 	className,
 	type,
 	value,
@@ -37,5 +37,3 @@ const Input: FC<IInputProps> = ({
 		</label>
 	)
 }
-
-export default Input

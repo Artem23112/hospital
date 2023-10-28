@@ -15,7 +15,7 @@ interface IProps {
 	setChosenTimeCb?: React.Dispatch<React.SetStateAction<ChosenTimeT>>
 }
 
-const TimeSelector: FC<IProps> = ({ from, to, stepSize, busyDates }) => {
+export const TimeSelector: FC<IProps> = ({ from, to, stepSize, busyDates }) => {
 	const dispatch = useAppDispatch()
 	const { chosenDate, chosenTime } = useAppSelector(state => {
 		return {
@@ -86,4 +86,4 @@ type GeneratedTimeT = {
 }
 
 const MemoizedAppointmentTimeSelector = React.memo(TimeSelector)
-export default MemoizedAppointmentTimeSelector
+export { MemoizedAppointmentTimeSelector }
