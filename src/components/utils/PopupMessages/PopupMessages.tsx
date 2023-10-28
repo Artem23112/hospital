@@ -13,3 +13,8 @@ export const PopupMessages = () => {
 		</div>
 	)
 }
+<<<<<<< HEAD
+=======
+
+export PopupMessages
+>>>>>>> 3a962410ac99230ab2c785049352d0f26f644d11

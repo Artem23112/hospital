@@ -8,7 +8,11 @@ import { doctorAnswer } from '../../../redux/slices/appointments-slice/additiona
 import { StatusAppointmentT } from '../../../redux/slices/appointments-slice/types'
 import { useAppDispatch } from '../../../redux/store'
 import s from './InfoButton.module.scss'
+<<<<<<< HEAD
 
+=======
+console.log(closeImg)
+>>>>>>> 3a962410ac99230ab2c785049352d0f26f644d11
 interface IInfoButtonProps {
 	isSelected?: boolean
 	id: string
