@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { signUp } from '../../../redux/slices/authentication-slice/additionalThunks/signUp'
 import { clearError } from '../../../redux/slices/authentication-slice/authenticationSlice'
-import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import AuthForm from '../../UI/AuthForm/AuthForm'
 import CentredContainer from '../../layout/CentredContainer/CentredContainer'
@@ -15,7 +14,7 @@ const SignUpPage = () => {
 	const [name, setName] = useState<string>('')
 	const [emptyFields, setEmptyFields] = useState<boolean>(false)
 	const dispatch = useAppDispatch()
-	const { loading, error } = useAppSelector<SelectedT>(state => {
+	const { loading, error } = useAppSelector(state => {
 		return {
 			loading: state.authentication.loading,
 			error: state.authentication.error
@@ -72,11 +71,6 @@ const SignUpPage = () => {
 			</div>
 		</CentredContainer>
 	)
-}
-
-type SelectedT = {
-	loading: boolean
-	error: IAuthInitialState['error']
 }
 
 export default SignUpPage

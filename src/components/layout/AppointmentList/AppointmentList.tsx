@@ -2,9 +2,7 @@ import clsx from 'clsx'
 import { FC } from 'react'
 import {
 	UniqueDoctorAppointmentT,
-	UniqueDoctorInfoT,
-	UniqueUserAppointmentT,
-	UniqueUserInfoT
+	UniqueUserAppointmentT
 } from '../../../redux/slices/appointments-slice/types'
 import { useAppSelector } from '../../../redux/store'
 import InfoButton from '../../UI/InfoButton/InfoButton'
@@ -21,7 +19,7 @@ const AppointmentList: FC<IAppointmentListProps> = ({
 	userAppointments,
 	doctorAppointments
 }) => {
-	const { doctorsInfo, usersInfo } = useAppSelector<SelectedT>(state => {
+	const { doctorsInfo, usersInfo } = useAppSelector(state => {
 		return {
 			doctorsInfo: state.appointment.doctorsInfo,
 			usersInfo: state.appointment.usersInfo
@@ -57,11 +55,6 @@ const AppointmentList: FC<IAppointmentListProps> = ({
 			</p>
 		</ul>
 	)
-}
-
-type SelectedT = {
-	doctorsInfo: UniqueDoctorInfoT[]
-	usersInfo: UniqueUserInfoT[]
 }
 
 export default AppointmentList

@@ -6,9 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import s from './ProfileBtn.module.scss'
 
 const ProfileBtn = () => {
-	const email = useAppSelector<IAuthInitialState['email']>(
-		state => state.authentication.email
-	)
+	const email = useAppSelector(state => state.authentication.email)
 	const [showSubmenu, setShowSubmenu] = useState(false)
 	const dispatch = useAppDispatch()
 

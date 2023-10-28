@@ -1,13 +1,12 @@
 import { useEffect } from 'react'
 import { connectToServer } from '../../../redux/slices/authentication-slice/additionalThunks/connectToServer'
-import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import DoctorProfile from '../../layout/DoctorProfile/DoctorProfile'
 import UserProfile from '../../layout/UserProfile/UserProfile'
 
-const HomePage = () => {
+const ProfilePage = () => {
 	const dispatch = useAppDispatch()
-	const { rights, id } = useAppSelector<SelectedT>(state => {
+	const { rights, id } = useAppSelector(state => {
 		return {
 			rights: state.authentication.rights,
 			id: state.authentication.id
@@ -29,9 +28,4 @@ const HomePage = () => {
 	)
 }
 
-type SelectedT = {
-	id: IAuthInitialState['id']
-	rights: IAuthInitialState['rights']
-}
-
-export default HomePage
+export default ProfilePage

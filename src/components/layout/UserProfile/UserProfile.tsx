@@ -1,6 +1,5 @@
 import { Navigate } from 'react-router-dom'
 import { v4 } from 'uuid'
-import { UniqueUserAppointmentT } from '../../../redux/slices/appointments-slice/types'
 import { useAppSelector } from '../../../redux/store'
 import Tabs from '../../UI/Tabs/Tabs'
 import AppointmentList from '../AppointmentList/AppointmentList'
@@ -9,7 +8,7 @@ import Header from '../Header/Header'
 import MakeAppointmentPanel from '../MakeAppointmentPanel/MakeAppointmentPanel'
 
 const UserProfile = () => {
-	const appointmentList = useAppSelector<UniqueUserAppointmentT[]>(
+	const appointmentList = useAppSelector(
 		state => state.appointment.userAppointments
 	)
 

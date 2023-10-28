@@ -4,9 +4,7 @@ import PopupMessage from '../../UI/PopupMessage/PopupMessage'
 import s from './PopupMessages.module.scss'
 
 const PopupMessages = () => {
-	const messages = useAppSelector<UniquePopupMessageT[]>(
-		state => state.popupMessage
-	)
+	const messages = useAppSelector(state => state.popupMessage)
 
 	return (
 		<div className={s['messages-wrapper']}>

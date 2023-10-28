@@ -3,7 +3,6 @@ import moment from 'moment'
 import React, { FC, useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 import { setChosenAppointmentData } from '../../../redux/slices/appointments-slice/appointmentsSlice'
-import { IAppointmentsInitialState } from '../../../redux/slices/appointments-slice/types'
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { ChosenTimeT } from '../DateTimePicker/DateTimePicker'
 import s from './TimeSelector.module.scss'
@@ -18,7 +17,7 @@ interface IProps {
 
 const TimeSelector: FC<IProps> = ({ from, to, stepSize, busyDates }) => {
 	const dispatch = useAppDispatch()
-	const { chosenDate, chosenTime } = useAppSelector<SelectedT>(state => {
+	const { chosenDate, chosenTime } = useAppSelector(state => {
 		return {
 			chosenDate: state.appointment.appointmentData.chosenDate,
 			chosenTime: state.appointment.appointmentData.chosenTime
@@ -74,11 +73,6 @@ const TimeSelector: FC<IProps> = ({ from, to, stepSize, busyDates }) => {
 			})}
 		</div>
 	)
-}
-
-type SelectedT = {
-	chosenTime: IAppointmentsInitialState['appointmentData']['chosenTime']
-	chosenDate: IAppointmentsInitialState['appointmentData']['chosenDate']
 }
 
 type TimeInfoT = {

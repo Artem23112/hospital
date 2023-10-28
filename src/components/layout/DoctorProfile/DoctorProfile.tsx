@@ -1,6 +1,5 @@
 import { Navigate } from 'react-router-dom'
 import { v4 } from 'uuid'
-import { UniqueDoctorAppointmentT } from '../../../redux/slices/appointments-slice/types'
 import { useAppSelector } from '../../../redux/store'
 import Tabs from '../../UI/Tabs/Tabs'
 import CentredContainer from '../CentredContainer/CentredContainer'
@@ -8,7 +7,7 @@ import DoctorAppointmentList from '../DoctorAppointmentList/DoctorAppointmentLis
 import Header from '../Header/Header'
 
 const AdminPanel = () => {
-	const doctorAppointments = useAppSelector<UniqueDoctorAppointmentT[]>(
+	const doctorAppointments = useAppSelector(
 		state => state.appointment.doctorAppointments
 	)
 

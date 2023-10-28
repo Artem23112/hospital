@@ -7,7 +7,7 @@ interface IRequireAuthProps {
 }
 
 const RequireAuth: FC<IRequireAuthProps> = ({ children }) => {
-	const isAuth = useAppSelector<boolean>(state => state.authentication.isAuth)
+	const isAuth = useAppSelector(state => state.authentication.isAuth)
 
 	if (!isAuth) {
 		return <Navigate to={'/login'} />

@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { userSendAppointment } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userSendAppointment.ts'
 import { clearSubmitStatus } from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
-import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/types.ts'
 import { useAppSelector } from '../../../redux/store'
 import { useAppDispatch } from '../../../redux/store.ts'
 import DateTimePicker from '../../UI/DateTimePicker/DateTimePicker'
@@ -13,7 +12,7 @@ import s from './MakeAppointmentPanel.module.scss'
 const MakeAppointmentPanel = () => {
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
-	const { doctorsInfo, isSuccess } = useAppSelector<SelectedT>(state => {
+	const { doctorsInfo, isSuccess } = useAppSelector(state => {
 		return {
 			doctorsInfo: state.appointment.doctorsInfo,
 			isSuccess: state.appointment.isSuccessSubmit
@@ -42,11 +41,6 @@ const MakeAppointmentPanel = () => {
 			</div>
 		</>
 	)
-}
-
-type SelectedT = {
-	doctorsInfo: UniqueDoctorInfoT[]
-	isSuccess: boolean
 }
 
 export default MakeAppointmentPanel
