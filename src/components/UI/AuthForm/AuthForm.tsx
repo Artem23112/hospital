@@ -1,7 +1,7 @@
-import clsx from 'clsx'
 import { FC, ReactNode } from 'react'
 import { IAuthErrorInfo } from '../../../assets/functions/getAuthErrorInfo'
 import s from './AuthForm.module.scss'
+import Input from './Input/Input'
 
 interface IAuthFormProps {
 	children?: ReactNode
@@ -38,21 +38,23 @@ const AuthForm: FC<IAuthFormProps> = ({
 			}}
 		>
 			{children}
-			<p className={s['err-message']}>{emailErr && error?.message}</p>
-			<input
-				className={clsx(s['input'], { [s['err']]: emailErr })}
+			<Input
 				type='email'
 				value={email}
-				onChange={e => setEmail(e.target.value)}
-				placeholder='Email'
+				onChange={setEmail}
+				placeholder={'Логин'}
+				isError={emailErr}
+				errMessage={error?.message}
+				required
 			/>
-			<p className={s['err-message']}>{pwErr && error?.message}</p>
-			<input
-				className={clsx(s['input'], { [s['err']]: pwErr })}
+			<Input
 				type='password'
 				value={pw}
-				onChange={e => setPw(e.target.value)}
-				placeholder='Пароль'
+				onChange={setPw}
+				placeholder={'Пароль'}
+				isError={pwErr}
+				errMessage={error?.message}
+				required
 			/>
 			<button className={s['btn']} type='submit'>
 				{submitBtnContent}

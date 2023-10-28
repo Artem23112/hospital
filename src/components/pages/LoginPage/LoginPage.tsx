@@ -13,19 +13,16 @@ const LoginPage = () => {
 	const [password, setPassword] = useState<string>('')
 	const [emptyFields, setEmptyFields] = useState<boolean>(false)
 	const dispatch = useAppDispatch()
-	const { loading, error } = useAppSelector(state => {
-		return {
-			loading: state.authentication.loading,
-			error: state.authentication.error
-		}
-	})
+	const { loading, error } = useAppSelector(({ authentication }) => ({
+		loading: authentication.loading,
+		error: authentication.error
+	}))
 
 	function trySingIn() {
 		if (!email || !password) {
 			setEmptyFields(true)
 			return
 		}
-
 		setEmptyFields(false)
 		dispatch(signIn({ email, password }))
 	}
