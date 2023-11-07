@@ -25,7 +25,7 @@ export const Input: FC<IInputProps> = ({
 }) => {
 	return (
 		<label>
-			<span>{isError && errMessage}</span>
+			{isError && <span className={s['err-message']}>{errMessage}</span>}
 			<input
 				className={clsx(s['input'], { [s['err']]: isError }, className)}
 				type={type}

@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { getDatabase, ref, set } from 'firebase/database'
-import { getAuthErrorInfo } from '../../../../assets/functions/getAuthErrorInfo'
+import { getAuthErrorInfo } from '../../../../assets/functions/get-auth-error-info'
+import { userConnectToServer } from '../../appointments-slice/additionalThunks/serverUserCommunication/userConnectToServer'
 
 export const signUp = createAsyncThunk(
 	'authentication/signUp',
@@ -11,7 +12,7 @@ export const signUp = createAsyncThunk(
 			password,
 			name
 		}: { email: string; password: string; name: string },
-		{ rejectWithValue }
+		{ rejectWithValue, dispatch }
 	) => {
 		try {
 			const userCredential = await createUserWithEmailAndPassword(
@@ -19,15 +20,12 @@ export const signUp = createAsyncThunk(
 				email,
 				password
 			)
+			const id = userCredential.user.uid
 
-			await set(
-				ref(getDatabase(), `users-info/${userCredential.user.uid}/rights`),
-				'user'
-			)
-			await set(
-				ref(getDatabase(), `users-info/${userCredential.user.uid}/name`),
-				name
-			)
+			await set(ref(getDatabase(), `users-info/${id}/rights`), 'user')
+			await set(ref(getDatabase(), `users-info/${id}/name`), name)
+
+			dispatch(userConnectToServer(id))
 
 			return {
 				email: userCredential.user.email,

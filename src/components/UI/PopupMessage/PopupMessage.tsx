@@ -33,8 +33,3 @@ export const PopupMessage: FC<IPopupMessageProps> = ({ type, text, id }) => {
 		</div>
 	)
 }
-<<<<<<< HEAD
-=======
-
-export PopupMessage
->>>>>>> 3a962410ac99230ab2c785049352d0f26f644d11

@@ -19,11 +19,11 @@ export const authenticationSlice = createSlice({
 	initialState,
 	reducers: {
 		setSavedUser(state, action) {
-			const { email, id } = action.payload
+			const { email, id, isAuth } = action.payload
 			state.error = null
 			state.email = email
 			state.id = id
-			state.isAuth = true
+			state.isAuth = isAuth
 		},
 		clearError(state) {
 			state.error = null

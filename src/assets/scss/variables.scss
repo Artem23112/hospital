@@ -43,12 +43,3 @@ $red-hover: #ec5252;
 	position: absolute;
 	transform: translateY(-50%);
 }
-
-%form-link-wrapper {
-	font-family: sans-serif;
-
-	& a {
-		color: $main-color;
-		text-decoration: none;
-	}
-}

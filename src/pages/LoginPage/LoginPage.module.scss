@@ -1,11 +1,7 @@
-@import '../../../assets/scss/variables.scss';
+@import '../../assets/scss/variables.scss';
 
 .login-wrapper {
 	@extend %access-form;
-}
-
-.link-wrapper {
-	@extend %form-link-wrapper;
 }
 
 .title {

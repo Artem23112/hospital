@@ -1,3 +1,4 @@
+import { FirebaseError } from 'firebase/app'
 import { AuthErrorCodes } from 'firebase/auth'
 
 export interface IAuthErrorInfo {
@@ -5,10 +6,12 @@ export interface IAuthErrorInfo {
 	message: string | null
 }
 
-export type AuthErrorCode = (typeof AuthErrorCodes)[keyof typeof AuthErrorCodes]
+// export type AuthErrorCode = (typeof AuthErrorCodes)[keyof typeof AuthErrorCodes]
 export type TError = 'email-error' | 'pw-error' | 'error'
 
-export const getAuthErrorInfo = (errorCode: AuthErrorCode): IAuthErrorInfo => {
+export const getAuthErrorInfo = (
+	errorCode: FirebaseError['code']
+): IAuthErrorInfo => {
 	switch (errorCode) {
 		// EMAIL ERROR
 		case AuthErrorCodes.INVALID_EMAIL:

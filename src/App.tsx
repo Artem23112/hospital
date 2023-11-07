@@ -1,55 +1,53 @@
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { useEffect } from 'react'
+import { Unsubscribe } from 'firebase/auth'
+import { FC, useEffect } from 'react'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
-import RequireAuth from './components/HOC/RequireAuth/RequireAuth'
-import LoginPage from './components/pages/LoginPage/LoginPage'
-import ProfilePage from './components/pages/ProfilePage/ProfilePage'
-import SignUpPage from './components/pages/SignUpPage/SignUpPage'
-import PopupMessages from './components/utils/PopupMessages/PopupMessages'
-import { setSavedUser } from './redux/slices/authentication-slice/authenticationSlice'
-import { useAppDispatch } from './redux/store'
+import { RequireAuth } from './components/HOC/RequireAuth/RequireAuth'
+import { subscribeToUserAvailability } from './firebase/subscribe-to-user-availability'
+import { LoginPage } from './pages/LoginPage/LoginPage'
+import { ProfilePage } from './pages/ProfilePage/ProfilePage'
+import { SignUpPage } from './pages/SignUpPage/SignUpPage'
+import { PATHS } from './paths'
+import { connectToServer } from './redux/slices/authentication-slice/additionalThunks/connectToServer'
+import { useAppDispatch, useAppSelector } from './redux/store'
 
-function App() {
+interface IAppProps {}
+
+export const App: FC<IAppProps> = () => {
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
+	const { isAuth, rights } = useAppSelector(({ authentication }) => ({
+		isAuth: authentication.isAuth,
+		rights: authentication.rights
+	}))
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(getAuth(), user => {
-			if (!user) return
-
-			dispatch(
-				setSavedUser({
-					email: user.email,
-					id: user.uid
-				})
-			)
-			navigate('/profile')
-		})
-
-		return () => {
-			unsubscribe()
+		let unsubscribe: Unsubscribe | undefined
+		if (isAuth && rights === null) {
+			dispatch(connectToServer())
+			navigate(PATHS.profile.home)
+		} else {
+			unsubscribe = subscribeToUserAvailability(dispatch)
 		}
-	}, [])
+		return () => {
+			unsubscribe?.()
+		}
+	}, [isAuth])
 
 	return (
 		<>
-			<PopupMessages />
-
 			<Routes>
+				<Route path={PATHS.home} element={<Navigate to={PATHS.login} />} />
+				<Route path={PATHS.login} element={<LoginPage />} />
+				<Route path={PATHS.singUp} element={<SignUpPage />} />
 				<Route
-					path='/profile/*'
+					path={`${PATHS.profile.home}*`}
 					element={
 						<RequireAuth>
 							<ProfilePage />
 						</RequireAuth>
 					}
 				/>
-				<Route path='/signup' element={<SignUpPage />} />
-				<Route path='/login' element={<LoginPage />} />
-				<Route path='/' element={<Navigate to={'/login'} />}></Route>
 			</Routes>
 		</>
 	)
 }
-
-export App

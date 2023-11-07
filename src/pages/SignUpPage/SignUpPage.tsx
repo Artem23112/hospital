@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { signUp } from '../../../redux/slices/authentication-slice/additionalThunks/signUp'
-import { clearError } from '../../../redux/slices/authentication-slice/authenticationSlice'
-import { useAppDispatch, useAppSelector } from '../../../redux/store'
-import { Form } from '../../UI/Form/Form'
-import { Input } from '../../UI/Input/Input'
-import { CentredContainer } from '../../layout/CentredContainer/CentredContainer'
-import { Loader } from '../../utils/Loader/Loader'
+import { Form } from '../../components/UI/Form/Form'
+import { Input } from '../../components/UI/Input/Input'
+import { AlternativeChoice } from '../../components/UI/alternative-choice/AlternativeChoice'
+import { CentredContainer } from '../../components/layout/CentredContainer/CentredContainer'
+import { Loader } from '../../components/utils/Loader/Loader'
+import { PATHS } from '../../paths'
+import { signUp } from '../../redux/slices/authentication-slice/additionalThunks/signUp'
+import { clearError } from '../../redux/slices/authentication-slice/authenticationSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
 import s from './SignUpPage.module.scss'
 
 export const SignUpPage = () => {
@@ -42,17 +43,12 @@ export const SignUpPage = () => {
 						required
 					/>
 				</Form>
-				<p className={s['link-wrapper']}>
-					Уже есть аккаунт
-					<Link
-						to='/login'
-						onClick={() => {
-							dispatch(clearError())
-						}}
-					>
-						Войти
-					</Link>
-				</p>
+				<AlternativeChoice
+					contentText='Уже есть аккаунт?'
+					linkText='Войти'
+					redirectPath={PATHS.login}
+					handleClick={() => dispatch(clearError())}
+				/>
 			</div>
 		</CentredContainer>
 	)

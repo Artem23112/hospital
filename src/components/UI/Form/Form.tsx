@@ -1,20 +1,17 @@
 import { FC, ReactNode, useState } from 'react'
 import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
 import { Input } from '../Input/Input'
-<<<<<<< HEAD
 import s from './Form.module.scss'
-=======
-import s from './AuthForm.module.scss'
->>>>>>> 3a962410ac99230ab2c785049352d0f26f644d11
 
-interface IAuthFormProps {
+interface IFormProps {
 	children?: ReactNode
 	submitBtnContent: ReactNode
 	submitHandler: (email: string, password: string) => void
 	error: IAuthInitialState['error']
+	Wrapper?: React.PureComponent
 }
 
-export const Form: FC<IAuthFormProps> = ({
+export const Form: FC<IFormProps> = ({
 	children,
 	submitBtnContent,
 	submitHandler,

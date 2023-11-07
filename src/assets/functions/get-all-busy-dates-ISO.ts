@@ -1,6 +1,6 @@
-import { getDatabase, ref, get } from 'firebase/database'
-import { arrFromFirebaseObj } from './arrFromFirebaseObj'
+import { get, getDatabase, ref } from 'firebase/database'
 import { DoctorAppointmentT } from '../../redux/slices/appointments-slice/types'
+import { arrFromFirebaseObj } from './array-from-firebase-object'
 
 type getAllBusyDatesISOFuncT = (doctorId: string) => Promise<string[]>
 

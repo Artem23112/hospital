@@ -33,11 +33,18 @@
 	border: none;
 	border-radius: 8px;
 
-	&.login-err,
-	&.pw-err {
+	&.err,
+	&.err {
 		border: 1px solid $err-red;
 	}
 	&::placeholder {
 		color: #9a9a9a;
 	}
+}
+
+.err-message {
+	display: inline-block;
+	font-size: 12px;
+	line-height: 14px;
+	color: $err-red;
 }

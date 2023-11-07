@@ -4,7 +4,7 @@ export const PATHS = {
 	singUp: '/signup',
 	profile: {
 		home: '/profile/',
-		makeAppointment: 'profile/make-appointment',
-		appointmentList: 'profile/appointment-list'
+		makeAppointment: 'make-appointment/',
+		appointmentList: 'appointment-list/'
 	}
 } as const

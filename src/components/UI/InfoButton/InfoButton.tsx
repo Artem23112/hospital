@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { FC } from 'react'
-import { convertStatus } from '../../../assets/functions/convertStatus'
+import { convertStatus } from '../../../assets/functions/convert-status'
 import closeImg from '../../../assets/images/icons/close.svg'
 import { useParseDate } from '../../../hooks/useParseDate'
 import { deleteAppointment } from '../../../redux/slices/appointments-slice/additionalThunks/deleteAppointment'
@@ -8,11 +8,7 @@ import { doctorAnswer } from '../../../redux/slices/appointments-slice/additiona
 import { StatusAppointmentT } from '../../../redux/slices/appointments-slice/types'
 import { useAppDispatch } from '../../../redux/store'
 import s from './InfoButton.module.scss'
-<<<<<<< HEAD
 
-=======
-console.log(closeImg)
->>>>>>> 3a962410ac99230ab2c785049352d0f26f644d11
 interface IInfoButtonProps {
 	isSelected?: boolean
 	id: string

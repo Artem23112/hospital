@@ -6,6 +6,7 @@ import { AppointmentList } from '../AppointmentList/AppointmentList'
 import { CentredContainer } from '../CentredContainer/CentredContainer'
 import { Header } from '../Header/Header'
 import { MakeAppointmentPanel } from '../MakeAppointmentPanel/MakeAppointmentPanel'
+import { PATHS } from '../../../paths'
 
 export const UserProfile = () => {
 	const appointmentList = useAppSelector(
@@ -16,7 +17,7 @@ export const UserProfile = () => {
 		{
 			id: v4(),
 			tabText: 'Записаться',
-			linkPath: '/profile/make-appointment',
+			linkPath: `/profile/make-appointment`,
 			routePath: '/make-appointment',
 			component: <MakeAppointmentPanel />
 		},

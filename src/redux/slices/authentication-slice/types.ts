@@ -1,4 +1,4 @@
-import { IAuthErrorInfo } from '../../../assets/functions/getAuthErrorInfo'
+import { IAuthErrorInfo } from '../../../assets/functions/get-auth-error-info'
 
 export interface IAuthInitialState {
 	email: string | null

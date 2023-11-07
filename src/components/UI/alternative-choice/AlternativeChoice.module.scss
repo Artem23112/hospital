@@ -1,0 +1,12 @@
+@import '../../../assets/scss/variables.scss';
+
+.wrapper {
+	display: flex;
+	font-family: sans-serif;
+	gap: 5px;
+
+	& a {
+		color: $main-color;
+		text-decoration: none;
+	}
+}

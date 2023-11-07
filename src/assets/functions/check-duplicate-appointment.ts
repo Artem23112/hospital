@@ -1,4 +1,4 @@
-import { getAllBusyDatesISO } from './getAllBusyDatesISO'
+import { getAllBusyDatesISO } from './get-all-busy-dates-ISO'
 
 type CheckDuplicateAppointmentFuncT = (
 	doctorId: string,

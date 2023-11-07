@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { FC, useEffect, useState } from 'react'
-import { selectAppointmentsForDate } from '../../../assets/functions/sortingHelper'
+import { selectAppointmentsForDate } from '../../../assets/functions/sorting-helper'
 import { useSort } from '../../../hooks/useSort'
 import {
 	StatusAppointmentT,

@@ -1,0 +1,12 @@
+@import '../../assets/scss/variables.scss';
+
+.signup-wrapper {
+	@extend %access-form;
+}
+
+.title {
+	margin-bottom: 11px;
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: 31px;
+	color: #4a4a4a;
+}
