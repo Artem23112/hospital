@@ -69,6 +69,11 @@ const appointmentsSlice = createSlice({
 			})
 			.addCase(userSendAppointment.fulfilled, state => {
 				state.isSuccessSubmit = true
+				state.appointmentData = {
+					chosenDoctor: null,
+					chosenDate: null,
+					chosenTime: null
+				}
 			})
 	}
 })
