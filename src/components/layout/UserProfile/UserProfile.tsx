@@ -17,22 +17,22 @@ export const UserProfile = () => {
 		{
 			id: v4(),
 			tabText: 'Записаться',
-			linkPath: `/profile/make-appointment`,
-			routePath: '/make-appointment',
+			linkPath: PATHS.profile.home + PATHS.profile.makeAppointment,
+			routePath: PATHS.profile.makeAppointment,
 			component: <MakeAppointmentPanel />
 		},
 		{
 			id: v4(),
 			tabText: 'Список записей',
-			linkPath: '/profile/appointment-list',
-			routePath: '/appointment-list',
+			linkPath: PATHS.profile.home + PATHS.profile.appointmentList,
+			routePath: PATHS.profile.appointmentList,
 			component: <AppointmentList userAppointments={appointmentList} />
 		},
 		{
 			id: v4(),
 			linkPath: '',
 			routePath: '/',
-			component: <Navigate to='./make-appointment' />,
+			component: <Navigate to={PATHS.profile.makeAppointment} />,
 			default: true
 		}
 	]
