@@ -13,11 +13,8 @@ import { cleanExpiredAppointments } from '../../../../../assets/functions/clean-
 
 export const doctorConnectToServer = createAsyncThunk(
 	'appointments/adminConnectToServer',
-	async (_, { dispatch, getState }) => {
-		const state = getState() as RootState
-		const uid = state.authentication.id
-		if (!uid) throw new Error('Пользователь не авторизован')
-		const path = ref(getDatabase(), `doctors/${uid}/appointments`)
+	async (doctorId: string, { dispatch }) => {
+		const path = ref(getDatabase(), `doctors/${doctorId}/appointments`)
 
 		onValue(path, async snapshot => {
 			// if (!snapshot.exists()) return
@@ -25,7 +22,7 @@ export const doctorConnectToServer = createAsyncThunk(
 			const parsedAppointments = arrFromFirebaseObj<{
 				[key: string]: DoctorAppointmentT
 			}>(snapshot.val())
-			await cleanExpiredAppointments(parsedAppointments, uid, 'admin')
+			await cleanExpiredAppointments(parsedAppointments, doctorId, 'admin')
 			const sorted = sortAppointmentsList(parsedAppointments)
 
 			dispatch(setDoctorAppointments(sorted as UniqueDoctorAppointmentT[]))
