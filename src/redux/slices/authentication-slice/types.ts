@@ -9,10 +9,6 @@ export interface IAuthInitialState {
 	error: IAuthErrorInfo | null
 }
 
-// export interface IAuthPayload {
-
-// }
-
 export type AuthInfoT = {
 	email: string
 	password: string
