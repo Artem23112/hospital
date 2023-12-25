@@ -1,3 +1,12 @@
+import {
+	UniqueDoctorAppointmentT,
+	UniqueDoctorInfoT
+} from './additionalThunks/serverDoctorCommunication/types'
+import {
+	UniqueUserAppointmentT,
+	UniqueUserInfoT
+} from './additionalThunks/serverUserCommunication/types'
+
 export interface IAppointmentsInitialState {
 	userAppointments: UniqueUserAppointmentT[]
 	doctorAppointments: UniqueDoctorAppointmentT[]
@@ -21,37 +30,4 @@ export type StatusAppointmentT =
 export interface GeneralAppointmentT {
 	status: StatusAppointmentT
 	fullDateISO: string
-}
-
-export interface DoctorInfoT {
-	name: string
-	specialization: string
-	additional: {
-		education: string
-		experience: string
-	}
-}
-export interface UniqueDoctorInfoT extends DoctorInfoT {
-	id: string
-}
-
-export interface DoctorAppointmentT extends GeneralAppointmentT {
-	userId: string
-}
-export interface UniqueDoctorAppointmentT extends DoctorAppointmentT {
-	id: string
-}
-
-export interface UserInfoT {
-	name: string
-}
-export interface UniqueUserInfoT extends UserInfoT {
-	id: string
-}
-
-export interface UserAppointmentT extends GeneralAppointmentT {
-	doctorId: string
-}
-export interface UniqueUserAppointmentT extends UserAppointmentT {
-	id: string
 }
