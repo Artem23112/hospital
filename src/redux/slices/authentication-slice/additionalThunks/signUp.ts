@@ -7,20 +7,16 @@ import { userConnectToServer } from '../../appointments-slice/additionalThunks/s
 export const signUp = createAsyncThunk(
 	'authentication/signUp',
 	async (
-		{
-			email,
-			password,
-			name
-		}: { email: string; password: string; name: string },
+		{ email, password, name }: IncomingDataT,
 		{ rejectWithValue, dispatch }
 	) => {
 		try {
-			const userCredential = await createUserWithEmailAndPassword(
+			const { user } = await createUserWithEmailAndPassword(
 				getAuth(),
 				email,
 				password
 			)
-			const id = userCredential.user.uid
+			const id = user.uid
 
 			await set(ref(getDatabase(), `users-info/${id}/rights`), 'user')
 			await set(ref(getDatabase(), `users-info/${id}/name`), name)
@@ -28,8 +24,8 @@ export const signUp = createAsyncThunk(
 			dispatch(userConnectToServer(id))
 
 			return {
-				email: userCredential.user.email,
-				id: userCredential.user.uid
+				email: user.email,
+				id
 			}
 		} catch (err: any) {
 			return rejectWithValue({
@@ -38,3 +34,5 @@ export const signUp = createAsyncThunk(
 		}
 	}
 )
+
+type IncomingDataT = { email: string; password: string; name: string }
