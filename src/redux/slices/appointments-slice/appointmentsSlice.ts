@@ -2,11 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { doctorConnectToServer } from './additionalThunks/serverDoctorCommunication/doctorConnectToServer'
 import { userConnectToServer } from './additionalThunks/serverUserCommunication/userConnectToServer'
 import { userSendAppointment } from './additionalThunks/serverUserCommunication/userSendAppointment'
-import {
-	IAppointmentsInitialState,
-	UniqueDoctorAppointmentT,
-	UniqueUserAppointmentT
-} from './types'
+import { IAppointmentsInitialState } from './types'
+import { UniqueDoctorAppointmentT } from './additionalThunks/serverDoctorCommunication/types'
+import { UniqueUserAppointmentT } from './additionalThunks/serverUserCommunication/types'
 
 const initialState: IAppointmentsInitialState = {
 	userAppointments: [],
