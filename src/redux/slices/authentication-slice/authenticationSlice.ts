@@ -56,7 +56,7 @@ export const authenticationSlice = createSlice({
 				state.error = null
 			})
 			.addCase(connectToServer.fulfilled, (state, action) => {
-				state.rights = action.payload.rights
+				state.rights = action.payload
 			})
 			.addMatcher(
 				action => {

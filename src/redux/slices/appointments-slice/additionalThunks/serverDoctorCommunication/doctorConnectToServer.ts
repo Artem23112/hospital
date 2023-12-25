@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { get, getDatabase, onValue, ref } from 'firebase/database'
 import { arrFromFirebaseObj } from '../../../../../assets/functions/array-from-firebase-object'
 import { sortAppointmentsList } from '../../../../../assets/functions/sort-appointments-list'
-import { RootState } from '../../../../store'
 import { setDoctorAppointments } from '../../appointmentsSlice'
 import {
 	DoctorAppointmentT,

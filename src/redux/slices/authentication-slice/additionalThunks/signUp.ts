@@ -3,11 +3,12 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { getDatabase, ref, set } from 'firebase/database'
 import { getAuthErrorInfo } from '../../../../assets/functions/get-auth-error-info'
 import { userConnectToServer } from '../../appointments-slice/additionalThunks/serverUserCommunication/userConnectToServer'
+import { SignUpInfoT } from '../types'
 
 export const signUp = createAsyncThunk(
 	'authentication/signUp',
 	async (
-		{ email, password, name }: IncomingDataT,
+		{ email, password, name }: SignUpInfoT,
 		{ rejectWithValue, dispatch }
 	) => {
 		try {
@@ -34,5 +35,3 @@ export const signUp = createAsyncThunk(
 		}
 	}
 )
-
-type IncomingDataT = { email: string; password: string; name: string }

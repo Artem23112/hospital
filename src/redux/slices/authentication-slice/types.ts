@@ -9,7 +9,13 @@ export interface IAuthInitialState {
 	error: IAuthErrorInfo | null
 }
 
-export interface IAuthPayload {
+// export interface IAuthPayload {
+
+// }
+
+export type AuthInfoT = {
 	email: string
-	id: string
+	password: string
 }
+
+export type SignUpInfoT = { name: string } & AuthInfoT
