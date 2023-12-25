@@ -8,6 +8,7 @@ import {
 	UniqueUserAppointmentT,
 	UserAppointmentT
 } from '../../types'
+import { cleanExpiredAppointments } from '../../../../../assets/functions/clean-expired-appointments'
 
 export const userConnectToServer = createAsyncThunk(
 	'appointments/userConnectToServer',
@@ -17,12 +18,10 @@ export const userConnectToServer = createAsyncThunk(
 			`users/${userId}/appointments`
 		)
 
-		onValue(userAppointmentsPath, snapshot => {
-			if (!snapshot.exists()) return
-
-			const parsedAppointments = arrFromFirebaseObj<{
-				[key: string]: UserAppointmentT
-			}>(snapshot.val())
+		onValue(userAppointmentsPath, async snapshot => {
+			const parsedAppointments =
+				arrFromFirebaseObj<AppointmentListFromFirebase>(snapshot.val())
+			await cleanExpiredAppointments(parsedAppointments, userId, 'user')
 
 			const sorted = sortAppointmentsList(parsedAppointments)
 
@@ -35,3 +34,7 @@ export const userConnectToServer = createAsyncThunk(
 		return arrFromFirebaseObj<{ [key: string]: DoctorInfoT }>(doctorsInfo)
 	}
 )
+
+interface AppointmentListFromFirebase {
+	[key: string]: UserAppointmentT
+}

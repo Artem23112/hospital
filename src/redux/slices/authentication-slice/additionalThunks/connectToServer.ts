@@ -20,7 +20,7 @@ export const connectToServer = createAsyncThunk(
 			const info = await get(ref(getDatabase(), `doctors-info/${uid}`))
 
 			if (info.exists()) {
-				dispatch(doctorConnectToServer(uid))
+				dispatch(doctorConnectToServer())
 			} else {
 				dispatch(userConnectToServer(uid))
 			}

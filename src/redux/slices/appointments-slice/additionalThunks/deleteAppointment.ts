@@ -7,11 +7,12 @@ export const deleteAppointment = createAsyncThunk(
 	'appointments',
 	async (id: string, { getState, dispatch }) => {
 		const state = getState() as RootState
-		const userId = state.authentication.id
+		const authId = state.authentication.id
 		const rights = state.authentication.rights
+
 		const path = ref(
 			getDatabase(),
-			`${rights === 'admin' ? 'doctors' : 'users'}/${userId}/appointments/${id}`
+			`${rights === 'user' ? 'users' : 'doctors'}/${authId}/appointments/${id}`
 		)
 
 		try {

@@ -21,7 +21,7 @@ export const MakeAppointmentPanel = () => {
 
 	useEffect(() => {
 		if (!isSuccess) return
-		navigate('/profile/appointment-list')
+		navigate('/profile/appointment-list/')
 		dispatch(clearSubmitStatus())
 	}, [isSuccess])
 

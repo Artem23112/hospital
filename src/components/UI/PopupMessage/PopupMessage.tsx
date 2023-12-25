@@ -4,6 +4,7 @@ import closeIcon from '../../../assets/images/icons/close.svg'
 import { removeMessage } from '../../../redux/slices/popupMessages-slice/popupMessagesSlice'
 import { PopupStatusT } from '../../../redux/slices/popupMessages-slice/types'
 import { useAppDispatch } from '../../../redux/store'
+import { statusConvert } from '../../utils/PopupMessages/statusConvert'
 import s from './PopupMessage.module.scss'
 
 interface IPopupMessageProps {
@@ -18,7 +19,7 @@ export const PopupMessage: FC<IPopupMessageProps> = ({ type, text, id }) => {
 	return (
 		<div className={clsx(s[type], s['popup-message'])}>
 			<div>
-				<h4 className={s['title']}>{type[0].toUpperCase() + type.slice(1)}</h4>
+				<h4 className={s['title']}>{statusConvert[type]}</h4>
 				<p>{text}</p>
 			</div>
 			<button

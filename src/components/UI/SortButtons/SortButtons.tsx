@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { FC } from 'react'
 import { v4 } from 'uuid'
-import { FiltersT } from '../../layout/DoctorAppointmentList/DoctorAppointmentList'
+import { FiltersT } from '../../layout/doctor-workspace/DoctorWorkspace'
 import s from './SortButtons.module.scss'
 
 interface ISortButtonsProps {

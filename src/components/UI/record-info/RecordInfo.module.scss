@@ -1,23 +1,6 @@
 @import '../../../assets/scss/variables.scss';
 
-.btn-wrapper {
-	position: relative;
-
-	&:hover .btn:not(.active) {
-		background-color: #f9f9f9;
-		transform: scale(1.01);
-	}
-
-	&:hover .btn-delete {
-		filter: opacity(0.4);
-	}
-
-	&:hover .functional-btns-wrapper {
-		max-width: 100%;
-	}
-}
-
-.btn {
+.wrapper {
 	width: 100%;
 	display: grid;
 	align-items: center;
@@ -31,16 +14,15 @@
 	-moz-box-shadow: 0px 1px 7px 1px rgba(34, 60, 80, 0.14);
 	box-shadow: 0px 1px 7px 1px rgba(34, 60, 80, 0.14);
 	transition: all 0.3s;
-	cursor: pointer;
+	position: relative;
 	gap: 10px;
 
-	&.active {
-		background-color: $main-color;
-		& .title,
-		.additional,
-		.time {
-			color: #fff;
-		}
+	&:hover .functional-btns-wrapper {
+		max-width: 100%;
+	}
+
+	&:hover .btn-delete {
+		filter: opacity(0.4);
 	}
 }
 
@@ -50,54 +32,19 @@
 
 	& + .additional {
 		margin-top: 5px;
-	}
-}
-
-.additional {
-	color: #2e608b;
-}
-
-.time {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	&:not(:has(+ .status)) {
-		margin-left: auto;
-		grid-column: 3;
-	}
-	& span {
-		padding-left: 20px;
-		position: relative;
-	}
-	& span:nth-child(1)::before,
-	& span:nth-child(2)::before {
-		width: 16px;
-		height: 16px;
-		content: '';
-		position: absolute;
-		background-size: cover;
-	}
-	& span:nth-child(1)::before {
-		top: 3px;
-		left: 0;
-		background-image: url('../../../assets/images/icons/calendar.svg');
-	}
-	& span:nth-child(2)::before {
-		top: 3px;
-		left: 0;
-		background-image: url('../../../assets/images/icons/time.svg');
+		color: #2e608b;
 	}
 }
 
 .status {
 	justify-self: end;
-	&.waiting {
+	&.enrolled {
 		color: #dff25e;
 	}
-	&.accepted {
+	&.admitted {
 		color: #73d950;
 	}
-	&.canceled {
+	&.not-admitted {
 		color: #f25e5e;
 	}
 }

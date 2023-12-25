@@ -1,10 +1,10 @@
-import { FC, ReactElement } from 'react'
+import { FC, ReactNode } from 'react'
 import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
 import { useAppSelector } from '../../../redux/store'
 
 interface IRequireRightsProps {
 	requiredRights: Exclude<IAuthInitialState['rights'], null>
-	children: ReactElement
+	children: ReactNode
 }
 
 export const RequireRights: FC<IRequireRightsProps> = ({
@@ -12,5 +12,5 @@ export const RequireRights: FC<IRequireRightsProps> = ({
 	children
 }) => {
 	const currentRights = useAppSelector(state => state.authentication.rights)
-	return <>{requiredRights === currentRights && <div>{children}</div>}</>
+	return <>{requiredRights === currentRights && <>{children}</>}</>
 }

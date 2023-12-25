@@ -17,10 +17,7 @@ export const userSubscribeToBusyDates = createAsyncThunk(
 			const appointments = arrFromFirebaseObj<ResponseAppointments>(
 				snapshot.val()
 			)
-			const busyAppointments = appointments.filter(
-				appointment => appointment.status !== 'canceled'
-			)
-			const busyDatesISO = busyAppointments.map(
+			const busyDatesISO = appointments.map(
 				appointment => appointment.fullDateISO
 			)
 

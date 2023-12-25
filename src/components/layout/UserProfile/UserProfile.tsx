@@ -2,11 +2,11 @@ import { Navigate } from 'react-router-dom'
 import { v4 } from 'uuid'
 import { useAppSelector } from '../../../redux/store'
 import { Tabs } from '../../UI/Tabs/Tabs'
-import { AppointmentList } from '../AppointmentList/AppointmentList'
 import { CentredContainer } from '../CentredContainer/CentredContainer'
 import { Header } from '../Header/Header'
 import { MakeAppointmentPanel } from '../MakeAppointmentPanel/MakeAppointmentPanel'
 import { PATHS } from '../../../paths'
+import { OwnAppointmentList } from '../own-appointment-list/OwnAppointmentList'
 
 export const UserProfile = () => {
 	const appointmentList = useAppSelector(
@@ -26,7 +26,7 @@ export const UserProfile = () => {
 			tabText: 'Список записей',
 			linkPath: PATHS.profile.home + PATHS.profile.appointmentList,
 			routePath: PATHS.profile.appointmentList,
-			component: <AppointmentList userAppointments={appointmentList} />
+			component: <OwnAppointmentList userAppointments={appointmentList} />
 		},
 		{
 			id: v4(),

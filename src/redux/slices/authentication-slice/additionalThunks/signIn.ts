@@ -16,7 +16,7 @@ export const signIn = createAsyncThunk(
 				password
 			)
 
-			dispatch(connectToServer(userCredential.user.uid))
+			dispatch(connectToServer())
 
 			return {
 				email: userCredential.user.email,

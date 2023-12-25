@@ -39,7 +39,7 @@ export const DateTimePicker = () => {
 				<StyledCalendar
 					className={s['record-calendar']}
 					maxDate={moment().add(1, 'month').toDate()}
-					minDate={moment().toDate()}
+					minDate={moment().add(1, 'day').toDate()}
 					maxDetail={'month'}
 					minDetail={'year'}
 					value={chosenDate && moment(chosenDate).toDate()}

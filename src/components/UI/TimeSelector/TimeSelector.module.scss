@@ -17,7 +17,8 @@
 	transition: 0.3s;
 	padding: 1px 5px;
 	&[disabled] {
-		color: #ffc9c9;
+		background-color: #ffc9c9;
+		color: #fff;
 	}
 	&:not([disabled]) {
 		cursor: pointer;

@@ -3,8 +3,8 @@ import { v4 } from 'uuid'
 import { useAppSelector } from '../../../redux/store'
 import { Tabs } from '../../UI/Tabs/Tabs'
 import { CentredContainer } from '../CentredContainer/CentredContainer'
-import { DoctorAppointmentList } from '../DoctorAppointmentList/DoctorAppointmentList'
 import { Header } from '../Header/Header'
+import { DoctorWorkspace } from '../doctor-workspace/DoctorWorkspace'
 
 export const DoctorProfile = () => {
 	const doctorAppointments = useAppSelector(
@@ -17,9 +17,7 @@ export const DoctorProfile = () => {
 			tabText: 'Список записей',
 			linkPath: '/profile/appointment-list',
 			routePath: '/appointment-list',
-			component: (
-				<DoctorAppointmentList doctorAppointments={doctorAppointments} />
-			)
+			component: <DoctorWorkspace doctorAppointments={doctorAppointments} />
 		},
 		{
 			id: v4(),

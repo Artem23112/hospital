@@ -12,7 +12,11 @@ export interface IAppointmentsInitialState {
 	}
 }
 
-export type StatusAppointmentT = 'waiting' | 'accepted' | 'canceled'
+export type StatusAppointmentT =
+	| 'enrolled'
+	| 'admitted'
+	| 'not-admitted'
+	| 'expired'
 
 export interface GeneralAppointmentT {
 	status: StatusAppointmentT
@@ -22,6 +26,10 @@ export interface GeneralAppointmentT {
 export interface DoctorInfoT {
 	name: string
 	specialization: string
+	additional: {
+		education: string
+		experience: string
+	}
 }
 export interface UniqueDoctorInfoT extends DoctorInfoT {
 	id: string

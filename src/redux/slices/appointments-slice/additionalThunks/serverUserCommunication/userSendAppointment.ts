@@ -30,7 +30,7 @@ export const userSendAppointment = createAsyncThunk(
 		const fullDateISO = additionDateWithTime(chosenDate, chosenTime)
 		const userId = state.authentication.id
 		const messagePattern: GeneralAppointmentT = {
-			status: 'waiting',
+			status: 'enrolled',
 			fullDateISO
 		}
 
@@ -58,7 +58,7 @@ export const userSendAppointment = createAsyncThunk(
 
 			dispatch(
 				showPopupMessage({
-					text: 'Вы успешно записались к врачу',
+					text: 'Вы записались к врачу',
 					type: 'success'
 				})
 			)

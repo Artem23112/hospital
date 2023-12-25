@@ -8,14 +8,14 @@ import {
 } from '../../../redux/slices/appointments-slice/types'
 import { SortButtons, SortItemConfigT } from '../../UI/SortButtons/SortButtons'
 import { StyledCalendar } from '../../UI/StyledCalendar/StyledCalendar'
-import { AppointmentList } from '../AppointmentList/AppointmentList'
-import s from './DoctorAppointmentList.module.scss'
+import { PatientList } from '../patient-list/PatientList'
+import s from './DoctorWorkspace.module.scss'
 
-interface IDoctorAppointmentListProps {
+interface IDoctorWorkspaceProps {
 	doctorAppointments: UniqueDoctorAppointmentT[]
 }
 
-export const DoctorAppointmentList: FC<IDoctorAppointmentListProps> = ({
+export const DoctorWorkspace: FC<IDoctorWorkspaceProps> = ({
 	doctorAppointments
 }) => {
 	const [chosenDate, setChosenDate] = useState<Date>(
@@ -40,17 +40,18 @@ export const DoctorAppointmentList: FC<IDoctorAppointmentListProps> = ({
 			btnText: 'Все'
 		},
 		{
-			filter: 'accepted',
+			filter: 'enrolled',
+			btnText: 'Записанные'
+		},
+		{
+			filter: 'admitted',
 			btnText: 'Принятые'
 		},
 		{
-			filter: 'canceled',
-			btnText: 'Отклоненные'
+			filter: 'not-admitted',
+			btnText: 'Не принятые'
 		},
-		{
-			filter: 'waiting',
-			btnText: 'В ожидании'
-		}
+		{ filter: 'expired', btnText: 'Просроченные' }
 	]
 
 	return (
@@ -62,7 +63,7 @@ export const DoctorAppointmentList: FC<IDoctorAppointmentListProps> = ({
 					chosenFilter={filter}
 					handleClick={changeFilter}
 				/>
-				<AppointmentList
+				<PatientList
 					className={s['appointment-list']}
 					doctorAppointments={sortedList}
 				/>

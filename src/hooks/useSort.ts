@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { FiltersT } from '../components/layout/DoctorAppointmentList/DoctorAppointmentList'
+import { FiltersT } from '../components/layout/doctor-workspace/DoctorWorkspace.tsx'
 
 export const useSort: UseSortHookT = (
 	originalList,

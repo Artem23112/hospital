@@ -1,4 +1,4 @@
-import { RequireRights } from '../../components/HOC/RequireAuth/require-rights'
+import { RequireRights } from '../../components/HOC/access-restrictions/RequireRights'
 import { DoctorProfile } from '../../components/layout/DoctorProfile/DoctorProfile'
 import { UserProfile } from '../../components/layout/UserProfile/UserProfile'
 
