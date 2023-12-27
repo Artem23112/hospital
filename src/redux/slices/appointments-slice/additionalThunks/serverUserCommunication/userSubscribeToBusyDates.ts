@@ -12,14 +12,14 @@ export const userSubscribeToBusyDates = createAsyncThunk(
 	async (doctorId: string, { dispatch, rejectWithValue }) => {
 		const doctorAppointmentsPath = ref(getDatabase(), `doctors/${doctorId}/appointments`)
 
-		onValue(doctorAppointmentsPath, ({ val, exists }) => {
-			const snapshot: unknown = val()
-			if (!exists()) return dispatch(setBusyDates([]))
-			if (!doctorAppointmentsFromServer.guard(snapshot)) {
+		onValue(doctorAppointmentsPath, snapshot => {
+			const data: unknown = snapshot.val()
+			if (!snapshot.exists()) return dispatch(setBusyDates([]))
+			if (!doctorAppointmentsFromServer.guard(data)) {
 				return rejectWithValue('unknown type of doctor appointment data')
 			}
 
-			const appointments = arrFromFirebaseObj<DoctorAppointmentT>(snapshot)
+			const appointments = arrFromFirebaseObj<DoctorAppointmentT>(data)
 			const busyDatesISO = appointments.map(appointment => appointment.fullDateISO)
 
 			dispatch(setBusyDates(busyDatesISO))
