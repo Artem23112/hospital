@@ -1,3 +1,5 @@
+import { Unique } from '../../../main-types'
+
 export type InitialStateT = Array<UniquePopupMessageT>
 
 export interface PopupMessageT {
@@ -6,8 +8,6 @@ export interface PopupMessageT {
 	duration?: number
 }
 
-export interface UniquePopupMessageT extends PopupMessageT {
-	id: string
-}
+export type UniquePopupMessageT = Unique<PopupMessageT>
 
 export type PopupStatusT = 'error' | 'success' | 'warning' | 'information'
