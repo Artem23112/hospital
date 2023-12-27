@@ -1,10 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { doctorConnectToServer } from './additionalThunks/serverDoctorCommunication/doctorConnectToServer'
-import { UniqueDoctorAppointmentT } from './additionalThunks/serverDoctorCommunication/types'
+import {
+	UniqueDoctorAppointmentT,
+	UniqueDoctorInfoT
+} from './additionalThunks/serverDoctorCommunication/types'
+import {
+	UniqueUserAppointmentT,
+	UniqueUserInfoT
+} from './additionalThunks/serverUserCommunication/types'
 import { userConnectToServer } from './additionalThunks/serverUserCommunication/userConnectToServer'
 import { userSendAppointment } from './additionalThunks/serverUserCommunication/userSendAppointment'
 import { IAppointmentsInitialState } from './types'
-import { UniqueUserAppointmentT } from './additionalThunks/serverUserCommunication/types'
 
 const initialState: IAppointmentsInitialState = {
 	userAppointments: [],
@@ -51,12 +57,18 @@ const appointmentsSlice = createSlice({
 	},
 	extraReducers: builder => {
 		builder
-			.addCase(userConnectToServer.fulfilled, (state, action) => {
-				state.doctorsInfo = action.payload
-			})
-			.addCase(doctorConnectToServer.fulfilled, (state, action) => {
-				state.usersInfo = action.payload
-			})
+			.addCase(
+				userConnectToServer.fulfilled,
+				(state, action: PayloadAction<UniqueDoctorInfoT[]>) => {
+					state.doctorsInfo = action.payload
+				}
+			)
+			.addCase(
+				doctorConnectToServer.fulfilled,
+				(state, action: PayloadAction<UniqueUserInfoT[]>) => {
+					state.usersInfo = action.payload
+				}
+			)
 			.addCase(userSendAppointment.fulfilled, state => {
 				state.isSuccessSubmit = true
 				state.appointmentData = {
