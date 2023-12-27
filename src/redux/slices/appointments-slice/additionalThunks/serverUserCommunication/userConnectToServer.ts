@@ -3,38 +3,36 @@ import { get, getDatabase, onValue, ref } from 'firebase/database'
 import { arrFromFirebaseObj } from '../../../../../assets/functions/array-from-firebase-object'
 import { sortAppointmentsList } from '../../../../../assets/functions/sort-appointments-list'
 import { setUserAppointments } from '../../appointmentsSlice'
-import {
-	DoctorInfoT,
-	UniqueUserAppointmentT,
-	UserAppointmentT
-} from '../../types'
+
 import { cleanExpiredAppointments } from '../../../../../assets/functions/clean-expired-appointments'
+import { DoctorInfoT, doctorsInfoFromServer } from '../serverDoctorCommunication/types'
+import { UniqueUserAppointmentT, UserAppointmentT, userAppointmentsFromServer } from './types'
 
 export const userConnectToServer = createAsyncThunk(
 	'appointments/userConnectToServer',
-	async (userId: string, { dispatch }) => {
-		const userAppointmentsPath = ref(
-			getDatabase(),
-			`users/${userId}/appointments`
-		)
+	async (userId: string, { dispatch, rejectWithValue }) => {
+		const path = ref(getDatabase(), `users/${userId}/appointments`)
 
-		onValue(userAppointmentsPath, async snapshot => {
-			const parsedAppointments =
-				arrFromFirebaseObj<AppointmentListFromFirebase>(snapshot.val())
+		onValue(path, async snapshot => {
+			const data: unknown = snapshot.val()
+			if (!userAppointmentsFromServer.guard(data)) {
+				return rejectWithValue('unknown type of user appointment data')
+			}
+
+			const parsedAppointments = arrFromFirebaseObj<UserAppointmentT>(data)
 			await cleanExpiredAppointments(parsedAppointments, userId, 'user')
 
-			const sorted = sortAppointmentsList(parsedAppointments)
+			const sorted = sortAppointmentsList<UniqueUserAppointmentT>(parsedAppointments)
 
-			dispatch(setUserAppointments(sorted as UniqueUserAppointmentT[]))
+			dispatch(setUserAppointments(sorted))
 		})
 
 		const doctorsInfoPath = ref(getDatabase(), 'doctors-info')
-		const doctorsInfo = (await get(doctorsInfoPath)).val()
+		const doctorsInfo: unknown = (await get(doctorsInfoPath)).val()
+		if (!doctorsInfoFromServer.guard(doctorsInfo)) {
+			return rejectWithValue('unknown type info about doctors')
+		}
 
-		return arrFromFirebaseObj<{ [key: string]: DoctorInfoT }>(doctorsInfo)
+		return arrFromFirebaseObj<DoctorInfoT>(doctorsInfo)
 	}
 )
-
-interface AppointmentListFromFirebase {
-	[key: string]: UserAppointmentT
-}

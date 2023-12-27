@@ -1,3 +1,4 @@
+import { Literal, Record, Static, String, Union } from 'runtypes'
 import {
 	UniqueDoctorAppointmentT,
 	UniqueDoctorInfoT
@@ -21,13 +22,18 @@ export interface IAppointmentsInitialState {
 	}
 }
 
-export type StatusAppointmentT =
-	| 'enrolled'
-	| 'admitted'
-	| 'not-admitted'
-	| 'expired'
+export type StatusAppointmentT = Static<typeof statusAppointment>
 
-export interface GeneralAppointmentT {
-	status: StatusAppointmentT
-	fullDateISO: string
-}
+export type GeneralAppointmentT = Static<typeof generalAppointment>
+
+const statusAppointment = Union(
+	Literal('enrolled'),
+	Literal('admitted'),
+	Literal('not-admitted'),
+	Literal('expired')
+)
+
+export const generalAppointment = Record({
+	status: statusAppointment,
+	fullDateISO: String
+})

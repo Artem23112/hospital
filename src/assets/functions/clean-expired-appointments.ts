@@ -1,17 +1,15 @@
 import { getDatabase, ref, update } from 'firebase/database'
 import moment from 'moment'
-import {
-	UniqueDoctorAppointmentT,
-	UniqueUserAppointmentT
-} from '../../redux/slices/appointments-slice/types'
+import { GeneralAppointmentT } from '../../redux/slices/appointments-slice/types'
+import { Roles, Unique } from '../../main-types'
 
-type cleanExpiredAppointmentsFuncT = (
-	list: UniqueUserAppointmentT[] | UniqueDoctorAppointmentT[],
+type CleanExpiredAppointmentsFuncT = <T extends Unique<GeneralAppointmentT>>(
+	list: T[],
 	userId: string,
-	rights: 'admin' | 'user'
-) => void
+	rights: Roles
+) => Promise<void>
 
-export const cleanExpiredAppointments: cleanExpiredAppointmentsFuncT = async (
+export const cleanExpiredAppointments: CleanExpiredAppointmentsFuncT = async (
 	list,
 	userId,
 	rights

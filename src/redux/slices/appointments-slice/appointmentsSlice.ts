@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { doctorConnectToServer } from './additionalThunks/serverDoctorCommunication/doctorConnectToServer'
+import { UniqueDoctorAppointmentT } from './additionalThunks/serverDoctorCommunication/types'
 import { userConnectToServer } from './additionalThunks/serverUserCommunication/userConnectToServer'
 import { userSendAppointment } from './additionalThunks/serverUserCommunication/userSendAppointment'
 import { IAppointmentsInitialState } from './types'
-import { UniqueDoctorAppointmentT } from './additionalThunks/serverDoctorCommunication/types'
 import { UniqueUserAppointmentT } from './additionalThunks/serverUserCommunication/types'
 
 const initialState: IAppointmentsInitialState = {
@@ -24,20 +24,14 @@ const appointmentsSlice = createSlice({
 	name: 'appointments',
 	initialState,
 	reducers: {
-		setUserAppointments(
-			state,
-			action: PayloadAction<UniqueUserAppointmentT[]>
-		) {
+		setUserAppointments(state, action: PayloadAction<UniqueUserAppointmentT[]>) {
 			state.userAppointments = action.payload
 		},
-		setDoctorAppointments(
-			state,
-			action: PayloadAction<UniqueDoctorAppointmentT[]>
-		) {
+		setDoctorAppointments(state, action: PayloadAction<UniqueDoctorAppointmentT[]>) {
 			state.doctorAppointments = action.payload
 		},
 
-		setBusyDates(state, action) {
+		setBusyDates(state, action: PayloadAction<string[]>) {
 			state.busyDates = action.payload
 		},
 
@@ -47,9 +41,7 @@ const appointmentsSlice = createSlice({
 
 		setChosenAppointmentData(
 			state,
-			action: PayloadAction<
-				Partial<IAppointmentsInitialState['appointmentData']>
-			>
+			action: PayloadAction<Partial<IAppointmentsInitialState['appointmentData']>>
 		) {
 			state.appointmentData = {
 				...state.appointmentData,

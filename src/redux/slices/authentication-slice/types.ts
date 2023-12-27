@@ -1,10 +1,11 @@
 import { IAuthErrorInfo } from '../../../assets/functions/get-auth-error-info'
+import { Roles } from '../../../main-types'
 
 export interface IAuthInitialState {
 	email: string | null
 	id: string | null
 	isAuth: boolean
-	rights: 'admin' | 'user' | null
+	rights: Roles | null
 	loading: boolean
 	error: IAuthErrorInfo | null
 }

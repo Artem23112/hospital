@@ -1,25 +1,26 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getDatabase, onValue, ref } from 'firebase/database'
 import { arrFromFirebaseObj } from '../../../../../assets/functions/array-from-firebase-object'
-import { ResponseAppointments } from '../../../../../assets/functions/get-all-busy-dates-ISO'
 import { setBusyDates } from '../../appointmentsSlice'
+import {
+	DoctorAppointmentT,
+	doctorAppointmentsFromServer
+} from '../serverDoctorCommunication/types'
 
 export const userSubscribeToBusyDates = createAsyncThunk(
 	'appointments',
-	async (doctorId: string, { dispatch }) => {
-		const doctorAppointmentsPath = ref(
-			getDatabase(),
-			`doctors/${doctorId}/appointments`
-		)
+	async (doctorId: string, { dispatch, rejectWithValue }) => {
+		const doctorAppointmentsPath = ref(getDatabase(), `doctors/${doctorId}/appointments`)
 
-		onValue(doctorAppointmentsPath, snapshot => {
-			if (!snapshot.exists()) return dispatch(setBusyDates([]))
-			const appointments = arrFromFirebaseObj<ResponseAppointments>(
-				snapshot.val()
-			)
-			const busyDatesISO = appointments.map(
-				appointment => appointment.fullDateISO
-			)
+		onValue(doctorAppointmentsPath, ({ val, exists }) => {
+			const snapshot: unknown = val()
+			if (!exists()) return dispatch(setBusyDates([]))
+			if (!doctorAppointmentsFromServer.guard(snapshot)) {
+				return rejectWithValue('unknown type of doctor appointment data')
+			}
+
+			const appointments = arrFromFirebaseObj<DoctorAppointmentT>(snapshot)
+			const busyDatesISO = appointments.map(appointment => appointment.fullDateISO)
 
 			dispatch(setBusyDates(busyDatesISO))
 		})

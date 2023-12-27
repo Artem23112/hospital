@@ -1,20 +1,26 @@
-import { GeneralAppointmentT } from '../../types'
+import { Dictionary, Intersect, Record, Static, String } from 'runtypes'
+import { Unique } from '../../../../../main-types'
+import { generalAppointment } from '../../types'
 
-export interface DoctorInfoT {
-	name: string
-	specialization: string
-	additional: {
-		education: string
-		experience: string
-	}
-}
-export interface UniqueDoctorInfoT extends DoctorInfoT {
-	id: string
-}
+//  doctor info types
 
-export interface DoctorAppointmentT extends GeneralAppointmentT {
-	userId: string
-}
-export interface UniqueDoctorAppointmentT extends DoctorAppointmentT {
-	id: string
-}
+export type DoctorInfoT = Static<typeof doctorInfo>
+export type UniqueDoctorInfoT = Unique<DoctorInfoT>
+
+const doctorInfo = Record({
+	name: String,
+	specialization: String,
+	additional: Record({
+		education: String,
+		experience: String
+	})
+})
+export const doctorsInfoFromServer = Dictionary(doctorInfo, String)
+
+// doctor appointments types
+
+export type DoctorAppointmentT = Static<typeof doctorAppointment>
+export type UniqueDoctorAppointmentT = Unique<DoctorAppointmentT>
+
+export const doctorAppointment = Intersect(generalAppointment, Record({ userId: String }))
+export const doctorAppointmentsFromServer = Dictionary(doctorAppointment, String)

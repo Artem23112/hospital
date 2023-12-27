@@ -1,14 +1,12 @@
-import {
-	UniqueDoctorAppointmentT,
-	UniqueUserAppointmentT
-} from '../../redux/slices/appointments-slice/types'
+import { GeneralAppointmentT } from '../../redux/slices/appointments-slice/types'
 
-type SortAppointmentsListFuncT = (
-	arr: UniqueDoctorAppointmentT[] | UniqueUserAppointmentT[]
-) => UniqueDoctorAppointmentT[] | UniqueUserAppointmentT[]
+type SortAppointmentsListFuncT = <T extends GeneralAppointmentT>(
+	arr: T[]
+) => T[]
 
 export const sortAppointmentsList: SortAppointmentsListFuncT = arr => {
-	return arr.sort((item1, item2) => {
+	const test = arr.sort((item1, item2) => {
 		return item1.fullDateISO.localeCompare(item2.fullDateISO)
 	})
+	return test
 }

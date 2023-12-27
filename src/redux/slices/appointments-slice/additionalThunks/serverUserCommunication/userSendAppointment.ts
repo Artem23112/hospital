@@ -10,12 +10,9 @@ import { GeneralAppointmentT } from '../../types'
 export const userSendAppointment = createAsyncThunk(
 	'appointments/sendApplication',
 	async (_, { getState, dispatch, rejectWithValue }) => {
+		debugger
 		const state = getState() as RootState
-		const {
-			chosenDoctor: doctorId,
-			chosenDate,
-			chosenTime
-		} = state.appointment.appointmentData
+		const { chosenDoctor: doctorId, chosenDate, chosenTime } = state.appointment.appointmentData
 		if (!doctorId || !chosenDate || !chosenTime) {
 			dispatch(
 				showPopupMessage({
@@ -39,10 +36,7 @@ export const userSendAppointment = createAsyncThunk(
 		const userAppointmentPath = ref(db, `users/${userId}/appointments/${id}`)
 
 		try {
-			const { isExists } = await checkDuplicateAppointment(
-				doctorId,
-				fullDateISO
-			)
+			const { isExists } = await checkDuplicateAppointment(doctorId, fullDateISO)
 
 			if (isExists) throw new Error('Запись на данное число уже есть')
 
@@ -64,8 +58,7 @@ export const userSendAppointment = createAsyncThunk(
 			)
 		} catch (e) {
 			const err = e as Error
-			const text =
-				err.message || 'Упс, что-то пошло не так, записаться не удалось'
+			const text = err.message || 'Упс, что-то пошло не так, записаться не удалось'
 
 			dispatch(showPopupMessage({ text, type: 'error' }))
 			return rejectWithValue('')
