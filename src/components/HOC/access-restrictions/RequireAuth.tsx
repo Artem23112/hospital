@@ -1,12 +1,12 @@
-import { useAppSelector } from '../../../redux/store'
-import { FC, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { Navigate } from 'react-router-dom'
+import { useAppSelector } from '../../../redux/store'
 
-interface IRequireAuthProps {
+type RequireAuthPropsT = {
 	children: ReactNode
 }
 
-export const RequireAuth: FC<IRequireAuthProps> = ({ children }) => {
+export const RequireAuth = ({ children }: RequireAuthPropsT) => {
 	const isAuth = useAppSelector(state => state.authentication.isAuth)
 
 	if (!isAuth) {
