@@ -10,17 +10,13 @@ export const signIn = createAsyncThunk(
 		{ rejectWithValue, dispatch }
 	) => {
 		try {
-			const userCredential = await signInWithEmailAndPassword(
-				getAuth(),
-				email,
-				password
-			)
+			const { user } = await signInWithEmailAndPassword(getAuth(), email, password)
 
 			dispatch(connectToServer())
 
 			return {
-				email: userCredential.user.email,
-				id: userCredential.user.uid
+				email: user.email,
+				id: user.uid
 			}
 		} catch (err: any) {
 			return rejectWithValue({

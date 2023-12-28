@@ -7,31 +7,23 @@ import { LoginPage } from './pages/LoginPage/LoginPage'
 import { ProfilePage } from './pages/ProfilePage/ProfilePage'
 import { SignUpPage } from './pages/SignUpPage/SignUpPage'
 import { PATHS } from './paths'
-import { connectToServer } from './redux/slices/authentication-slice/additionalThunks/connectToServer'
 import { useAppDispatch, useAppSelector } from './redux/store'
 
 export const App = () => {
 	const dispatch = useAppDispatch()
-	const { isAuth, rights } = useAppSelector(({ authentication }) => ({
-		isAuth: authentication.isAuth,
-		rights: authentication.rights
-	}))
+	const isAuth = useAppSelector(({ authentication }) => authentication.isAuth)
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		let unsubscribe: Unsubscribe | undefined
+		let unsubscribe: Unsubscribe = subscribeToUserAvailability(dispatch)
+		return () => void unsubscribe()
+	}, [])
 
-		if (isAuth && rights === null) {
-			dispatch(connectToServer())
-			navigate(PATHS.profile.home)
-		} else {
-			unsubscribe = subscribeToUserAvailability(dispatch)
-		}
+	useEffect(() => {
+		if (!isAuth) return
 
-		return () => {
-			unsubscribe?.()
-		}
-	}, [isAuth, rights])
+		navigate(PATHS.profile.home)
+	}, [isAuth])
 
 	return (
 		<>
