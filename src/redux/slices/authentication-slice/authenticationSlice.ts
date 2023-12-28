@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from '../../store'
 import { connectToServer } from './additionalThunks/connectToServer'
 import { exit } from './additionalThunks/exit'
 import { signIn } from './additionalThunks/signIn'
@@ -86,6 +87,9 @@ export const authenticationSlice = createSlice({
 			)
 	}
 })
+
+export const selectorLoading = (state: RootState) => state.authentication.loading
+export const selectorError = (state: RootState) => state.authentication.error
 
 export const { setSavedUser, clearError } = authenticationSlice.actions
 

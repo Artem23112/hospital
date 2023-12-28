@@ -2,7 +2,11 @@ import clsx from 'clsx'
 import moment from 'moment'
 import React, { FC, useEffect, useState } from 'react'
 import { v4 } from 'uuid'
-import { setChosenAppointmentData } from '../../../redux/slices/appointments-slice/appointmentsSlice'
+import {
+	selectorChosenDate,
+	selectorChosenTime,
+	setChosenAppointmentData
+} from '../../../redux/slices/appointments-slice/appointmentsSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { ChosenTimeT } from '../DateTimePicker/DateTimePicker'
 import s from './TimeSelector.module.scss'
@@ -17,12 +21,8 @@ interface IProps {
 
 export const TimeSelector: FC<IProps> = ({ from, to, stepSize, busyDates }) => {
 	const dispatch = useAppDispatch()
-	const { chosenDate, chosenTime } = useAppSelector(state => {
-		return {
-			chosenDate: state.appointment.appointmentData.chosenDate,
-			chosenTime: state.appointment.appointmentData.chosenTime
-		}
-	})
+	const chosenDate = useAppSelector(selectorChosenDate)
+	const chosenTime = useAppSelector(selectorChosenTime)
 	const [times, setTimes] = useState<GeneratedTimeT[]>([])
 
 	useEffect(() => {
@@ -37,9 +37,7 @@ export const TimeSelector: FC<IProps> = ({ from, to, stepSize, busyDates }) => {
 		while (!startDate.isSameOrAfter(endDate)) {
 			const generatedTime: GeneratedTimeT = {
 				text: startDate.format('HH:mm'),
-				isDisabled: busyDates.some(
-					busyDate => busyDate === startDate.toISOString()
-				)
+				isDisabled: busyDates.some(busyDate => busyDate === startDate.toISOString())
 			}
 
 			timeList.push(generatedTime)

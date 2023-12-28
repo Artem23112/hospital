@@ -1,6 +1,10 @@
 import moment from 'moment'
 import { useMemo } from 'react'
-import { setChosenAppointmentData } from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
+import {
+	selectorBusyDates,
+	selectorChosenDate,
+	setChosenAppointmentData
+} from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
 import { useAppDispatch, useAppSelector } from '../../../redux/store.ts'
 import { StyledCalendar, Value } from '../StyledCalendar/StyledCalendar.tsx'
 import { MemoizedAppointmentTimeSelector as TimeSelector } from '../TimeSelector/TimeSelector.tsx'
@@ -11,12 +15,8 @@ export type ChosenTimeT = string | null
 
 export const DateTimePicker = () => {
 	const dispatch = useAppDispatch()
-	const { busyDates, chosenDate } = useAppSelector(state => {
-		return {
-			busyDates: state.appointment.busyDates,
-			chosenDate: state.appointment.appointmentData.chosenDate
-		}
-	})
+	const busyDates = useAppSelector(selectorBusyDates)
+	const chosenDate = useAppSelector(selectorChosenDate)
 	const timeSelectorProps = useMemo(() => {
 		return {
 			from: { hours: 8, minutes: 0 },
@@ -47,9 +47,7 @@ export const DateTimePicker = () => {
 						choosingDate(v)
 					}}
 					tileDisabled={({ date, view }) => {
-						return (
-							view === 'month' && (date.getDay() === 0 || date.getDay() === 6)
-						)
+						return view === 'month' && (date.getDay() === 0 || date.getDay() === 6)
 					}}
 				/>
 				{chosenDate && <TimeSelector {...timeSelectorProps} />}

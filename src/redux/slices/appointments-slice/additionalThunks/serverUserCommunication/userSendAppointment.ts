@@ -10,7 +10,6 @@ import { GeneralAppointmentT } from '../../types'
 export const userSendAppointment = createAsyncThunk(
 	'appointments/sendApplication',
 	async (_, { getState, dispatch, rejectWithValue }) => {
-		debugger
 		const state = getState() as RootState
 		const { chosenDoctor: doctorId, chosenDate, chosenTime } = state.appointment.appointmentData
 		if (!doctorId || !chosenDate || !chosenTime) {

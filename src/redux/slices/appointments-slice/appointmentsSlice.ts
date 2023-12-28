@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '../../store'
 import { doctorConnectToServer } from './additionalThunks/serverDoctorCommunication/doctorConnectToServer'
 import {
 	UniqueDoctorAppointmentT,
@@ -79,6 +80,12 @@ const appointmentsSlice = createSlice({
 			})
 	}
 })
+
+export const selectorDoctorsInfo = (state: RootState) => state.appointment.doctorsInfo
+export const selectorIsSuccessSubmit = (state: RootState) => state.appointment.isSuccessSubmit
+export const selectorBusyDates = (state: RootState) => state.appointment.busyDates
+export const selectorChosenDate = (state: RootState) => state.appointment.appointmentData.chosenDate
+export const selectorChosenTime = (state: RootState) => state.appointment.appointmentData.chosenTime
 
 export const {
 	setUserAppointments,
