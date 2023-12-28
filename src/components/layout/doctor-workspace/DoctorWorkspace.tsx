@@ -1,11 +1,10 @@
 import moment from 'moment'
-import { useEffect, useState } from 'react'
-import { selectAppointmentsForDate } from '../../../assets/functions/sorting-helper'
-import { useSort } from '../../../hooks/useSort'
+import { useState } from 'react'
+import { useFilterAppointments } from '../../../hooks/useFilterAppointments'
 import { UniqueDoctorAppointmentT } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
 import { StatusAppointmentT } from '../../../redux/slices/appointments-slice/types'
 import { SortButtons, SortItemConfigT } from '../../UI/SortButtons/SortButtons'
-import { StyledCalendar } from '../../UI/StyledCalendar/StyledCalendar'
+import { StyledCalendar, valuePiece } from '../../UI/StyledCalendar/StyledCalendar'
 import { PatientList } from '../patient-list/PatientList'
 import s from './DoctorWorkspace.module.scss'
 
@@ -14,19 +13,13 @@ type DoctorWorkspacePropsT = {
 }
 
 export const DoctorWorkspace = ({ doctorAppointments }: DoctorWorkspacePropsT) => {
-	const [chosenDate, setChosenDate] = useState<Date>(moment().startOf('day').toDate())
-	const { filter, sortedList, changeChosenDate, changeFilter } = useSort<
+	const [chosenDate, setChosenDate] = useState<string>(
+		moment().startOf('day').toDate().toISOString()
+	)
+	const [filteredList, filter, setFilter] = useFilterAppointments<
 		UniqueDoctorAppointmentT,
-		Date
-	>(doctorAppointments, chosenDate, selectAppointmentsForDate, filterFunc)
-
-	useEffect(() => {
-		changeChosenDate(chosenDate)
-	}, [chosenDate])
-
-	function filterFunc(item: UniqueDoctorAppointmentT): boolean {
-		return item.status === filter
-	}
+		FiltersT
+	>(doctorAppointments, 'all', chosenDate)
 
 	const sortConfig: SortItemConfigT[] = [
 		{
@@ -55,13 +48,13 @@ export const DoctorWorkspace = ({ doctorAppointments }: DoctorWorkspacePropsT) =
 					className={s['sort-btns-wrapper']}
 					sortConfig={sortConfig}
 					chosenFilter={filter}
-					handleClick={changeFilter}
+					handleClick={setFilter}
 				/>
-				<PatientList className={s['appointment-list']} doctorAppointments={sortedList} />
+				<PatientList className={s['appointment-list']} doctorAppointments={filteredList} />
 				<StyledCalendar
 					className={s['calendar']}
-					value={chosenDate}
-					onChange={v => setChosenDate(v as Date)}
+					value={moment(chosenDate).toDate()}
+					onChange={v => valuePiece.guard(v) && setChosenDate(moment(v).toISOString())}
 				/>
 			</div>
 		</>
