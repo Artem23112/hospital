@@ -1,27 +1,22 @@
 import clsx from 'clsx'
-import { FC } from 'react'
-import s from './OwnAppointmentList.module.scss'
-import { UniqueUserAppointmentT } from '../../../redux/slices/appointments-slice/types'
+import { UniqueUserAppointmentT } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/types'
+import { selectorDoctorsInfo } from '../../../redux/slices/appointments-slice/appointmentsSlice'
 import { useAppSelector } from '../../../redux/store'
 import { RecordInfo } from '../../UI/record-info/RecordInfo'
+import s from './OwnAppointmentList.module.scss'
 
-interface IOwnAppointmentListProps {
+type OwnAppointmentListPropsT = {
 	className?: string
 	userAppointments: UniqueUserAppointmentT[]
 }
 
-export const OwnAppointmentList: FC<IOwnAppointmentListProps> = ({
-	className,
-	userAppointments
-}) => {
-	const doctorsInfo = useAppSelector(state => state.appointment.doctorsInfo)
+export const OwnAppointmentList = ({ className, userAppointments }: OwnAppointmentListPropsT) => {
+	const doctorsInfo = useAppSelector(selectorDoctorsInfo)
 
 	return (
 		<ul className={clsx(s['appointments-list'], className)}>
 			{userAppointments.map(item => {
-				const chosenDoc = doctorsInfo.find(
-					doctor => doctor.id === item.doctorId
-				)
+				const chosenDoc = doctorsInfo.find(doctor => doctor.id === item.doctorId)
 				return (
 					<li key={item.id}>
 						<RecordInfo

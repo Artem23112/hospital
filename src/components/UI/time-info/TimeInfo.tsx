@@ -1,17 +1,12 @@
 import clsx from 'clsx'
-import { FC } from 'react'
 import s from './TimeInfo.module.scss'
 
-interface TimeInfoPropsI {
+type TimeInfoPropsT = {
 	className?: string
 	textDate: string
 	textTime: string
 }
-export const TimeInfo: FC<TimeInfoPropsI> = ({
-	className,
-	textDate,
-	textTime
-}) => {
+export const TimeInfo = ({ className, textDate, textTime }: TimeInfoPropsT) => {
 	return (
 		<div className={clsx(s['time'], className)}>
 			<span>{textDate}</span>

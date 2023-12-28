@@ -1,22 +1,21 @@
 import clsx from 'clsx'
-import { FC } from 'react'
 import { v4 } from 'uuid'
 import { FiltersT } from '../../layout/doctor-workspace/DoctorWorkspace'
 import s from './SortButtons.module.scss'
 
-interface ISortButtonsProps {
+type SortButtonsPropsT = {
 	className?: string
 	sortConfig: SortItemConfigT[]
 	chosenFilter: FiltersT
 	handleClick: (filter: FiltersT) => void
 }
 
-export const SortButtons: FC<ISortButtonsProps> = ({
+export const SortButtons = ({
 	className,
 	sortConfig,
 	chosenFilter,
 	handleClick
-}) => {
+}: SortButtonsPropsT) => {
 	return (
 		<ul className={clsx(s['btns-wrapper'], className)}>
 			{sortConfig.map(item => {

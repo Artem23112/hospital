@@ -1,8 +1,7 @@
 import clsx from 'clsx'
-import { FC } from 'react'
 import s from './Input.module.scss'
 
-interface IInputProps {
+type InputPropsT = {
 	className?: string
 	type: string
 	value?: string
@@ -13,7 +12,7 @@ interface IInputProps {
 	required?: boolean
 }
 
-export const Input: FC<IInputProps> = ({
+export const Input = ({
 	className,
 	type,
 	value,
@@ -22,7 +21,7 @@ export const Input: FC<IInputProps> = ({
 	isError,
 	errMessage,
 	required
-}) => {
+}: InputPropsT) => {
 	return (
 		<label>
 			{isError && <span className={s['err-message']}>{errMessage}</span>}

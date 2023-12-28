@@ -1,10 +1,9 @@
-import { FC } from 'react'
 import Calendar, { CalendarProps } from 'react-calendar'
 import './StyledCalendar.scss'
 
 type StyledCalendarPropsT = CalendarProps & React.RefAttributes<unknown>
 
-export const StyledCalendar: FC<StyledCalendarPropsT> = props => (
+export const StyledCalendar = (props: StyledCalendarPropsT) => (
 	<Calendar className={'react-calendar'} {...props} />
 )
 

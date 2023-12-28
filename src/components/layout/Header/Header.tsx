@@ -1,13 +1,12 @@
-import { FC } from 'react'
 import { ProfileBtn } from '../../UI/ProfileBtn/ProfileBtn'
 import { CentredContainer } from '../CentredContainer/CentredContainer'
 import s from './Header.module.scss'
 
-interface IHeaderProps {
+type HeaderPropsT = {
 	title: string
 }
 
-export const Header: FC<IHeaderProps> = ({ title }) => {
+export const Header = ({ title }: HeaderPropsT) => {
 	return (
 		<div className={s['header']}>
 			<CentredContainer>

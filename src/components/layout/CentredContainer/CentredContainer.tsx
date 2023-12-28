@@ -1,15 +1,11 @@
 import clsx from 'clsx'
-import { FC } from 'react'
 import s from './CentredContainer.module.scss'
 
-interface ICentredContainerProps {
+type CentredContainerPropsT = {
 	children: React.ReactNode
 	className?: string
 }
 
-export const CentredContainer: FC<ICentredContainerProps> = ({
-	children,
-	className
-}) => {
+export const CentredContainer = ({ children, className }: CentredContainerPropsT) => {
 	return <div className={clsx(s['container'], className)}>{children}</div>
 }

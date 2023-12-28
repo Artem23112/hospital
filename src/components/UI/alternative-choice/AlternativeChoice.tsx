@@ -1,20 +1,19 @@
-import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import s from './AlternativeChoice.module.scss'
 
-interface IAlternativeChoice {
+type AlternativeChoiceT = {
 	contentText: string
 	linkText: string
 	redirectPath: string
 	handleClick: () => void
 }
 
-export const AlternativeChoice: FC<IAlternativeChoice> = ({
+export const AlternativeChoice = ({
 	contentText,
 	linkText,
 	redirectPath,
 	handleClick
-}) => {
+}: AlternativeChoiceT) => {
 	return (
 		<p className={s['wrapper']}>
 			{contentText}

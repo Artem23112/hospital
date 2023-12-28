@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import moment from 'moment'
-import React, { FC, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 import {
 	selectorChosenDate,
@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { ChosenTimeT } from '../DateTimePicker/DateTimePicker'
 import s from './TimeSelector.module.scss'
 
-interface IProps {
+type TimeSelectorPropsT = {
 	from: TimeInfoT
 	to: TimeInfoT
 	stepSize: TimeInfoT
@@ -19,7 +19,7 @@ interface IProps {
 	setChosenTimeCb?: React.Dispatch<React.SetStateAction<ChosenTimeT>>
 }
 
-export const TimeSelector: FC<IProps> = ({ from, to, stepSize, busyDates }) => {
+export const TimeSelector = ({ from, to, stepSize, busyDates }: TimeSelectorPropsT) => {
 	const dispatch = useAppDispatch()
 	const chosenDate = useAppSelector(selectorChosenDate)
 	const chosenTime = useAppSelector(selectorChosenTime)

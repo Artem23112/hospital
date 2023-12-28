@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { useEffect } from 'react'
 import { userSubscribeToBusyDates } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userSubscribeToBusyDates'
 import { setChosenAppointmentData } from '../../../redux/slices/appointments-slice/appointmentsSlice'
 import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/types'
@@ -6,15 +6,13 @@ import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { AboutDoctor } from '../about-doctor/AboutDoctor'
 import s from './DoctorsList.module.scss'
 
-interface IDoctorsListProps {
+type DoctorsListPropsT = {
 	doctorsInfo: UniqueDoctorInfoT[]
 }
 
-export const DoctorsList: FC<IDoctorsListProps> = ({ doctorsInfo }) => {
+export const DoctorsList = ({ doctorsInfo }: DoctorsListPropsT) => {
 	const dispatch = useAppDispatch()
-	const chosenDoctor = useAppSelector(
-		state => state.appointment.appointmentData.chosenDoctor
-	)
+	const chosenDoctor = useAppSelector(state => state.appointment.appointmentData.chosenDoctor)
 
 	useEffect(() => {
 		if (!chosenDoctor) return

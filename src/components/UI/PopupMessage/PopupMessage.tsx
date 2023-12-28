@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import { FC } from 'react'
 import closeIcon from '../../../assets/images/icons/close.svg'
 import { removeMessage } from '../../../redux/slices/popupMessages-slice/popupMessagesSlice'
 import { PopupStatusT } from '../../../redux/slices/popupMessages-slice/types'
@@ -7,13 +6,13 @@ import { useAppDispatch } from '../../../redux/store'
 import { statusConvert } from '../../utils/PopupMessages/statusConvert'
 import s from './PopupMessage.module.scss'
 
-interface IPopupMessageProps {
+type PopupMessagePropsT = {
 	type: PopupStatusT
 	text: string
 	id: string
 }
 
-export const PopupMessage: FC<IPopupMessageProps> = ({ type, text, id }) => {
+export const PopupMessage = ({ type, text, id }: PopupMessagePropsT) => {
 	const dispatch = useAppDispatch()
 
 	return (

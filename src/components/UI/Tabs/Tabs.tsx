@@ -1,13 +1,12 @@
 import clsx from 'clsx'
-import { FC } from 'react'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import s from './Tabs.module.scss'
 
-interface IProps {
+type TabsPropsT = {
 	tabsConfig: TabConfigT[]
 }
 
-export const Tabs: FC<IProps> = ({ tabsConfig }) => {
+export const Tabs = ({ tabsConfig }: TabsPropsT) => {
 	const { pathname } = useLocation()
 
 	function isActive(link: string): boolean {
@@ -34,13 +33,7 @@ export const Tabs: FC<IProps> = ({ tabsConfig }) => {
 			<div className={s['shadow']}>
 				<Routes>
 					{tabsConfig.map(tab => {
-						return (
-							<Route
-								path={tab?.routePath}
-								element={tab.component}
-								key={tab.id}
-							/>
-						)
+						return <Route path={tab?.routePath} element={tab.component} key={tab.id} />
 					})}
 				</Routes>
 			</div>

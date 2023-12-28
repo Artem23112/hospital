@@ -1,12 +1,11 @@
-import { FC } from 'react'
 import s from './Loader.module.scss'
 
-interface ILoaderProps {
+type LoaderPropsT = {
 	size: number
 	color: string
 }
 
-export const Loader: FC<ILoaderProps> = ({ size, color }) => {
+export const Loader = ({ size, color }: LoaderPropsT) => {
 	const styles = {
 		width: `${size}px`,
 		height: `${size}px`,

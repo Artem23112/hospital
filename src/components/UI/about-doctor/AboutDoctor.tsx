@@ -1,20 +1,16 @@
 import clsx from 'clsx'
-import { FC, useRef } from 'react'
-import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/types'
+import { useRef } from 'react'
+import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
 import { TimeInfo } from '../../UI/time-info/TimeInfo'
 import s from './AboutDoctor.module.scss'
 
-interface IAboutDoctorProps {
+type AboutDoctorPropsT = {
 	info: UniqueDoctorInfoT
 	isSelected?: boolean
 	handleClick?: (id: string) => void
 }
 
-export const AboutDoctor: FC<IAboutDoctorProps> = ({
-	info,
-	isSelected,
-	handleClick
-}) => {
+export const AboutDoctor = ({ info, isSelected, handleClick }: AboutDoctorPropsT) => {
 	const ulRef = useRef<HTMLUListElement>(null)
 
 	return (
@@ -31,11 +27,7 @@ export const AboutDoctor: FC<IAboutDoctorProps> = ({
 					<h4 className={s['title']}>{info.name}</h4>
 					<p className={s['specialization']}>{info.specialization}</p>
 				</div>
-				<TimeInfo
-					className={s['time']}
-					textDate='Пн - Сб'
-					textTime='8:00 - 17:00'
-				/>
+				<TimeInfo className={s['time']} textDate='Пн - Сб' textTime='8:00 - 17:00' />
 			</button>
 			<div
 				className={clsx(s['additional-wrapper'], { [s['active']]: isSelected })}

@@ -1,26 +1,20 @@
 import moment from 'moment'
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { selectAppointmentsForDate } from '../../../assets/functions/sorting-helper'
 import { useSort } from '../../../hooks/useSort'
-import {
-	StatusAppointmentT,
-	UniqueDoctorAppointmentT
-} from '../../../redux/slices/appointments-slice/types'
+import { UniqueDoctorAppointmentT } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
+import { StatusAppointmentT } from '../../../redux/slices/appointments-slice/types'
 import { SortButtons, SortItemConfigT } from '../../UI/SortButtons/SortButtons'
 import { StyledCalendar } from '../../UI/StyledCalendar/StyledCalendar'
 import { PatientList } from '../patient-list/PatientList'
 import s from './DoctorWorkspace.module.scss'
 
-interface IDoctorWorkspaceProps {
+type DoctorWorkspacePropsT = {
 	doctorAppointments: UniqueDoctorAppointmentT[]
 }
 
-export const DoctorWorkspace: FC<IDoctorWorkspaceProps> = ({
-	doctorAppointments
-}) => {
-	const [chosenDate, setChosenDate] = useState<Date>(
-		moment().startOf('day').toDate()
-	)
+export const DoctorWorkspace = ({ doctorAppointments }: DoctorWorkspacePropsT) => {
+	const [chosenDate, setChosenDate] = useState<Date>(moment().startOf('day').toDate())
 	const { filter, sortedList, changeChosenDate, changeFilter } = useSort<
 		UniqueDoctorAppointmentT,
 		Date
@@ -63,10 +57,7 @@ export const DoctorWorkspace: FC<IDoctorWorkspaceProps> = ({
 					chosenFilter={filter}
 					handleClick={changeFilter}
 				/>
-				<PatientList
-					className={s['appointment-list']}
-					doctorAppointments={sortedList}
-				/>
+				<PatientList className={s['appointment-list']} doctorAppointments={sortedList} />
 				<StyledCalendar
 					className={s['calendar']}
 					value={chosenDate}
