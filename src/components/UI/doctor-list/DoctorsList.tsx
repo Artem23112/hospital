@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
+import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
 import { userSubscribeToBusyDates } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userSubscribeToBusyDates'
 import { setChosenAppointmentData } from '../../../redux/slices/appointments-slice/appointmentsSlice'
-import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/types'
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { AboutDoctor } from '../about-doctor/AboutDoctor'
 import s from './DoctorsList.module.scss'

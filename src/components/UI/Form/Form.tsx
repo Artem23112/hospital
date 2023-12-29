@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react'
 import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
-import { Input } from '../Input/Input'
+import { Input } from '../input/Input'
 import s from './Form.module.scss'
 
 type FormPropsT = {

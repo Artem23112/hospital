@@ -3,11 +3,11 @@ import { useMemo } from 'react'
 import {
 	selectorBusyDates,
 	selectorChosenDate,
-	setChosenAppointmentData
+	setChosenAppointmentData,
 } from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
 import { useAppDispatch, useAppSelector } from '../../../redux/store.ts'
-import { StyledCalendar, Value } from '../StyledCalendar/StyledCalendar.tsx'
-import { MemoizedAppointmentTimeSelector as TimeSelector } from '../TimeSelector/TimeSelector.tsx'
+import { MemoizedAppointmentTimeSelector as TimeSelector } from '../time-selector/TimeSelector.tsx'
+import { StyledCalendar, Value } from '../styled-calendar/StyledCalendar.tsx'
 import s from './DateTimePicker.module.scss'
 
 export type ChosenDateT = Date | null
@@ -23,7 +23,7 @@ export const DateTimePicker = () => {
 			to: { hours: 17, minutes: 0 },
 			stepSize: { hours: 0, minutes: 30 },
 			busyDates,
-			chosenDate
+			chosenDate,
 		}
 	}, [busyDates, chosenDate])
 

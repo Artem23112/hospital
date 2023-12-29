@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../../redux/store'
-import { PopupMessage } from '../../UI/PopupMessage/PopupMessage'
+import { PopupMessage } from '../../UI/popup-message/PopupMessage'
 import s from './PopupMessages.module.scss'
 
 export const PopupMessages = () => {

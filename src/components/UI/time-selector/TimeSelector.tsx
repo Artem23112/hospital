@@ -5,10 +5,10 @@ import { v4 } from 'uuid'
 import {
 	selectorChosenDate,
 	selectorChosenTime,
-	setChosenAppointmentData
+	setChosenAppointmentData,
 } from '../../../redux/slices/appointments-slice/appointmentsSlice'
 import { useAppDispatch, useAppSelector } from '../../../redux/store'
-import { ChosenTimeT } from '../DateTimePicker/DateTimePicker'
+import { ChosenTimeT } from '../date-time-picker/DateTimePicker'
 import s from './TimeSelector.module.scss'
 
 type TimeSelectorPropsT = {
@@ -37,7 +37,7 @@ export const TimeSelector = ({ from, to, stepSize, busyDates }: TimeSelectorProp
 		while (!startDate.isSameOrAfter(endDate)) {
 			const generatedTime: GeneratedTimeT = {
 				text: startDate.format('HH:mm'),
-				isDisabled: busyDates.some(busyDate => busyDate === startDate.toISOString())
+				isDisabled: busyDates.some(busyDate => busyDate === startDate.toISOString()),
 			}
 
 			timeList.push(generatedTime)
@@ -57,7 +57,7 @@ export const TimeSelector = ({ from, to, stepSize, busyDates }: TimeSelectorProp
 				return (
 					<button
 						className={clsx(s['btn'], {
-							[s['chosen']]: time.text === chosenTime
+							[s['chosen']]: time.text === chosenTime,
 						})}
 						key={v4()}
 						disabled={time.isDisabled}

@@ -3,7 +3,7 @@ import closeIcon from '../../../assets/images/icons/close.svg'
 import { removeMessage } from '../../../redux/slices/popupMessages-slice/popupMessagesSlice'
 import { PopupStatusT } from '../../../redux/slices/popupMessages-slice/types'
 import { useAppDispatch } from '../../../redux/store'
-import { statusConvert } from '../../utils/PopupMessages/statusConvert'
+import { statusConvert } from '../../utils/popup-messages/statusConvert'
 import s from './PopupMessage.module.scss'
 
 type PopupMessagePropsT = {

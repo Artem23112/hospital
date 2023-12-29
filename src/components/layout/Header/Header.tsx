@@ -1,5 +1,5 @@
-import { ProfileBtn } from '../../UI/ProfileBtn/ProfileBtn'
-import { CentredContainer } from '../CentredContainer/CentredContainer'
+import { ProfileBtn } from '../../UI/profile-btn/ProfileBtn'
+import { CentredContainer } from '../centred-container/CentredContainer'
 import s from './Header.module.scss'
 
 type HeaderPropsT = {

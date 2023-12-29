@@ -5,12 +5,11 @@ import { userSendAppointment } from '../../../redux/slices/appointments-slice/ad
 import {
 	clearSubmitStatus,
 	selectorDoctorsInfo,
-	selectorIsSuccessSubmit
+	selectorIsSuccessSubmit,
 } from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
-import { useAppSelector } from '../../../redux/store'
-import { useAppDispatch } from '../../../redux/store.ts'
-import { DateTimePicker } from '../../UI/DateTimePicker/DateTimePicker'
-import { DoctorsList } from '../../UI/DoctorsList/DoctorsList'
+import { useAppDispatch, useAppSelector } from '../../../redux/store.ts'
+import { DoctorsList } from '../../UI/doctor-list/DoctorsList.tsx'
+import { DateTimePicker } from '../../UI/date-time-picker/DateTimePicker.tsx'
 import s from './MakeAppointmentPanel.module.scss'
 
 export const MakeAppointmentPanel = () => {

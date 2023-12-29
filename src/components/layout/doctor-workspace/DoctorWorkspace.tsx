@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { useFilterAppointments } from '../../../hooks/useFilterAppointments'
 import { UniqueDoctorAppointmentT } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
 import { StatusAppointmentT } from '../../../redux/slices/appointments-slice/types'
-import { SortButtons, SortItemConfigT } from '../../UI/SortButtons/SortButtons'
-import { StyledCalendar, valuePiece } from '../../UI/StyledCalendar/StyledCalendar'
+import { SortButtons, SortItemConfigT } from '../../UI/sort-buttons/SortButtons'
+import { StyledCalendar, valuePiece } from '../../UI/styled-calendar/StyledCalendar'
 import { PatientList } from '../patient-list/PatientList'
 import s from './DoctorWorkspace.module.scss'
 
@@ -24,21 +24,21 @@ export const DoctorWorkspace = ({ doctorAppointments }: DoctorWorkspacePropsT) =
 	const sortConfig: SortItemConfigT[] = [
 		{
 			filter: 'all',
-			btnText: 'Все'
+			btnText: 'Все',
 		},
 		{
 			filter: 'enrolled',
-			btnText: 'Записанные'
+			btnText: 'Записанные',
 		},
 		{
 			filter: 'admitted',
-			btnText: 'Принятые'
+			btnText: 'Принятые',
 		},
 		{
 			filter: 'not-admitted',
-			btnText: 'Не принятые'
+			btnText: 'Не принятые',
 		},
-		{ filter: 'expired', btnText: 'Просроченные' }
+		{ filter: 'expired', btnText: 'Просроченные' },
 	]
 
 	return (
