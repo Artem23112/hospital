@@ -1,7 +1,7 @@
 import arrow from '@/assets/images/icons/arrow.svg'
 import { exit } from '@/redux/slices/authentication-slice/additionalThunks/exit'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import s from './ProfileBtn.module.scss'
 
 export const ProfileBtn = () => {
@@ -9,24 +9,24 @@ export const ProfileBtn = () => {
 	const [showSubmenu, setShowSubmenu] = useState(false)
 	const dispatch = useAppDispatch()
 
+	const handleClick = useCallback(({ target }: Event) => {
+		if (!(target instanceof HTMLElement)) return
+		if (target.closest('.' + s['profile-btn-container'])) return
+
+		setShowSubmenu(prev => !prev)
+	}, [])
+
 	useEffect(() => {
 		if (!showSubmenu) {
 			document.removeEventListener('click', handleClick)
 			return
 		}
 
-		function handleClick({ target }: Event) {
-			if (!(target && target instanceof HTMLElement)) return
-			if (target.closest('.' + s['profile-btn-container'])) return
-
-			setShowSubmenu(!showSubmenu)
-		}
-
 		document.addEventListener('click', handleClick)
 		return () => {
 			document.removeEventListener('click', handleClick)
 		}
-	}, [showSubmenu])
+	}, [showSubmenu, handleClick])
 
 	return (
 		<div className={s['profile-btn-container']}>
