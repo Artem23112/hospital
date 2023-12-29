@@ -15,17 +15,14 @@ export const ProfileBtn = () => {
 			return
 		}
 
-		function handleClick(e: Event) {
-			const target = e.target
+		function handleClick({ target }: Event) {
 			if (!(target && target instanceof HTMLElement)) return
+			if (target.closest('.' + s['profile-btn-container'])) return
 
-			if (!target.closest('.' + s['profile-btn-container'])) {
-				setShowSubmenu(!showSubmenu)
-			}
+			setShowSubmenu(!showSubmenu)
 		}
 
 		document.addEventListener('click', handleClick)
-
 		return () => {
 			document.removeEventListener('click', handleClick)
 		}
@@ -42,11 +39,7 @@ export const ProfileBtn = () => {
 				<span className={s['profile-btn__name']}>{email}</span>
 				<img className={s['profile-btn__arrow']} src={arrow} />
 			</button>
-			<ul
-				className={`${s['profile-btn__submenu']} ${
-					showSubmenu ? s['active'] : ''
-				}`}
-			>
+			<ul className={`${s['profile-btn__submenu']} ${showSubmenu ? s['active'] : ''}`}>
 				<li className={s['profile-btn__submenu-item']}>
 					<button>Параметры</button>
 				</li>
