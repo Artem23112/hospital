@@ -23,15 +23,13 @@ export const OwnAppointmentList = ({ className, userAppointments }: OwnAppointme
 							info={{
 								...item,
 								name: chosenDoc?.name,
-								specialization: chosenDoc?.specialization
+								specialization: chosenDoc?.specialization,
 							}}
 						/>
 					</li>
 				)
 			})}
-			<p className={s['message']}>
-				{userAppointments?.length === 0 && 'У вас нет никаких записей'}
-			</p>
+			<p className={s['message']}>{!userAppointments.length && 'У вас нет никаких записей'}</p>
 		</ul>
 	)
 }

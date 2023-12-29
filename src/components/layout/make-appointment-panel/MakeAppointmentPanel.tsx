@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { PATHS } from '../../../paths.ts'
 import { userSendAppointment } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userSendAppointment.ts'
 import {
 	clearSubmitStatus,
@@ -8,8 +9,8 @@ import {
 	selectorIsSuccessSubmit,
 } from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
 import { useAppDispatch, useAppSelector } from '../../../redux/store.ts'
-import { DoctorsList } from '../../UI/doctor-list/DoctorsList.tsx'
 import { DateTimePicker } from '../../UI/date-time-picker/DateTimePicker.tsx'
+import { DoctorsList } from '../../UI/doctor-list/DoctorsList.tsx'
 import s from './MakeAppointmentPanel.module.scss'
 
 export const MakeAppointmentPanel = () => {
@@ -20,7 +21,7 @@ export const MakeAppointmentPanel = () => {
 
 	useEffect(() => {
 		if (!isSuccessSubmit) return
-		navigate('/profile/appointment-list/')
+		navigate(PATHS.profile.home + PATHS.profile.appointmentList)
 		dispatch(clearSubmitStatus())
 	}, [isSuccessSubmit])
 

@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import {
 	convertStatusForDoctor,
-	convertStatusForUser
-} from '../../../assets/functions/convert-status'
+	convertStatusForUser,
+} from '../../../assets/functions/convert-appoinment-status'
 import closeImg from '../../../assets/images/icons/close.svg'
 import { useParseDate } from '../../../hooks/useParseDate'
 import { deleteAppointment } from '../../../redux/slices/appointments-slice/additionalThunks/deleteAppointment'
@@ -27,7 +27,7 @@ export const RecordInfo = ({ info, userId }: RecordInfoPropsT) => {
 	const dispatch = useAppDispatch()
 	const [textDate, textTime] = useParseDate(info.fullDateISO, {
 		count: 30,
-		what: 'minutes'
+		what: 'minutes',
 	})
 
 	function answering(type: StatusAppointmentT) {

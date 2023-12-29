@@ -1,7 +1,7 @@
-import { RecordInfo } from '../../UI/record-info/RecordInfo'
 import clsx from 'clsx'
 import { UniqueDoctorAppointmentT } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
 import { useAppSelector } from '../../../redux/store'
+import { RecordInfo } from '../../UI/record-info/RecordInfo'
 import s from './PatientList.module.scss'
 
 type PatientListPropsT = {
@@ -23,7 +23,7 @@ export const PatientList = ({ className, doctorAppointments }: PatientListPropsT
 				)
 			})}
 			<p className={s['message']}>
-				{doctorAppointments?.length === 0 && 'Нет пациентов за выбранную дату и сортировку'}
+				{!doctorAppointments.length && 'Нет пациентов за выбранную дату и сортировку'}
 			</p>
 		</ul>
 	)

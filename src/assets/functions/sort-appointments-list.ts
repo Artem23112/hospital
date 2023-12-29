@@ -1,12 +1,9 @@
 import { GeneralAppointmentT } from '../../redux/slices/appointments-slice/types'
 
-type SortAppointmentsListFuncT = <T extends GeneralAppointmentT>(
-	arr: T[]
-) => T[]
+type SortAppointmentsListFuncT = <T extends GeneralAppointmentT>(arr: T[]) => T[]
 
 export const sortAppointmentsList: SortAppointmentsListFuncT = arr => {
-	const test = arr.sort((item1, item2) => {
+	return arr.sort((item1, item2) => {
 		return item1.fullDateISO.localeCompare(item2.fullDateISO)
 	})
-	return test
 }
