@@ -13,9 +13,7 @@ type DoctorWorkspacePropsT = {
 }
 
 export const DoctorWorkspace = ({ doctorAppointments }: DoctorWorkspacePropsT) => {
-	const [chosenDate, setChosenDate] = useState<string>(
-		moment().startOf('day').toDate().toISOString()
-	)
+	const [chosenDate, setChosenDate] = useState<string>(moment().startOf('day').toISOString())
 	const [filteredList, filter, setFilter] = useFilterAppointments<
 		UniqueDoctorAppointmentT,
 		FiltersT
