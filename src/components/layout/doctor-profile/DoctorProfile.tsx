@@ -1,10 +1,10 @@
 import { Navigate } from 'react-router-dom'
-import { v4 } from 'uuid'
-import { useAppSelector } from '../../../redux/store'
-import { Tabs } from '../../UI/tabs/Tabs'
-import { CentredContainer } from '../centred-container/CentredContainer'
 import { DoctorWorkspace } from '../doctor-workspace/DoctorWorkspace'
 import { Header } from '../header/Header'
+import { CentredContainer } from '../centred-container/CentredContainer'
+import { useAppSelector } from '@/redux/store'
+import { Tabs } from '@/components/UI/tabs/Tabs'
+import { v4 } from 'uuid'
 
 export const DoctorProfile = () => {
 	const doctorAppointments = useAppSelector(state => state.appointment.doctorAppointments)

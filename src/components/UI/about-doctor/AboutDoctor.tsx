@@ -1,7 +1,7 @@
+import { UniqueDoctorInfoT } from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
 import clsx from 'clsx'
 import { useRef } from 'react'
-import { UniqueDoctorInfoT } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
-import { TimeInfo } from '../../UI/time-info/TimeInfo'
+import { TimeInfo } from '../time-info/TimeInfo'
 import s from './AboutDoctor.module.scss'
 
 type AboutDoctorPropsT = {
@@ -17,7 +17,7 @@ export const AboutDoctor = ({ info, isSelected, handleClick }: AboutDoctorPropsT
 		<div className={s['wrapper']}>
 			<button
 				className={clsx(s['btn'], {
-					[s['active']]: isSelected
+					[s['active']]: isSelected,
 				})}
 				onClick={() => {
 					handleClick?.(info.id)
@@ -32,7 +32,7 @@ export const AboutDoctor = ({ info, isSelected, handleClick }: AboutDoctorPropsT
 			<div
 				className={clsx(s['additional-wrapper'], { [s['active']]: isSelected })}
 				style={{
-					maxHeight: isSelected ? `${ulRef.current?.clientHeight}px` : ''
+					maxHeight: isSelected ? `${ulRef.current?.clientHeight}px` : '',
 				}}
 			>
 				<ul className={s['additional-list']} ref={ulRef}>

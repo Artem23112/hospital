@@ -1,5 +1,5 @@
+import { RootState } from '@/redux/store'
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from '../../store'
 import { connectToServer } from './additionalThunks/connectToServer'
 import { exit } from './additionalThunks/exit'
 import { signIn } from './additionalThunks/signIn'
@@ -12,7 +12,7 @@ const initialState: IAuthInitialState = {
 	isAuth: false,
 	rights: null,
 	loading: false,
-	error: null
+	error: null,
 }
 
 export const authenticationSlice = createSlice({
@@ -28,7 +28,7 @@ export const authenticationSlice = createSlice({
 		},
 		clearError(state) {
 			state.error = null
-		}
+		},
 	},
 	extraReducers: builder => {
 		builder
@@ -85,7 +85,7 @@ export const authenticationSlice = createSlice({
 					state.loading = false
 				}
 			)
-	}
+	},
 })
 
 export const selectorLoading = (state: RootState) => state.authentication.loading

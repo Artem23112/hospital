@@ -1,8 +1,8 @@
+import { RecordInfo } from '@/components/UI/record-info/RecordInfo'
+import { UniqueUserAppointmentT } from '@/redux/slices/appointments-slice/additionalThunks/serverUserCommunication/types'
+import { selectorDoctorsInfo } from '@/redux/slices/appointments-slice/appointmentsSlice'
+import { useAppSelector } from '@/redux/store'
 import clsx from 'clsx'
-import { UniqueUserAppointmentT } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/types'
-import { selectorDoctorsInfo } from '../../../redux/slices/appointments-slice/appointmentsSlice'
-import { useAppSelector } from '../../../redux/store'
-import { RecordInfo } from '../../UI/record-info/RecordInfo'
 import s from './OwnAppointmentList.module.scss'
 
 type OwnAppointmentListPropsT = {
@@ -10,7 +10,10 @@ type OwnAppointmentListPropsT = {
 	userAppointments: UniqueUserAppointmentT[]
 }
 
-export const OwnAppointmentList = ({ className, userAppointments }: OwnAppointmentListPropsT) => {
+export const OwnAppointmentList = ({
+	className,
+	userAppointments,
+}: OwnAppointmentListPropsT) => {
 	const doctorsInfo = useAppSelector(selectorDoctorsInfo)
 
 	return (
@@ -29,7 +32,9 @@ export const OwnAppointmentList = ({ className, userAppointments }: OwnAppointme
 					</li>
 				)
 			})}
-			<p className={s['message']}>{!userAppointments.length && 'У вас нет никаких записей'}</p>
+			<p className={s['message']}>
+				{!userAppointments.length && 'У вас нет никаких записей'}
+			</p>
 		</ul>
 	)
 }

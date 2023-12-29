@@ -1,6 +1,6 @@
-import { RequireRights } from '../../components/HOC/access-restrictions/RequireRights'
-import { DoctorProfile } from '../../components/layout/doctor-profile/DoctorProfile'
-import { UserProfile } from '../../components/layout/user-profile/UserProfile'
+import { RequireRights } from '@/components/HOC/access-restrictions/RequireRights'
+import { DoctorProfile } from '@/components/layout/doctor-profile/DoctorProfile'
+import { UserProfile } from '@/components/layout/user-profile/UserProfile'
 
 const ProfilePage = () => {
 	return (

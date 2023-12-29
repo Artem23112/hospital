@@ -1,7 +1,7 @@
+import arrow from '@/assets/images/icons/arrow.svg'
+import { exit } from '@/redux/slices/authentication-slice/additionalThunks/exit'
+import { useAppDispatch, useAppSelector } from '@/redux/store'
 import { useEffect, useState } from 'react'
-import arrow from '../../../assets/images/icons/arrow.svg'
-import { exit } from '../../../redux/slices/authentication-slice/additionalThunks/exit'
-import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import s from './ProfileBtn.module.scss'
 
 export const ProfileBtn = () => {

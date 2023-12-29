@@ -1,4 +1,4 @@
-import { GeneralAppointmentT } from '../../redux/slices/appointments-slice/types'
+import { GeneralAppointmentT } from '@/redux/slices/appointments-slice/types'
 
 type SortAppointmentsListFuncT = <T extends GeneralAppointmentT>(arr: T[]) => T[]
 

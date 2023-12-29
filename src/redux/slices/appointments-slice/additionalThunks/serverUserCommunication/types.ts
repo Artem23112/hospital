@@ -1,6 +1,6 @@
+import { Unique } from '@/main-types'
+import { generalAppointment } from '@/redux/slices/appointments-slice/types'
 import { Dictionary, Intersect, Record, Static, String } from 'runtypes'
-import { Unique } from '../../../../../main-types'
-import { generalAppointment } from '../../types'
 
 // user info types
 
@@ -8,7 +8,7 @@ export type UserInfoT = Static<typeof userInfo>
 export type UniqueUserInfoT = Unique<UserInfoT>
 
 const userInfo = Record({
-	name: String
+	name: String,
 })
 export const usersInfoFromServer = Dictionary(userInfo, String)
 

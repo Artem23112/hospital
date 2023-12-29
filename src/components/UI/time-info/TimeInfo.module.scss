@@ -20,12 +20,12 @@
 	& span:nth-child(1)::before {
 		top: 3px;
 		left: 0;
-		background-image: url('../../../assets/images/icons/calendar.svg');
+		background-image: url('@/assets/images/icons/calendar.svg');
 	}
 
 	& span:nth-child(2)::before {
 		top: 3px;
 		left: 0;
-		background-image: url('../../../assets/images/icons/time.svg');
+		background-image: url('@/assets/images/icons/time.svg');
 	}
 }

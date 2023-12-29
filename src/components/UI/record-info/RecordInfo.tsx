@@ -1,18 +1,18 @@
-import clsx from 'clsx'
 import {
 	convertStatusForDoctor,
 	convertStatusForUser,
-} from '../../../assets/functions/convert-appoinment-status'
-import closeImg from '../../../assets/images/icons/close.svg'
-import { useParseDate } from '../../../hooks/useParseDate'
-import { deleteAppointment } from '../../../redux/slices/appointments-slice/additionalThunks/deleteAppointment'
-import { doctorAnswer } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/doctorAnswer'
-import { UniqueDoctorAppointmentT } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
-import { UniqueUserAppointmentT } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/types'
-import { StatusAppointmentT } from '../../../redux/slices/appointments-slice/types'
-import { useAppDispatch } from '../../../redux/store'
-import { RequireRights } from '../../HOC/access-restrictions/RequireRights'
-import { TimeInfo } from '../../UI/time-info/TimeInfo'
+} from '@/assets/functions/convert-appointment-status'
+import closeImg from '@/assets/images/icons/close.svg'
+import { RequireRights } from '@/components/HOC/access-restrictions/RequireRights'
+import { useParseDate } from '@/hooks/useParseDate'
+import { deleteAppointment } from '@/redux/slices/appointments-slice/additionalThunks/deleteAppointment'
+import { doctorAnswer } from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/doctorAnswer'
+import { UniqueDoctorAppointmentT } from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
+import { UniqueUserAppointmentT } from '@/redux/slices/appointments-slice/additionalThunks/serverUserCommunication/types'
+import { StatusAppointmentT } from '@/redux/slices/appointments-slice/types'
+import { useAppDispatch } from '@/redux/store'
+import clsx from 'clsx'
+import { TimeInfo } from '../time-info/TimeInfo'
 import s from './RecordInfo.module.scss'
 
 type RecordInfoPropsT = {
@@ -50,7 +50,9 @@ export const RecordInfo = ({ info, userId }: RecordInfoPropsT) => {
 					<RequireRights requiredRights='admin'>
 						{convertStatusForDoctor(info.status)}
 					</RequireRights>
-					<RequireRights requiredRights='user'>{convertStatusForUser(info.status)}</RequireRights>
+					<RequireRights requiredRights='user'>
+						{convertStatusForUser(info.status)}
+					</RequireRights>
 				</div>
 			)}
 			{info.status === 'expired' && (

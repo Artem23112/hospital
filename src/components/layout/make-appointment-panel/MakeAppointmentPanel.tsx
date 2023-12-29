@@ -1,16 +1,16 @@
-import clsx from 'clsx'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { PATHS } from '../../../paths.ts'
-import { userSendAppointment } from '../../../redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userSendAppointment.ts'
+import { DateTimePicker } from '@/components/UI/date-time-picker/DateTimePicker'
+import { DoctorsList } from '@/components/UI/doctor-list/DoctorsList'
+import { PATHS } from '@/paths'
+import { userSendAppointment } from '@/redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userSendAppointment'
 import {
 	clearSubmitStatus,
 	selectorDoctorsInfo,
 	selectorIsSuccessSubmit,
-} from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
-import { useAppDispatch, useAppSelector } from '../../../redux/store.ts'
-import { DateTimePicker } from '../../UI/date-time-picker/DateTimePicker.tsx'
-import { DoctorsList } from '../../UI/doctor-list/DoctorsList.tsx'
+} from '@/redux/slices/appointments-slice/appointmentsSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/store'
+import clsx from 'clsx'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import s from './MakeAppointmentPanel.module.scss'
 
 export const MakeAppointmentPanel = () => {

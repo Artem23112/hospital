@@ -1,6 +1,6 @@
+import { RootState } from '@/redux/store'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { get, getDatabase, ref } from 'firebase/database'
-import { RootState } from '../../../store'
 import { doctorConnectToServer } from '../../appointments-slice/additionalThunks/serverDoctorCommunication/doctorConnectToServer'
 import { userConnectToServer } from '../../appointments-slice/additionalThunks/serverUserCommunication/userConnectToServer'
 

@@ -1,7 +1,7 @@
 import { getDatabase, ref, update } from 'firebase/database'
 import moment from 'moment'
-import { GeneralAppointmentT } from '../../redux/slices/appointments-slice/types'
-import { Roles, Unique } from '../../main-types'
+import { GeneralAppointmentT } from '@/redux/slices/appointments-slice/types'
+import { Roles, Unique } from '@/main-types'
 
 type CleanExpiredAppointmentsFuncT = <T extends Unique<GeneralAppointmentT>>(
 	list: T[],

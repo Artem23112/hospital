@@ -2,14 +2,14 @@ import clsx from 'clsx'
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
+import s from './TimeSelector.module.scss'
 import {
 	selectorChosenDate,
 	selectorChosenTime,
 	setChosenAppointmentData,
-} from '../../../redux/slices/appointments-slice/appointmentsSlice'
-import { useAppDispatch, useAppSelector } from '../../../redux/store'
+} from '@/redux/slices/appointments-slice/appointmentsSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/store'
 import { ChosenTimeT } from '../date-time-picker/DateTimePicker'
-import s from './TimeSelector.module.scss'
 
 type TimeSelectorPropsT = {
 	from: TimeInfoT

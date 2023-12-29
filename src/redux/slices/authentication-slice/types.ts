@@ -1,5 +1,5 @@
-import { IAuthErrorInfo } from '../../../assets/functions/get-auth-error-info'
-import { Roles } from '../../../main-types'
+import { IAuthErrorInfo } from '@/assets/functions/get-auth-error-info'
+import { Roles } from '@/main-types'
 
 export interface IAuthInitialState {
 	email: string | null

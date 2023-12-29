@@ -1,19 +1,24 @@
 import moment from 'moment'
 import { useState } from 'react'
-import { useFilterAppointments } from '../../../hooks/useFilterAppointments'
-import { UniqueDoctorAppointmentT } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
-import { StatusAppointmentT } from '../../../redux/slices/appointments-slice/types'
-import { SortButtons, SortItemConfigT } from '../../UI/sort-buttons/SortButtons'
-import { StyledCalendar, valuePiece } from '../../UI/styled-calendar/StyledCalendar'
-import { PatientList } from '../patient-list/PatientList'
 import s from './DoctorWorkspace.module.scss'
+import { UniqueDoctorAppointmentT } from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
+import { SortItemConfigT, SortButtons } from '@/components/UI/sort-buttons/SortButtons'
+import {
+	StyledCalendar,
+	valuePiece,
+} from '@/components/UI/styled-calendar/StyledCalendar'
+import { useFilterAppointments } from '@/hooks/useFilterAppointments'
+import { StatusAppointmentT } from '@/redux/slices/appointments-slice/types'
+import { PatientList } from '../patient-list/PatientList'
 
 type DoctorWorkspacePropsT = {
 	doctorAppointments: UniqueDoctorAppointmentT[]
 }
 
 export const DoctorWorkspace = ({ doctorAppointments }: DoctorWorkspacePropsT) => {
-	const [chosenDate, setChosenDate] = useState<string>(moment().startOf('day').toISOString())
+	const [chosenDate, setChosenDate] = useState<string>(
+		moment().startOf('day').toISOString()
+	)
 	const [filteredList, filter, setFilter] = useFilterAppointments<
 		UniqueDoctorAppointmentT,
 		FiltersT
@@ -48,7 +53,10 @@ export const DoctorWorkspace = ({ doctorAppointments }: DoctorWorkspacePropsT) =
 					chosenFilter={filter}
 					handleClick={setFilter}
 				/>
-				<PatientList className={s['appointment-list']} doctorAppointments={filteredList} />
+				<PatientList
+					className={s['appointment-list']}
+					doctorAppointments={filteredList}
+				/>
 				<StyledCalendar
 					className={s['calendar']}
 					value={moment(chosenDate).toDate()}

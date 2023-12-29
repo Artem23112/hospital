@@ -1,7 +1,7 @@
+import { RecordInfo } from '@/components/UI/record-info/RecordInfo'
+import { UniqueDoctorAppointmentT } from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
+import { useAppSelector } from '@/redux/store'
 import clsx from 'clsx'
-import { UniqueDoctorAppointmentT } from '../../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
-import { useAppSelector } from '../../../redux/store'
-import { RecordInfo } from '../../UI/record-info/RecordInfo'
 import s from './PatientList.module.scss'
 
 type PatientListPropsT = {

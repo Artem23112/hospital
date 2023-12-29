@@ -1,10 +1,10 @@
+import { arrFromFirebaseObj } from '@/assets/functions/array-from-firebase-object'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getDatabase, onValue, ref } from 'firebase/database'
-import { arrFromFirebaseObj } from '../../../../../assets/functions/array-from-firebase-object'
 import { setBusyDates } from '../../appointmentsSlice'
 import {
 	DoctorAppointmentT,
-	doctorAppointmentsFromServer
+	doctorAppointmentsFromServer,
 } from '../serverDoctorCommunication/types'
 
 export const userSubscribeToBusyDates = createAsyncThunk(

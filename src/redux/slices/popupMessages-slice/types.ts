@@ -1,4 +1,4 @@
-import { Unique } from '../../../main-types'
+import { Unique } from '@/main-types'
 
 export type InitialStateT = Array<UniquePopupMessageT>
 

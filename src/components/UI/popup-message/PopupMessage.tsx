@@ -1,9 +1,9 @@
+import closeIcon from '@/assets/images/icons/close.svg'
+import { statusConvert } from '@/components/utils/popup-messages/statusConvert'
+import { removeMessage } from '@/redux/slices/popupMessages-slice/popupMessagesSlice'
+import { PopupStatusT } from '@/redux/slices/popupMessages-slice/types'
+import { useAppDispatch } from '@/redux/store'
 import clsx from 'clsx'
-import closeIcon from '../../../assets/images/icons/close.svg'
-import { removeMessage } from '../../../redux/slices/popupMessages-slice/popupMessagesSlice'
-import { PopupStatusT } from '../../../redux/slices/popupMessages-slice/types'
-import { useAppDispatch } from '../../../redux/store'
-import { statusConvert } from '../../utils/popup-messages/statusConvert'
 import s from './PopupMessage.module.scss'
 
 type PopupMessagePropsT = {

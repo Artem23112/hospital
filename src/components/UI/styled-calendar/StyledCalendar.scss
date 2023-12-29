@@ -1,4 +1,4 @@
-@import '../../../assets/scss/variables.scss';
+@import '@/assets/scss/variables.scss';
 
 .react-calendar {
 	max-width: 294px;
@@ -46,7 +46,7 @@
 			height: 100%;
 			top: 0;
 			left: 0;
-			background-image: url('../../../assets/images/icons/arrow-stick.svg');
+			background-image: url('@/assets/images/icons/arrow-stick.svg');
 			background-repeat: no-repeat;
 			transition: transform 0.3s;
 			content: '';

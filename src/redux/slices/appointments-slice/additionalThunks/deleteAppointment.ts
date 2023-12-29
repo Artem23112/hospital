@@ -1,6 +1,6 @@
+import { RootState } from '@/redux/store'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getDatabase, ref, remove } from 'firebase/database'
-import { RootState } from '../../../store'
+import { ref, getDatabase, remove } from 'firebase/database'
 import { showPopupMessage } from '../../popupMessages-slice/popupMessagesSlice'
 
 export const deleteAppointment = createAsyncThunk(
@@ -18,9 +18,7 @@ export const deleteAppointment = createAsyncThunk(
 		try {
 			await remove(path)
 		} catch (error) {
-			dispatch(
-				showPopupMessage({ text: 'Не удалось удалить запись', type: 'error' })
-			)
+			dispatch(showPopupMessage({ text: 'Не удалось удалить запись', type: 'error' }))
 		}
 	}
 )

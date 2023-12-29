@@ -1,7 +1,7 @@
+import { FiltersT } from '@/components/layout/doctor-workspace/DoctorWorkspace'
+import { GeneralAppointmentT } from '@/redux/slices/appointments-slice/types'
 import moment from 'moment'
 import { useEffect, useState } from 'react'
-import { FiltersT } from '../components/layout/doctor-workspace/DoctorWorkspace'
-import { GeneralAppointmentT } from '../redux/slices/appointments-slice/types'
 
 export const useFilterAppointments = <T extends GeneralAppointmentT, F extends FiltersT>(
 	list: T[],
@@ -19,7 +19,9 @@ export const useFilterAppointments = <T extends GeneralAppointmentT, F extends F
 		if (chosenFilter === 'all') {
 			setHandleList(list.filter(filtrateByDateFilter))
 		} else {
-			setHandleList(list.filter(item => item.status === chosenFilter).filter(filtrateByDateFilter))
+			setHandleList(
+				list.filter(item => item.status === chosenFilter).filter(filtrateByDateFilter)
+			)
 		}
 	}, [chosenFilter, dateFilter, list])
 

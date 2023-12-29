@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
-import { Roles } from '../../../main-types'
-import { useAppSelector } from '../../../redux/store'
+import { Roles } from '@/main-types'
+import { useAppSelector } from '@/redux/store'
 
 interface IRequireRightsProps {
 	requiredRights: Roles

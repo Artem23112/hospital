@@ -1,5 +1,5 @@
+import { IAuthInitialState } from '@/redux/slices/authentication-slice/types'
 import { ChangeEvent, ReactNode, useState } from 'react'
-import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
 import { Input } from '../input/Input'
 import s from './Form.module.scss'
 
@@ -10,7 +10,12 @@ type FormPropsT = {
 	error: IAuthInitialState['error']
 }
 
-export const Form = ({ children, submitBtnContent, submitHandler, error }: FormPropsT) => {
+export const Form = ({
+	children,
+	submitBtnContent,
+	submitHandler,
+	error,
+}: FormPropsT) => {
 	const [email, setEmail] = useState<string>('')
 	const [pw, setPw] = useState<string>('')
 

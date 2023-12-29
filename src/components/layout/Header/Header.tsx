@@ -1,5 +1,5 @@
-import { RequireAuth } from '../../HOC/access-restrictions/RequireAuth'
-import { ProfileBtn } from '../../UI/profile-btn/ProfileBtn'
+import { RequireAuth } from '@/components/HOC/access-restrictions/RequireAuth'
+import { ProfileBtn } from '@/components/UI/profile-btn/ProfileBtn'
 import { CentredContainer } from '../centred-container/CentredContainer'
 import s from './Header.module.scss'
 

@@ -2,8 +2,8 @@ import { get, getDatabase, ref } from 'firebase/database'
 import { arrFromFirebaseObj } from './array-from-firebase-object'
 import {
 	DoctorAppointmentT,
-	doctorAppointmentsFromServer
-} from '../../redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
+	doctorAppointmentsFromServer,
+} from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
 
 type getAllBusyDatesISOFuncT = (doctorId: string) => Promise<string[] | never>
 

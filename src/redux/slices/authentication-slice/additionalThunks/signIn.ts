@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import { getAuthErrorInfo } from '../../../../assets/functions/get-auth-error-info'
+import { getAuthErrorInfo } from '@/assets/functions/get-auth-error-info'
 import { connectToServer } from './connectToServer'
 
 export const signIn = createAsyncThunk(
@@ -16,11 +16,11 @@ export const signIn = createAsyncThunk(
 
 			return {
 				email: user.email,
-				id: user.uid
+				id: user.uid,
 			}
 		} catch (err: any) {
 			return rejectWithValue({
-				error: getAuthErrorInfo(err.code)
+				error: getAuthErrorInfo(err.code),
 			})
 		}
 	}

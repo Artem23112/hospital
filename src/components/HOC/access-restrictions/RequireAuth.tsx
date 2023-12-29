@@ -1,6 +1,6 @@
+import { useAppSelector } from '@/redux/store'
 import { ReactNode } from 'react'
 import { Navigate } from 'react-router-dom'
-import { useAppSelector } from '../../../redux/store'
 
 type RequireAuthPropsT = {
 	children: ReactNode

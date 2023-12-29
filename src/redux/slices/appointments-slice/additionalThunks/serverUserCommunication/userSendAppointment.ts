@@ -1,22 +1,26 @@
+import { additionDateWithTime } from '@/assets/functions/addition-date-with-time'
+import { checkDuplicateAppointment } from '@/assets/functions/check-duplicate-appointment'
+import { showPopupMessage } from '@/redux/slices/popupMessages-slice/popupMessagesSlice'
+import { RootState } from '@/redux/store'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getDatabase, ref, set } from 'firebase/database'
 import { v4 } from 'uuid'
-import { additionDateWithTime } from '../../../../../assets/functions/addition-date-with-time'
-import { checkDuplicateAppointment } from '../../../../../assets/functions/check-duplicate-appointment'
-import { RootState } from '../../../../store'
-import { showPopupMessage } from '../../../popupMessages-slice/popupMessagesSlice'
 import { GeneralAppointmentT } from '../../types'
 
 export const userSendAppointment = createAsyncThunk(
 	'appointments/sendApplication',
 	async (_, { getState, dispatch, rejectWithValue }) => {
 		const state = getState() as RootState
-		const { chosenDoctor: doctorId, chosenDate, chosenTime } = state.appointment.appointmentData
+		const {
+			chosenDoctor: doctorId,
+			chosenDate,
+			chosenTime,
+		} = state.appointment.appointmentData
 		if (!doctorId || !chosenDate || !chosenTime) {
 			dispatch(
 				showPopupMessage({
 					text: 'Извините, но вы выбрали не все, что необходимо для записи',
-					type: 'warning'
+					type: 'warning',
 				})
 			)
 			return rejectWithValue('Данных недостаточно')
@@ -27,7 +31,7 @@ export const userSendAppointment = createAsyncThunk(
 		const userId = state.authentication.id
 		const messagePattern: GeneralAppointmentT = {
 			status: 'enrolled',
-			fullDateISO
+			fullDateISO,
 		}
 
 		const id = v4()
@@ -41,18 +45,18 @@ export const userSendAppointment = createAsyncThunk(
 
 			set(docAppointmentPath, {
 				...messagePattern,
-				userId
+				userId,
 			})
 
 			set(userAppointmentPath, {
 				...messagePattern,
-				doctorId
+				doctorId,
 			})
 
 			dispatch(
 				showPopupMessage({
 					text: 'Вы записались к врачу',
-					type: 'success'
+					type: 'success',
 				})
 			)
 		} catch (e) {

@@ -1,17 +1,12 @@
+import { RootState } from '@/redux/store'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../../store'
 import { doctorConnectToServer } from './additionalThunks/serverDoctorCommunication/doctorConnectToServer'
-import {
-	UniqueDoctorAppointmentT,
-	UniqueDoctorInfoT,
-} from './additionalThunks/serverDoctorCommunication/types'
-import {
-	UniqueUserAppointmentT,
-	UniqueUserInfoT,
-} from './additionalThunks/serverUserCommunication/types'
+import { UniqueDoctorAppointmentT, UniqueDoctorInfoT } from './additionalThunks/serverDoctorCommunication/types'
+import { UniqueUserAppointmentT, UniqueUserInfoT } from './additionalThunks/serverUserCommunication/types'
 import { userConnectToServer } from './additionalThunks/serverUserCommunication/userConnectToServer'
 import { userSendAppointment } from './additionalThunks/serverUserCommunication/userSendAppointment'
 import { IAppointmentsInitialState } from './types'
+
 
 const initialState: IAppointmentsInitialState = {
 	userAppointments: [],
