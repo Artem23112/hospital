@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react'
+import { ChangeEvent, ReactNode, useState } from 'react'
 import { IAuthInitialState } from '../../../redux/slices/authentication-slice/types'
 import { Input } from '../input/Input'
 import s from './Form.module.scss'
@@ -8,7 +8,6 @@ type FormPropsT = {
 	submitBtnContent: ReactNode
 	submitHandler: (email: string, password: string) => void
 	error: IAuthInitialState['error']
-	Wrapper?: React.PureComponent
 }
 
 export const Form = ({ children, submitBtnContent, submitHandler, error }: FormPropsT) => {
@@ -29,7 +28,7 @@ export const Form = ({ children, submitBtnContent, submitHandler, error }: FormP
 			<Input
 				type='email'
 				value={email}
-				onChange={setEmail}
+				onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
 				placeholder={'Логин'}
 				isError={emailErr}
 				errMessage={error?.message}
@@ -38,7 +37,7 @@ export const Form = ({ children, submitBtnContent, submitHandler, error }: FormP
 			<Input
 				type='password'
 				value={pw}
-				onChange={setPw}
+				onChange={(e: ChangeEvent<HTMLInputElement>) => setPw(e.target.value)}
 				placeholder={'Пароль'}
 				isError={pwErr}
 				errMessage={error?.message}

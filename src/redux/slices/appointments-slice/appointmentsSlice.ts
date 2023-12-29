@@ -3,11 +3,11 @@ import { RootState } from '../../store'
 import { doctorConnectToServer } from './additionalThunks/serverDoctorCommunication/doctorConnectToServer'
 import {
 	UniqueDoctorAppointmentT,
-	UniqueDoctorInfoT
+	UniqueDoctorInfoT,
 } from './additionalThunks/serverDoctorCommunication/types'
 import {
 	UniqueUserAppointmentT,
-	UniqueUserInfoT
+	UniqueUserInfoT,
 } from './additionalThunks/serverUserCommunication/types'
 import { userConnectToServer } from './additionalThunks/serverUserCommunication/userConnectToServer'
 import { userSendAppointment } from './additionalThunks/serverUserCommunication/userSendAppointment'
@@ -23,8 +23,8 @@ const initialState: IAppointmentsInitialState = {
 	appointmentData: {
 		chosenDoctor: null,
 		chosenDate: null,
-		chosenTime: null
-	}
+		chosenTime: null,
+	},
 }
 
 const appointmentsSlice = createSlice({
@@ -52,9 +52,9 @@ const appointmentsSlice = createSlice({
 		) {
 			state.appointmentData = {
 				...state.appointmentData,
-				...action.payload
+				...action.payload,
 			}
-		}
+		},
 	},
 	extraReducers: builder => {
 		builder
@@ -75,15 +75,17 @@ const appointmentsSlice = createSlice({
 				state.appointmentData = {
 					chosenDoctor: null,
 					chosenDate: null,
-					chosenTime: null
+					chosenTime: null,
 				}
 			})
-	}
+	},
 })
 
 export const selectorDoctorsInfo = (state: RootState) => state.appointment.doctorsInfo
 export const selectorIsSuccessSubmit = (state: RootState) => state.appointment.isSuccessSubmit
 export const selectorBusyDates = (state: RootState) => state.appointment.busyDates
+export const selectorChosenDoctor = (state: RootState) =>
+	state.appointment.appointmentData.chosenDoctor
 export const selectorChosenDate = (state: RootState) => state.appointment.appointmentData.chosenDate
 export const selectorChosenTime = (state: RootState) => state.appointment.appointmentData.chosenTime
 
@@ -92,7 +94,7 @@ export const {
 	setDoctorAppointments,
 	clearSubmitStatus,
 	setBusyDates,
-	setChosenAppointmentData
+	setChosenAppointmentData,
 } = appointmentsSlice.actions
 
 export default appointmentsSlice.reducer

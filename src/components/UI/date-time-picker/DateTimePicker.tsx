@@ -6,8 +6,8 @@ import {
 	setChosenAppointmentData,
 } from '../../../redux/slices/appointments-slice/appointmentsSlice.ts'
 import { useAppDispatch, useAppSelector } from '../../../redux/store.ts'
+import { StyledCalendar, Value, valuePiece } from '../styled-calendar/StyledCalendar.tsx'
 import { MemoizedAppointmentTimeSelector as TimeSelector } from '../time-selector/TimeSelector.tsx'
-import { StyledCalendar, Value } from '../styled-calendar/StyledCalendar.tsx'
 import s from './DateTimePicker.module.scss'
 
 export type ChosenDateT = Date | null
@@ -28,7 +28,7 @@ export const DateTimePicker = () => {
 	}, [busyDates, chosenDate])
 
 	function choosingDate(v: Value) {
-		if (!(v instanceof Date)) return
+		if (!(valuePiece.guard(v) && v)) return
 		dispatch(setChosenAppointmentData({ chosenDate: v.toISOString() }))
 	}
 
