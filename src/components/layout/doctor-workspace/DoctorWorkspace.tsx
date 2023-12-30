@@ -19,7 +19,7 @@ export const DoctorWorkspace = ({ doctorAppointments }: DoctorWorkspacePropsT) =
 	const [chosenDate, setChosenDate] = useState<string>(
 		moment().startOf('day').toISOString()
 	)
-	const [filteredList, filter, setFilter] = useFilterAppointments<
+	const { handledList, chosenFilter, setChosenFilter } = useFilterAppointments<
 		UniqueDoctorAppointmentT,
 		FiltersT
 	>(doctorAppointments, 'all', chosenDate)
@@ -50,13 +50,10 @@ export const DoctorWorkspace = ({ doctorAppointments }: DoctorWorkspacePropsT) =
 				<SortButtons
 					className={s['sort-btns-wrapper']}
 					sortConfig={sortConfig}
-					chosenFilter={filter}
-					handleClick={setFilter}
+					chosenFilter={chosenFilter}
+					handleClick={setChosenFilter}
 				/>
-				<PatientList
-					className={s['appointment-list']}
-					doctorAppointments={filteredList}
-				/>
+				<PatientList className={s['appointment-list']} doctorAppointments={handledList} />
 				<StyledCalendar
 					className={s['calendar']}
 					value={moment(chosenDate).toDate()}

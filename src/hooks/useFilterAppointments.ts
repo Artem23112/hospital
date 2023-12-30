@@ -7,7 +7,7 @@ export const useFilterAppointments = <T extends GeneralAppointmentT, F extends F
 	list: T[],
 	typeFilter: F,
 	dateFilter: string
-): [T[], F, React.Dispatch<React.SetStateAction<F>>] => {
+): ReturnedType<T, F> => {
 	const [chosenFilter, setChosenFilter] = useState<F>(typeFilter)
 	const [handledList, setHandleList] = useState<T[]>([])
 
@@ -25,5 +25,11 @@ export const useFilterAppointments = <T extends GeneralAppointmentT, F extends F
 		}
 	}, [chosenFilter, dateFilter, list])
 
-	return [handledList!, chosenFilter, setChosenFilter]
+	return { handledList, chosenFilter, setChosenFilter }
+}
+
+type ReturnedType<T, F> = {
+	handledList: T[]
+	chosenFilter: F
+	setChosenFilter: React.Dispatch<React.SetStateAction<F>>
 }
