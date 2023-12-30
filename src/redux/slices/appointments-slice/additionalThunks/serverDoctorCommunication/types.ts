@@ -1,20 +1,21 @@
 import { Dictionary, Intersect, Record, Static, String } from 'runtypes'
-import { Unique } from '../../../../../main-types'
+import { Unique, unique } from '../../../../../main-types'
 import { generalAppointment } from '../../types'
 
 //  doctor info types
 
 export type DoctorInfoT = Static<typeof doctorInfo>
-export type UniqueDoctorInfoT = Unique<DoctorInfoT>
+export type UniqueDoctorInfoT = Static<typeof uniqueDoctorInfo>
 
 const doctorInfo = Record({
 	name: String,
 	specialization: String,
 	additional: Record({
 		education: String,
-		experience: String
-	})
+		experience: String,
+	}),
 })
+export const uniqueDoctorInfo = unique(doctorInfo)
 export const doctorsInfoFromServer = Dictionary(doctorInfo, String)
 
 // doctor appointments types

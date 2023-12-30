@@ -4,6 +4,7 @@ import { selectorDoctorsInfo } from '@/redux/slices/appointments-slice/appointme
 import { useAppSelector } from '@/redux/store'
 import clsx from 'clsx'
 import s from './OwnAppointmentList.module.scss'
+import { uniqueDoctorInfo } from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
 
 type OwnAppointmentListPropsT = {
 	className?: string
@@ -20,14 +21,14 @@ export const OwnAppointmentList = ({
 		<ul className={clsx(s['appointments-list'], className)}>
 			{userAppointments.map(item => {
 				const chosenDoc = doctorsInfo.find(doctor => doctor.id === item.doctorId)
+				if (!uniqueDoctorInfo.guard(chosenDoc)) return <></>
+
 				return (
 					<li key={item.id}>
 						<RecordInfo
-							info={{
-								...item,
-								name: chosenDoc?.name,
-								specialization: chosenDoc?.specialization,
-							}}
+							info={item}
+							name={chosenDoc.name}
+							specialization={chosenDoc.specialization}
 						/>
 					</li>
 				)

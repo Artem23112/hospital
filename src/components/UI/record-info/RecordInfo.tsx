@@ -16,14 +16,13 @@ import { TimeInfo } from '../time-info/TimeInfo'
 import s from './RecordInfo.module.scss'
 
 type RecordInfoPropsT = {
-	info: (UniqueDoctorAppointmentT | UniqueUserAppointmentT) & {
-		name: string | undefined
-		specialization?: string
-	}
+	info: UniqueDoctorAppointmentT | UniqueUserAppointmentT
+	name: string
+	specialization?: string
 	userId?: string
 }
 
-export const RecordInfo = ({ info, userId }: RecordInfoPropsT) => {
+export const RecordInfo = ({ info, name, specialization, userId }: RecordInfoPropsT) => {
 	const dispatch = useAppDispatch()
 	const [textDate, textTime] = useParseDate(info.fullDateISO, {
 		count: 30,
@@ -39,8 +38,8 @@ export const RecordInfo = ({ info, userId }: RecordInfoPropsT) => {
 	return (
 		<div className={s['wrapper']}>
 			<div>
-				<h4 className={s['title']}>{info.name}</h4>
-				{info?.specialization && <p className={s['additional']}>{info.specialization}</p>}
+				<h4 className={s['title']}>{name}</h4>
+				{specialization && <p className={s['additional']}>{specialization}</p>}
 			</div>
 
 			{textDate && textTime && <TimeInfo textDate={textDate} textTime={textTime} />}
