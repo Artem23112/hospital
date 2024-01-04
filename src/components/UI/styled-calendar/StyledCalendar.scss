@@ -49,8 +49,7 @@
 			background-image: url('@/assets/images/icons/arrow-stick.svg');
 			background-repeat: no-repeat;
 			transition: transform 0.3s;
-			content: '';
-			position: absolute;
+			@extend %pseudo;
 			background-size: 100% 100%;
 			transform: scale(1);
 		}
@@ -102,8 +101,7 @@
 			left: -7px;
 			background: #ffff76;
 			border-radius: 50%;
-			content: '';
-			position: absolute;
+			@extend %pseudo;
 			z-index: -1;
 		}
 	}
