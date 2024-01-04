@@ -1,4 +1,4 @@
-import { RecordInfo } from '@/components/UI/record-info/RecordInfo'
+import { InfoCard } from '@/components/UI/info-card-compound/InfoCard'
 import { UniqueDoctorAppointmentT } from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
 import { uniqueUserInfo } from '@/redux/slices/appointments-slice/additionalThunks/serverUserCommunication/types'
 import { useAppSelector } from '@/redux/store'
@@ -21,7 +21,11 @@ export const PatientList = ({ className, doctorAppointments }: PatientListPropsT
 
 				return (
 					<li key={item.id}>
-						<RecordInfo info={item} name={chosenUser.name} userId={item.userId} />
+						<InfoCard>
+							<InfoCard.About name={chosenUser.name} />
+							<InfoCard.TimeInfo fullDateISO={item.fullDateISO} />
+							<InfoCard.Status status={item.status} />
+						</InfoCard>
 					</li>
 				)
 			})}

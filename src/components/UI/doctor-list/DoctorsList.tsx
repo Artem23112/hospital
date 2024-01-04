@@ -6,7 +6,7 @@ import {
 } from '@/redux/slices/appointments-slice/appointmentsSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
 import { useEffect } from 'react'
-import { AboutDoctor } from '../about-doctor/AboutDoctor'
+import { InfoCard } from '../info-card-compound/InfoCard'
 import s from './DoctorsList.module.scss'
 
 type DoctorsListPropsT = {
@@ -33,11 +33,13 @@ export const DoctorsList = ({ doctorsInfo }: DoctorsListPropsT) => {
 				{doctorsInfo.map(info => {
 					return (
 						<li key={info.id}>
-							<AboutDoctor
-								info={info}
-								isSelected={chosenDoctor === info.id}
-								handleClick={choosingDoctor}
-							/>
+							<InfoCard
+								active={chosenDoctor === info.id}
+								handleClick={() => choosingDoctor(info.id)}
+							>
+								<InfoCard.About name={info.name} specialization={info.specialization} />
+								<InfoCard.TimeInfo textDate={'Пн-Пт'} textTime={'8:00-17:00'} />
+							</InfoCard>
 						</li>
 					)
 				})}

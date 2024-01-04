@@ -2,9 +2,9 @@
 
 .wrapper {
 	width: 100%;
-	display: grid;
+	display: flex;
+	justify-content: space-between;
 	align-items: center;
-	grid-template-columns: 1fr auto 1fr;
 	margin-bottom: 12px;
 	padding: 30px 25px;
 	font-family: $roboto;
@@ -17,12 +17,31 @@
 	position: relative;
 	gap: 10px;
 
+	& > * {
+		flex: 1;
+		&:first-child {
+			text-align: left;
+		}
+		&:last-child {
+			text-align: right;
+		}
+	}
+
 	&:hover .functional-btns-wrapper {
 		max-width: 100%;
 	}
 
 	&:hover .btn-delete {
 		filter: opacity(0.4);
+	}
+
+	&.active {
+		background-color: $main-color;
+		& .title,
+		.additional,
+		.time {
+			color: #fff;
+		}
 	}
 }
 
@@ -36,8 +55,30 @@
 	}
 }
 
+.time {
+	text-align: center;
+
+	& > div {
+		display: inline-block;
+		text-align: center;
+	}
+	& span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+
+	& .icon {
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		margin-right: 5px;
+	}
+}
+
 .status {
-	justify-self: end;
+	text-align: center;
 	&.enrolled {
 		color: #dff25e;
 	}

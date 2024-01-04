@@ -1,10 +1,10 @@
-import { RecordInfo } from '@/components/UI/record-info/RecordInfo'
+import { InfoCard } from '@/components/UI/info-card-compound/InfoCard'
+import { uniqueDoctorInfo } from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
 import { UniqueUserAppointmentT } from '@/redux/slices/appointments-slice/additionalThunks/serverUserCommunication/types'
 import { selectorDoctorsInfo } from '@/redux/slices/appointments-slice/appointmentsSlice'
 import { useAppSelector } from '@/redux/store'
 import clsx from 'clsx'
 import s from './OwnAppointmentList.module.scss'
-import { uniqueDoctorInfo } from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
 
 type OwnAppointmentListPropsT = {
 	className?: string
@@ -25,11 +25,14 @@ export const OwnAppointmentList = ({
 
 				return (
 					<li key={item.id}>
-						<RecordInfo
-							info={item}
-							name={chosenDoc.name}
-							specialization={chosenDoc.specialization}
-						/>
+						<InfoCard>
+							<InfoCard.About
+								name={chosenDoc.name}
+								specialization={chosenDoc.specialization}
+							/>
+							<InfoCard.TimeInfo fullDateISO={item.fullDateISO} />
+							<InfoCard.Status status={item.status} />
+						</InfoCard>
 					</li>
 				)
 			})}
