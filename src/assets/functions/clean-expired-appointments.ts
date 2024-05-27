@@ -1,17 +1,21 @@
+import {
+	getDoctorAppointmentApiUrl,
+	getPatientAppointmentApiUrl,
+} from '@/assets/shared/constants/api.endpoints'
+import { Roles, Unique } from '@/main-types'
+import { GeneralAppointmentT } from '@/redux/slices/appointments-slice/types'
 import { getDatabase, ref, update } from 'firebase/database'
 import moment from 'moment'
-import { GeneralAppointmentT } from '@/redux/slices/appointments-slice/types'
-import { Roles, Unique } from '@/main-types'
 
 type CleanExpiredAppointmentsFuncT = <T extends Unique<GeneralAppointmentT>>(
 	list: T[],
-	userId: string,
+	id: string,
 	rights: Roles
 ) => Promise<void>
 
 export const cleanExpiredAppointments: CleanExpiredAppointmentsFuncT = async (
 	list,
-	userId,
+	id,
 	rights
 ) => {
 	list.forEach(item => {
@@ -20,9 +24,10 @@ export const cleanExpiredAppointments: CleanExpiredAppointmentsFuncT = async (
 			item.status === 'enrolled'
 		) {
 			const db = getDatabase()
-			const path = `${
-				rights === 'admin' ? 'doctors' : 'users'
-			}/${userId}/appointments/${item.id}/`
+			let path: string = ''
+
+			if (rights === 'doctor') path = getDoctorAppointmentApiUrl(id, item.id)
+			if (rights === 'patient') path = getPatientAppointmentApiUrl(id, item.id)
 
 			update(ref(db, path), { status: 'expired' })
 		}

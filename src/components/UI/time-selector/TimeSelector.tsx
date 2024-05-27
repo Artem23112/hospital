@@ -1,15 +1,14 @@
-import clsx from 'clsx'
-import moment from 'moment'
-import React, { useEffect, useState } from 'react'
-import { v4 } from 'uuid'
-import s from './TimeSelector.module.scss'
 import {
 	selectorChosenDate,
 	selectorChosenTime,
 	setChosenAppointmentData,
 } from '@/redux/slices/appointments-slice/appointmentsSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
+import clsx from 'clsx'
+import moment from 'moment'
+import React, { useEffect, useState } from 'react'
 import { ChosenTimeT } from '../date-time-picker/DateTimePicker'
+import s from './TimeSelector.module.scss'
 
 type TimeSelectorPropsT = {
 	from: TimeInfoT
@@ -19,7 +18,12 @@ type TimeSelectorPropsT = {
 	setChosenTimeCb?: React.Dispatch<React.SetStateAction<ChosenTimeT>>
 }
 
-export const TimeSelector = ({ from, to, stepSize, busyDates }: TimeSelectorPropsT) => {
+export const TimeSelector = ({
+	from,
+	to,
+	stepSize,
+	busyDates,
+}: TimeSelectorPropsT) => {
 	const dispatch = useAppDispatch()
 	const chosenDate = useAppSelector(selectorChosenDate)
 	const chosenTime = useAppSelector(selectorChosenTime)
@@ -37,7 +41,9 @@ export const TimeSelector = ({ from, to, stepSize, busyDates }: TimeSelectorProp
 		while (!startDate.isSameOrAfter(endDate)) {
 			const generatedTime: GeneratedTimeT = {
 				text: startDate.format('HH:mm'),
-				isDisabled: busyDates.some(busyDate => busyDate === startDate.toISOString()),
+				isDisabled: busyDates.some(
+					busyDate => busyDate === startDate.toISOString()
+				),
 			}
 
 			timeList.push(generatedTime)
@@ -59,7 +65,7 @@ export const TimeSelector = ({ from, to, stepSize, busyDates }: TimeSelectorProp
 						className={clsx(s['btn'], {
 							[s['chosen']]: time.text === chosenTime,
 						})}
-						key={v4()}
+						key={time.text}
 						disabled={time.isDisabled}
 						onClick={() => {
 							choosingTime(time.text)

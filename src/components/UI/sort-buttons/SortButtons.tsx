@@ -1,6 +1,5 @@
 import { FiltersT } from '@/components/layout/doctor-workspace/DoctorWorkspace'
 import clsx from 'clsx'
-import { v4 } from 'uuid'
 import s from './SortButtons.module.scss'
 
 type SortButtonsPropsT = {
@@ -20,7 +19,7 @@ export const SortButtons = ({
 		<ul className={clsx(s['btns-wrapper'], className)}>
 			{sortConfig.map(item => {
 				return (
-					<li className={s['btn-wrapper']} key={v4()}>
+					<li className={s['btn-wrapper']} key={item.btnText}>
 						<button
 							className={clsx(s['btn'], {
 								[s['active']]: chosenFilter === item.filter,

@@ -9,4 +9,4 @@ export const unique = <T extends Runtype<unknown>>(
 	return Intersect(arg, Record({ id: String }))
 }
 
-export type Roles = 'admin' | 'user'
+export type Roles = 'doctor' | 'patient'

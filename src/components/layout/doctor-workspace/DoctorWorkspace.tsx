@@ -16,7 +16,9 @@ type DoctorWorkspacePropsT = {
 	doctorAppointments: UniqueDoctorAppointmentT[]
 }
 
-export const DoctorWorkspace = ({ doctorAppointments }: DoctorWorkspacePropsT) => {
+export const DoctorWorkspace = ({
+	doctorAppointments,
+}: DoctorWorkspacePropsT) => {
 	const [chosenDate, setChosenDate] = useState<string>(
 		moment().startOf('day').toISOString()
 	)
@@ -34,11 +36,16 @@ export const DoctorWorkspace = ({ doctorAppointments }: DoctorWorkspacePropsT) =
 					chosenFilter={chosenFilter}
 					handleClick={setChosenFilter}
 				/>
-				<PatientList className={s['appointment-list']} doctorAppointments={handledList} />
+				<PatientList
+					className={s['appointment-list']}
+					doctorAppointments={handledList}
+				/>
 				<StyledCalendar
 					className={s['calendar']}
 					value={moment(chosenDate).toDate()}
-					onChange={v => valuePiece.guard(v) && setChosenDate(moment(v).toISOString())}
+					onChange={v =>
+						valuePiece.guard(v) && setChosenDate(moment(v).toISOString())
+					}
 				/>
 			</div>
 		</>

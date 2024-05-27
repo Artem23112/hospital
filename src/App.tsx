@@ -1,4 +1,5 @@
 import { Unsubscribe } from 'firebase/auth'
+import { get, getDatabase, orderByChild, query, ref } from 'firebase/database'
 import { useEffect } from 'react'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import { RequireAuth } from './components/HOC/access-restrictions/RequireAuth'
@@ -9,6 +10,9 @@ import { SignUpPage } from './pages/signup-page/SignUpPage'
 import { PATHS } from './paths'
 import { useAppDispatch, useAppSelector } from './redux/store'
 
+const test = query(ref(getDatabase(), 'patient'), orderByChild('info'))
+const snapshot = get(test)
+snapshot.then(snapshot => console.log(snapshot.val()))
 export const App = () => {
 	const dispatch = useAppDispatch()
 	const isAuth = useAppSelector(({ authentication }) => authentication.isAuth)
