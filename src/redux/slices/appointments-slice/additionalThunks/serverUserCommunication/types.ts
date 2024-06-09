@@ -18,5 +18,8 @@ export const usersInfoFromServer = Dictionary(userInfo, String)
 export type UserAppointmentT = Static<typeof userAppointment>
 export type UniqueUserAppointmentT = Unique<UserAppointmentT>
 
-const userAppointment = Intersect(generalAppointment, Record({ doctorId: String }))
+const userAppointment = Intersect(
+	generalAppointment,
+	Record({ doctorId: String })
+)
 export const userAppointmentsFromServer = Dictionary(userAppointment, String)

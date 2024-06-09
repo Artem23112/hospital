@@ -1,5 +1,5 @@
 import closeIcon from '@/assets/images/icons/close.svg'
-import { statusConvert } from '@/components/utils/popup-messages/statusConvert'
+import { statusConvert } from '@/components/utils/components/popup-messages/statusConvert'
 import { removeMessage } from '@/redux/slices/popupMessages-slice/popupMessagesSlice'
 import { PopupStatusT } from '@/redux/slices/popupMessages-slice/types'
 import { useAppDispatch } from '@/redux/store'

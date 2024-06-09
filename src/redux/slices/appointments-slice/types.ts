@@ -1,11 +1,11 @@
 import { Literal, Record, Static, String, Union } from 'runtypes'
 import {
 	UniqueDoctorAppointmentT,
-	UniqueDoctorInfoT
+	UniqueDoctorInfoT,
 } from './additionalThunks/serverDoctorCommunication/types'
 import {
 	UniqueUserAppointmentT,
-	UniqueUserInfoT
+	UniqueUserInfoT,
 } from './additionalThunks/serverUserCommunication/types'
 
 export interface IAppointmentsInitialState {
@@ -35,5 +35,5 @@ const statusAppointment = Union(
 
 export const generalAppointment = Record({
 	status: statusAppointment,
-	fullDateISO: String
+	fullDateISO: String,
 })

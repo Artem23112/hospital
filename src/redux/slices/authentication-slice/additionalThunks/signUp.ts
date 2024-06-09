@@ -7,9 +7,16 @@ import { SignUpInfoT } from '../types'
 
 export const signUp = createAsyncThunk(
 	'authentication/signUp',
-	async ({ email, password, name }: SignUpInfoT, { rejectWithValue, dispatch }) => {
+	async (
+		{ email, password, name }: SignUpInfoT,
+		{ rejectWithValue, dispatch }
+	) => {
 		try {
-			const { user } = await createUserWithEmailAndPassword(getAuth(), email, password)
+			const { user } = await createUserWithEmailAndPassword(
+				getAuth(),
+				email,
+				password
+			)
 			const id = user.uid
 
 			await set(ref(getDatabase(), `users-info/${id}/rights`), 'user')

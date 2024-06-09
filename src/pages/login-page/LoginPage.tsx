@@ -1,7 +1,7 @@
 import { AlternativeChoice } from '@/components/UI/alternative-choice/AlternativeChoice'
 import { Form } from '@/components/UI/form/Form'
 import { CentredContainer } from '@/components/layout/centred-container/CentredContainer'
-import { Loader } from '@/components/utils/loader/Loader'
+import { Loader } from '@/components/utils/components/Loader/Loader'
 import { PATHS } from '@/paths'
 import { signIn } from '@/redux/slices/authentication-slice/additionalThunks/signIn'
 import {
@@ -26,7 +26,9 @@ export const LoginPage = () => {
 			<div className={s['login-wrapper']}>
 				<h3 className={s['title']}>Вход в аккаунт</h3>
 				<Form
-					submitBtnContent={loading ? <Loader size={24} color='#fff' /> : 'Войти'}
+					submitBtnContent={
+						loading ? <Loader size={24} color='#fff' /> : 'Войти'
+					}
 					submitHandler={trySingIn}
 					error={error}
 				/>

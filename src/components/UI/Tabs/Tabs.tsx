@@ -21,7 +21,7 @@ export const Tabs = ({ tabsConfig }: TabsPropsT) => {
 					return (
 						<li
 							className={clsx(s['tab'], {
-								[s['active']]: isActive(tab.linkPath)
+								[s['active']]: isActive(tab.linkPath),
 							})}
 							key={tab.id}
 						>
@@ -33,7 +33,13 @@ export const Tabs = ({ tabsConfig }: TabsPropsT) => {
 			<div className={s['shadow']}>
 				<Routes>
 					{tabsConfig.map(tab => {
-						return <Route path={tab?.routePath} element={tab.component} key={tab.id} />
+						return (
+							<Route
+								path={tab?.routePath}
+								element={tab.component}
+								key={tab.id}
+							/>
+						)
 					})}
 				</Routes>
 			</div>
@@ -42,7 +48,7 @@ export const Tabs = ({ tabsConfig }: TabsPropsT) => {
 }
 
 type TabConfigT = {
-	id: string
+	id: number
 	default?: boolean
 	tabText?: string
 	linkPath: string

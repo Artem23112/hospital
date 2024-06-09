@@ -8,9 +8,9 @@ const store = configureStore({
 	reducer: {
 		authentication: authenticationReducer,
 		appointment: appointmentsSliceReducer,
-		popupMessage: popupMessagesReducer
+		popupMessage: popupMessagesReducer,
 	},
-	devTools: true
+	devTools: true,
 })
 
 export type RootState = ReturnType<typeof store.getState>

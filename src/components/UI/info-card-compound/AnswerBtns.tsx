@@ -14,6 +14,7 @@ export const AnswerBtns: FC<AnswerBtnsPropsT> = ({ id, userId }) => {
 	const dispatch = useAppDispatch()
 
 	function answering(type: StatusAppointmentT) {
+		console.log('click')
 		if (!userId) return
 
 		dispatch(doctorAnswer({ userId: userId, appointmentId: id, type }))

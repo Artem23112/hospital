@@ -1,5 +1,5 @@
 import { RootState } from '@/redux/store'
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { connectToServer } from './additionalThunks/connectToServer'
 import { exit } from './additionalThunks/exit'
 import { signIn } from './additionalThunks/signIn'
@@ -13,6 +13,7 @@ const initialState: IAuthInitialState = {
 	rights: null,
 	loading: false,
 	error: null,
+	doctorPatients: [],
 }
 
 export const authenticationSlice = createSlice({
@@ -28,6 +29,9 @@ export const authenticationSlice = createSlice({
 		},
 		clearError(state) {
 			state.error = null
+		},
+		setDoctorPatients(state, action: PayloadAction<string[]>) {
+			state.doctorPatients = action.payload
 		},
 	},
 	extraReducers: builder => {
@@ -88,7 +92,8 @@ export const authenticationSlice = createSlice({
 	},
 })
 
-export const selectorLoading = (state: RootState) => state.authentication.loading
+export const selectorLoading = (state: RootState) =>
+	state.authentication.loading
 export const selectorError = (state: RootState) => state.authentication.error
 
 export const { setSavedUser, clearError } = authenticationSlice.actions

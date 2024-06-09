@@ -9,25 +9,27 @@ import { MakeAppointmentPanel } from '../make-appointment-panel/MakeAppointmentP
 import { OwnAppointmentList } from '../own-appointment-list/OwnAppointmentList'
 
 export const UserProfile = () => {
-	const appointmentList = useAppSelector(state => state.appointment.userAppointments)
+	const appointmentList = useAppSelector(
+		state => state.appointment.userAppointments
+	)
 
 	const tabsConfig = [
 		{
-			id: v4(),
+			id: 1,
 			tabText: 'Записаться',
 			linkPath: PATHS.profile.home + PATHS.profile.makeAppointment,
 			routePath: PATHS.profile.makeAppointment,
 			component: <MakeAppointmentPanel />,
 		},
 		{
-			id: v4(),
+			id: 2,
 			tabText: 'Список записей',
 			linkPath: PATHS.profile.home + PATHS.profile.appointmentList,
 			routePath: PATHS.profile.appointmentList,
 			component: <OwnAppointmentList userAppointments={appointmentList} />,
 		},
 		{
-			id: v4(),
+			id: 3,
 			linkPath: '',
 			routePath: '/',
 			component: <Navigate to={PATHS.profile.makeAppointment} />,

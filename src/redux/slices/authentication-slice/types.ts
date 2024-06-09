@@ -8,6 +8,7 @@ export interface IAuthInitialState {
 	rights: Roles | null
 	loading: boolean
 	error: IAuthErrorInfo | null
+	doctorPatients: string[]
 }
 
 export type AuthInfoT = {

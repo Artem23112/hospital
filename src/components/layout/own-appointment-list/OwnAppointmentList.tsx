@@ -20,7 +20,9 @@ export const OwnAppointmentList = ({
 	return (
 		<ul className={clsx(s['appointments-list'], className)}>
 			{userAppointments.map(item => {
-				const chosenDoc = doctorsInfo.find(doctor => doctor.id === item.doctorId)
+				const chosenDoc = doctorsInfo.find(
+					doctor => doctor.id === item.doctorId
+				)
 				if (!uniqueDoctorInfo.guard(chosenDoc)) return <></>
 
 				return (
