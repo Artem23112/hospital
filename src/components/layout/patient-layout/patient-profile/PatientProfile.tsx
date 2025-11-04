@@ -1,10 +1,10 @@
 import { Tabs } from "@/components/UI/tabs/Tabs";
+import { Header } from "@/components/layout/header/Header";
 import { PatientMedicalCard } from "@/components/layout/patient-layout/patient-medical-card/PatientMedicalCard";
+import { CentredContainer } from "@/components/utility-components/centred-container/CentredContainer";
 import { useAppSelector } from "@/redux/store";
 import { PATHS } from "@/shared/constants/paths";
 import { Navigate } from "react-router-dom";
-import { CentredContainer } from "../../../utility-components/centred-container/CentredContainer";
-import { Header } from "../../header/Header";
 import { MakeAppointmentPanel } from "../make-appointment-panel/MakeAppointmentPanel";
 import { PatientAppointmentList } from "../patient-appointment-list/PatientAppointmentList";
 
