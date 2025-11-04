@@ -1,35 +1,35 @@
-import closeIcon from '@/assets/images/icons/close.svg'
-import { statusConvert } from '@/components/utility-components/popup-messages/statusConvert'
-import { removeMessage } from '@/redux/slices/popupMessages-slice/popupMessagesSlice'
-import { PopupStatusT } from '@/redux/slices/popupMessages-slice/types'
-import { useAppDispatch } from '@/redux/store'
-import clsx from 'clsx'
-import s from './PopupMessage.module.scss'
+import closeIcon from "@/assets/images/icons/close.svg";
+import { statusConvert } from "@/components/utility-components/popup-messages/statusConvert";
+import { removeMessage } from "@/redux/slices/popupMessages-slice/popupMessagesSlice";
+import { PopupStatusT } from "@/redux/slices/popupMessages-slice/types";
+import { useAppDispatch } from "@/redux/store";
+import clsx from "clsx";
+import s from "./PopupMessage.module.scss";
 
 type PopupMessagePropsT = {
-	type: PopupStatusT
-	text: string
-	id: string
-}
+  type: PopupStatusT;
+  text: string;
+  id: string;
+};
 
 export const PopupMessage = ({ type, text, id }: PopupMessagePropsT) => {
-	const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
-	return (
-		<div className={clsx(s[type], s['popup-message'])}>
-			<div>
-				<h4 className={s['title']}>{statusConvert[type]}</h4>
-				<p>{text}</p>
-			</div>
-			<button
-				className={s['close-btn']}
-				type='button'
-				onClick={() => {
-					dispatch(removeMessage(id))
-				}}
-			>
-				<img src={closeIcon} />
-			</button>
-		</div>
-	)
-}
+  return (
+    <div className={clsx(s[type], s["popup-message"])}>
+      <div>
+        <h4 className={s["title"]}>{statusConvert[type]}</h4>
+        <p>{text}</p>
+      </div>
+      <button
+        className={s["close-btn"]}
+        type="button"
+        onClick={() => {
+          dispatch(removeMessage(id));
+        }}
+      >
+        <img src={closeIcon} />
+      </button>
+    </div>
+  );
+};

@@ -1,16 +1,16 @@
-import clsx from 'clsx'
+import clsx from "clsx";
 
 export const HTMLComponent = ({
-	htmlContent,
-	className,
+  htmlContent,
+  className,
 }: {
-	htmlContent: string
-	className?: string
+  htmlContent: string;
+  className?: string;
 }) => {
-	return (
-		<div
-			className={clsx(className)}
-			dangerouslySetInnerHTML={{ __html: htmlContent }}
-		/>
-	)
-}
+  return (
+    <div
+      className={clsx(className)}
+      dangerouslySetInnerHTML={{ __html: htmlContent }}
+    />
+  );
+};

@@ -1,141 +1,141 @@
-@import '@/assets/scss/variables.scss';
+@import "@/assets/scss/variables.scss";
 
 .wrapper {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 12px;
-	padding: 30px 25px;
-	font-family: $roboto;
-	background-color: #fff;
-	border-radius: 5px;
-	-webkit-box-shadow: 0px 1px 7px 1px rgba(34, 60, 80, 0.14);
-	-moz-box-shadow: 0px 1px 7px 1px rgba(34, 60, 80, 0.14);
-	box-shadow: 0px 1px 7px 1px rgba(34, 60, 80, 0.14);
-	transition: all 0.3s;
-	position: relative;
-	gap: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 30px 25px;
+  font-family: $roboto;
+  background-color: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 1px 7px 1px rgba(34, 60, 80, 0.14);
+  -moz-box-shadow: 0px 1px 7px 1px rgba(34, 60, 80, 0.14);
+  box-shadow: 0px 1px 7px 1px rgba(34, 60, 80, 0.14);
+  transition: all 0.3s;
+  position: relative;
+  gap: 10px;
 
-	& > * {
-		flex: 1;
-		&:first-child:not(:nth-child(1)) {
-			text-align: left;
-		}
-		&:last-child:not(:nth-child(1)) {
-			text-align: right;
-		}
-	}
+  & > * {
+    flex: 1;
+    &:first-child:not(:nth-child(1)) {
+      text-align: left;
+    }
+    &:last-child:not(:nth-child(1)) {
+      text-align: right;
+    }
+  }
 
-	&:hover .functional-btns-wrapper {
-		max-width: 100%;
-	}
+  &:hover .functional-btns-wrapper {
+    max-width: 100%;
+  }
 
-	&:hover .btn-delete {
-		filter: opacity(0.4);
-	}
+  &:hover .btn-delete {
+    filter: opacity(0.4);
+  }
 
-	&.active {
-		background-color: $main-color;
-		& .title,
-		.additional,
-		.time {
-			color: #fff;
-		}
-	}
+  &.active {
+    background-color: $main-color;
+    & .title,
+    .additional,
+    .time {
+      color: #fff;
+    }
+  }
 }
 
 .title {
-	font-size: 18px;
-	font-weight: 300;
+  font-size: 18px;
+  font-weight: 300;
 
-	& + .additional {
-		margin-top: 5px;
-		color: #2e608b;
-	}
+  & + .additional {
+    margin-top: 5px;
+    color: #2e608b;
+  }
 }
 
 .time {
-	text-align: center;
+  text-align: center;
 
-	& > div {
-		display: inline-block;
-		text-align: center;
-	}
-	& span {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		position: relative;
-	}
+  & > div {
+    display: inline-block;
+    text-align: center;
+  }
+  & span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
 
-	& .icon {
-		display: inline-block;
-		width: 16px;
-		height: 16px;
-		margin-right: 5px;
-	}
+  & .icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+  }
 }
 
 .status {
-	text-align: center;
-	&.enrolled {
-		color: #dff25e;
-	}
-	&.admitted {
-		color: #73d950;
-	}
-	&.not-admitted {
-		color: #f25e5e;
-	}
+  text-align: center;
+  &.enrolled {
+    color: #dff25e;
+  }
+  &.admitted {
+    color: #73d950;
+  }
+  &.not-admitted {
+    color: #f25e5e;
+  }
 }
 
 .btn-delete {
-	top: 10px;
-	right: 5px;
-	transition: filter 0.4s;
-	cursor: pointer;
-	position: absolute;
-	z-index: 2;
-	filter: opacity(0);
+  top: 10px;
+  right: 5px;
+  transition: filter 0.4s;
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  filter: opacity(0);
 }
 
 .functional-btns-wrapper {
-	max-width: 0;
-	display: inline-flex;
-	top: 50%;
-	right: 20px;
-	margin: 0 auto;
-	z-index: 10;
-	font-family: 'Roboto', sans-serif;
-	transition: max-width 0.5s;
-	overflow: hidden;
-	position: absolute;
-	gap: 10px;
-	transform: translateY(-50%);
+  max-width: 0;
+  display: inline-flex;
+  top: 50%;
+  right: 20px;
+  margin: 0 auto;
+  z-index: 10;
+  font-family: "Roboto", sans-serif;
+  transition: max-width 0.5s;
+  overflow: hidden;
+  position: absolute;
+  gap: 10px;
+  transform: translateY(-50%);
 
-	&:hover {
-		max-width: 100%;
-	}
-	& .functional-btn {
-		padding: 11px 26px;
-		color: #fff;
-		transition: background-color 0.3s;
-		cursor: pointer;
-		white-space: nowrap;
-	}
+  &:hover {
+    max-width: 100%;
+  }
+  & .functional-btn {
+    padding: 11px 26px;
+    color: #fff;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
 
-	& .accept {
-		background-color: $green;
-		&:hover {
-			background-color: $green-hover;
-		}
-	}
+  & .accept {
+    background-color: $green;
+    &:hover {
+      background-color: $green-hover;
+    }
+  }
 
-	& .cancel {
-		background-color: $red;
-		&:hover {
-			background-color: $red-hover;
-		}
-	}
+  & .cancel {
+    background-color: $red;
+    &:hover {
+      background-color: $red-hover;
+    }
+  }
 }

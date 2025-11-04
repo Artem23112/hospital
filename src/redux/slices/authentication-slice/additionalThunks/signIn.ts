@@ -1,31 +1,31 @@
-import { getAuthErrorInfo } from '@/shared/utils/functions/get/get-auth-error-info'
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import { connectToServer } from './connectToServer'
+import { getAuthErrorInfo } from "@/shared/utils/functions/get/get-auth-error-info";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { connectToServer } from "./connectToServer";
 
 export const signIn = createAsyncThunk(
-	'authentication/signIn',
-	async (
-		{ email, password }: { email: string; password: string },
-		{ rejectWithValue, dispatch }
-	) => {
-		try {
-			const { user } = await signInWithEmailAndPassword(
-				getAuth(),
-				email,
-				password
-			)
+  "authentication/signIn",
+  async (
+    { email, password }: { email: string; password: string },
+    { rejectWithValue, dispatch },
+  ) => {
+    try {
+      const { user } = await signInWithEmailAndPassword(
+        getAuth(),
+        email,
+        password,
+      );
 
-			dispatch(connectToServer())
+      dispatch(connectToServer());
 
-			return {
-				email: user.email,
-				id: user.uid,
-			}
-		} catch (err: any) {
-			return rejectWithValue({
-				error: getAuthErrorInfo(err.code),
-			})
-		}
-	}
-)
+      return {
+        email: user.email,
+        id: user.uid,
+      };
+    } catch (err: any) {
+      return rejectWithValue({
+        error: getAuthErrorInfo(err.code),
+      });
+    }
+  },
+);

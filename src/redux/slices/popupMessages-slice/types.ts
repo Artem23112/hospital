@@ -1,13 +1,13 @@
-import { Unique } from '@/shared/types/main-types'
+import { Unique } from "@/shared/types/main-types";
 
-export type InitialStateT = Array<UniquePopupMessageT>
+export type InitialStateT = Array<UniquePopupMessageT>;
 
 export interface PopupMessageT {
-	type: PopupStatusT
-	text: string
-	duration?: number
+  type: PopupStatusT;
+  text: string;
+  duration?: number;
 }
 
-export type UniquePopupMessageT = Unique<PopupMessageT>
+export type UniquePopupMessageT = Unique<PopupMessageT>;
 
-export type PopupStatusT = 'error' | 'success' | 'warning' | 'information'
+export type PopupStatusT = "error" | "success" | "warning" | "information";

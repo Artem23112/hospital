@@ -1,40 +1,40 @@
-@import '@/assets/scss/variables.scss';
+@import "@/assets/scss/variables.scss";
 
 .popup-message {
-	width: 100%;
-	max-width: $max-width-layout;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 13px 20px;
-	font-family: 'Open sans';
-	background-color: #ccc;
-	border-radius: 20px;
+  width: 100%;
+  max-width: $max-width-layout;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 20px;
+  font-family: "Open sans";
+  background-color: #ccc;
+  border-radius: 20px;
 
-	& .title {
-		font-size: 18px;
-		font-weight: 600;
-	}
+  & .title {
+    font-size: 18px;
+    font-weight: 600;
+  }
 }
 
 .close-btn {
-	opacity: 0.3;
-	color: #fff;
-	cursor: pointer;
+  opacity: 0.3;
+  color: #fff;
+  cursor: pointer;
 }
 
 .error {
-	background-color: #ffcfcb;
+  background-color: #ffcfcb;
 }
 
 .warning {
-	background-color: #ffdea6;
+  background-color: #ffdea6;
 }
 
 .success {
-	background-color: #baf7d8;
+  background-color: #baf7d8;
 }
 
 .information {
-	background-color: #cde5ff;
+  background-color: #cde5ff;
 }

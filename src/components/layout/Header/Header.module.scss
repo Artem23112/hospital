@@ -1,18 +1,18 @@
-@import '@/assets/scss/variables.scss';
+@import "@/assets/scss/variables.scss";
 
 .header {
-	padding: 20px 0;
-	background-color: $main-color;
-	&-content {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	&-title {
-		font-family: $roboto;
-		font-size: 22px;
-		font-weight: 300;
-		line-height: 22px;
-		color: #fff;
-	}
+  padding: 20px 0;
+  background-color: $main-color;
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-title {
+    font-family: $roboto;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 22px;
+    color: #fff;
+  }
 }

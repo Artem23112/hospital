@@ -1,19 +1,19 @@
-import { getAllBusyDatesISO } from '../get/get-all-busy-dates-ISO'
+import { getAllBusyDatesISO } from "../get/get-all-busy-dates-ISO";
 
 type CheckDuplicateAppointmentFuncT = (
-	doctorId: string,
-	fullDateISO: string
-) => Promise<{ isExists: boolean }>
+  doctorId: string,
+  fullDateISO: string,
+) => Promise<{ isExists: boolean }>;
 
 export const checkDuplicateAppointment: CheckDuplicateAppointmentFuncT = async (
-	doctorId,
-	fullDateISO
+  doctorId,
+  fullDateISO,
 ) => {
-	const busyDatesISO = await getAllBusyDatesISO(doctorId)
+  const busyDatesISO = await getAllBusyDatesISO(doctorId);
 
-	const isExists = busyDatesISO.some(date => {
-		return date === fullDateISO
-	})
+  const isExists = busyDatesISO.some((date) => {
+    return date === fullDateISO;
+  });
 
-	return { isExists }
-}
+  return { isExists };
+};

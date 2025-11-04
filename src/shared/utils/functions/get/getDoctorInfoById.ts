@@ -1,8 +1,8 @@
-import { UniqueDoctorInfoT } from '@/redux/slices/doctorSlice/serverDoctorCommunication/types'
+import { UniqueDoctorInfoT } from "@/redux/slices/doctorSlice/serverDoctorCommunication/types";
 
 export function getDoctorInfoById(
-	list: UniqueDoctorInfoT[],
-	id: string
+  list: UniqueDoctorInfoT[],
+  id: string,
 ): UniqueDoctorInfoT | undefined {
-	return list.find(doctor => doctor.id === id)
+  return list.find((doctor) => doctor.id === id);
 }

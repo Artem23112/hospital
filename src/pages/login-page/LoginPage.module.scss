@@ -1,19 +1,19 @@
-@import '@/assets/scss/variables.scss';
+@import "@/assets/scss/variables.scss";
 
 .login-wrapper {
-	@extend %access-form;
+  @extend %access-form;
 }
 
 .title {
-	margin-bottom: 11px;
-	font-family: 'Trebuchet MS', sans-serif;
-	font-size: 31px;
-	color: #4a4a4a;
+  margin-bottom: 11px;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 31px;
+  color: #4a4a4a;
 }
 
 .err-message {
-	padding: 0 0 0 5px;
-	font-family: 'Open Sans';
-	font-size: 10px;
-	color: $err-red;
+  padding: 0 0 0 5px;
+  font-family: "Open Sans";
+  font-size: 10px;
+  color: $err-red;
 }

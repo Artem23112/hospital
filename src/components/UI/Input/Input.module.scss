@@ -1,50 +1,50 @@
-@import '@/assets/scss/variables.scss';
+@import "@/assets/scss/variables.scss";
 
 .err-message {
-	padding: 0 0 0 5px;
-	font-family: 'Open Sans';
-	font-size: 10px;
-	color: $err-red;
+  padding: 0 0 0 5px;
+  font-family: "Open Sans";
+  font-size: 10px;
+  color: $err-red;
 }
 
 .btn {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 0 14px 0;
-	padding: 7px 10px;
-	font-family: 'Trebuchet MS', sans-serif;
-	color: #fff;
-	text-align: center;
-	background-color: $main-color;
-	border: 1px solid #fff;
-	border-radius: 5px;
-	cursor: pointer;
-	position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 14px 0;
+  padding: 7px 10px;
+  font-family: "Trebuchet MS", sans-serif;
+  color: #fff;
+  text-align: center;
+  background-color: $main-color;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
 }
 
 .input {
-	width: 100%;
-	max-width: 300px;
-	margin-bottom: 8px;
-	padding: 8px 12px;
-	background-color: gainsboro;
-	border: none;
-	border-radius: 8px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background-color: gainsboro;
+  border: none;
+  border-radius: 8px;
 
-	&.err,
-	&.err {
-		border: 1px solid $err-red;
-	}
-	&::placeholder {
-		color: #9a9a9a;
-	}
+  &.err,
+  &.err {
+    border: 1px solid $err-red;
+  }
+  &::placeholder {
+    color: #9a9a9a;
+  }
 }
 
 .err-message {
-	display: inline-block;
-	font-size: 12px;
-	line-height: 14px;
-	color: $err-red;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 14px;
+  color: $err-red;
 }
