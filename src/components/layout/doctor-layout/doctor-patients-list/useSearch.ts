@@ -11,7 +11,6 @@ export const useSearch = <DataT extends string>({
 }) => {
 	const [searchName, setSearchName] = useState<string>('')
 	const [filteredData, setFilteredData] = useState<DataT[]>([])
-debugger
 	useEffect(() => {
 		setFilteredData(
 			data.filter(item => {
@@ -21,7 +20,7 @@ debugger
 				return lowerName?.includes(lowerSearchName)
 			})
 		)
-	}, [searchName])
+	}, [searchName, data, patientsInfo])
 
 	return {
 		setSearchName,

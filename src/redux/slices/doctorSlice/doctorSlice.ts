@@ -38,7 +38,6 @@ const doctorSlice = createSlice({
 			state.appointments = action.payload
 		},
 		setDoctorPatients(state, action: PayloadAction<DoctorPatient[]>) {
-			console.log('set')
 			state.doctorPatients = action.payload
 		},
 	},

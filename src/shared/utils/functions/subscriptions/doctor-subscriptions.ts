@@ -23,7 +23,6 @@ export function doctorSubscribeToAppointments(
 	onValue(path, async snapshot => {
 		const data: unknown = snapshot.val()
 		if (!doctorAppointmentsFromServer.guard(data)) return
-		debugger
 		const parsedAppointments = arrFromFirebaseObj<DoctorAppointmentT>(data)
 		await cleanExpiredAppointments(parsedAppointments, doctorId, 'admin')
 

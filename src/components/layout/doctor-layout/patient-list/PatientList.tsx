@@ -21,7 +21,6 @@ export const PatientList = ({
 	doctorAppointments,
 }: PatientListPropsT) => {
 	const usersInfo = useAppSelector(state => state.doctorSlice.usersInfo)
-	debugger
 	const countItemsOnPage = 4
 	const { itemsToRender, currentPage, setCurrentPage } =
 		usePagination<UniqueDoctorAppointmentT>({
@@ -29,7 +28,6 @@ export const PatientList = ({
 			countItemsOnPage,
 			page: 1,
 		})
-console.log('pa')
 	return (
 		<ul className={clsx(s['appointments-list'], className)}>
 			{itemsToRender.map((item, index) => {
@@ -61,7 +59,7 @@ console.log('pa')
 				renderOnZeroPageCount={() => (
 					<p className={s['message']}>
 						{!doctorAppointments.length &&
-							'Нет записейл за выбранную дату и сортировку'}
+							'Нет записей за выбранную дату и сортировку'}
 					</p>
 				)}
 				nextLabel={<BiSolidRightArrow />}

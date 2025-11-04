@@ -1,14 +1,11 @@
+import { useSearch } from '@/components/layout/doctor-layout/doctor-patients-list/useSearch'
 import { InfoCard } from '@/components/UI/info-card-compound/InfoCard'
 import { useAppSelector } from '@/redux/store'
 import { getPatientInfoById } from '@/shared/utils/functions/get/getPatientInfoById'
-import { Fragment, type FC } from 'react'
 import { Link } from 'react-router-dom'
 import s from './DoctorPatientsList.module.scss'
-import { useSearch } from '@/components/layout/doctor-layout/doctor-patients-list/useSearch'
 
-type PropsT = {}
-
-export const DoctorPatientsList: FC<PropsT> = ({}) => {
+export const DoctorPatientsList  = () => {
 	const doctorPatients = useAppSelector(
 		state => state.doctorSlice.doctorPatients
 	)
@@ -17,8 +14,7 @@ export const DoctorPatientsList: FC<PropsT> = ({}) => {
 		data: doctorPatients,
 		patientsInfo,
 	})
-	console.log('d')
-	debugger
+	
 	return (
 		<>
 			<input
@@ -28,11 +24,12 @@ export const DoctorPatientsList: FC<PropsT> = ({}) => {
 				onChange={e => setSearchName(e.target.value)}
 				placeholder='Введите имя пациента'
 			/>
+			
+			
 			<ul className={s['list']}>
 				{filteredData.map(patientId => {
-					debugger
 					const patientInfo = getPatientInfoById(patientsInfo, patientId)
-					if (!patientInfo) return <Fragment key={patientId}></Fragment>
+					if (!patientInfo) return null
 
 					return (
 						<li key={patientId}>
