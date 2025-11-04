@@ -1,5 +1,6 @@
-import { doctorAnswer } from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/doctorAnswer'
-import { StatusAppointmentT } from '@/redux/slices/appointments-slice/types'
+import { addToOwnPatients } from '@/redux/slices/doctorSlice/serverDoctorCommunication/addToOwnPatients'
+import { doctorAnswer } from '@/redux/slices/doctorSlice/serverDoctorCommunication/doctorAnswer'
+import { StatusAppointmentT } from '@/redux/slices/patient-slice/types'
 import { useAppDispatch } from '@/redux/store'
 import clsx from 'clsx'
 import { FC } from 'react'
@@ -14,9 +15,10 @@ export const AnswerBtns: FC<AnswerBtnsPropsT> = ({ id, userId }) => {
 	const dispatch = useAppDispatch()
 
 	function answering(type: StatusAppointmentT) {
-		console.log('click')
 		if (!userId) return
-
+		if (type === 'admitted') {
+			dispatch(addToOwnPatients(userId))
+		}
 		dispatch(doctorAnswer({ userId: userId, appointmentId: id, type }))
 	}
 

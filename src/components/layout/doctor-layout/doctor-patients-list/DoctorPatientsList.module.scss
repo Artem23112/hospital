@@ -1,0 +1,29 @@
+@import '@/assets/scss/variables';
+
+.search-input {
+	font-size: 20px;
+	width: 300px;
+	padding: 4px 8px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	border: 2px solid $main-color;
+	&::placeholder {
+		color: rgb(168, 168, 168);
+	}
+}
+
+.list {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 20px;
+}
+
+.link {
+	display: block;
+}
+
+.card {
+	.about {
+		text-align: center;
+	}
+}

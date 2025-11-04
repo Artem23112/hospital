@@ -1,13 +1,15 @@
+import doctorSliceReducer from '@/redux/slices/doctorSlice/doctorSlice'
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
-import appointmentsSliceReducer from './slices/appointments-slice/appointmentsSlice'
 import authenticationReducer from './slices/authentication-slice/authenticationSlice'
+import patientSliceReducer from './slices/patient-slice/patientSlice'
 import popupMessagesReducer from './slices/popupMessages-slice/popupMessagesSlice'
 
 const store = configureStore({
 	reducer: {
 		authentication: authenticationReducer,
-		appointment: appointmentsSliceReducer,
+		doctorSlice: doctorSliceReducer,
+		patientSlice: patientSliceReducer,
 		popupMessage: popupMessagesReducer,
 	},
 	devTools: true,

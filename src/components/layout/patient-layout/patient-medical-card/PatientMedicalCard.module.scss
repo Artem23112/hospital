@@ -1,0 +1,15 @@
+@import '@/assets/scss/variables';
+
+.wrapper {
+	padding-top: 30px;
+	font-family: 'Roboto';
+}
+
+.message {
+	margin-top: 20px;
+	font-family: $roboto;
+	font-size: 20px;
+	line-height: 20px;
+	color: #959595;
+	text-align: center;
+}

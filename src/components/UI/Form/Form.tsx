@@ -1,6 +1,6 @@
 import { IAuthInitialState } from '@/redux/slices/authentication-slice/types'
 import { ChangeEvent, ReactNode, useState } from 'react'
-import { Input } from '../input/Input'
+import { Input } from '../Input/Input'
 import s from './Form.module.scss'
 
 type FormPropsT = {
@@ -33,7 +33,9 @@ export const Form = ({
 			<Input
 				type='email'
 				value={email}
-				onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+				onChange={(e: ChangeEvent<HTMLInputElement>) =>
+					setEmail(e.target.value)
+				}
 				placeholder={'Логин'}
 				isError={emailErr}
 				errMessage={error?.message}

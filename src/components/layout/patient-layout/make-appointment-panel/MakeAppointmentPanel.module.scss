@@ -1,0 +1,9 @@
+@import '@/assets/scss/variables.scss';
+
+.content-wrapper {
+	display: grid;
+	grid-template-columns: 1fr 300px;
+	background-color: #fff;
+	gap: 20px;
+	@extend %mini-wrapper;
+}

@@ -1,9 +1,9 @@
-import { UniqueDoctorInfoT } from '@/redux/slices/appointments-slice/additionalThunks/serverDoctorCommunication/types'
-import { userSubscribeToBusyDates } from '@/redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userSubscribeToBusyDates'
+import { UniqueDoctorInfoT } from '@/redux/slices/doctorSlice/serverDoctorCommunication/types'
+import { userSubscribeToBusyDates } from '@/redux/slices/patient-slice/additionalThunks/serverPatientCommunication/userSubscribeToBusyDates'
 import {
 	selectorChosenDoctor,
 	setChosenAppointmentData,
-} from '@/redux/slices/appointments-slice/appointmentsSlice'
+} from '@/redux/slices/patient-slice/patientSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
 import { useEffect } from 'react'
 import { InfoCard } from '../info-card-compound/InfoCard'
@@ -37,7 +37,10 @@ export const DoctorsList = ({ doctorsInfo }: DoctorsListPropsT) => {
 								active={chosenDoctor === info.id}
 								handleClick={() => choosingDoctor(info.id)}
 							>
-								<InfoCard.About name={info.name} specialization={info.specialization} />
+								<InfoCard.About
+									name={info.name}
+									specialization={info.specialization}
+								/>
 								<InfoCard.TimeInfo textDate={'Пн-Пт'} textTime={'8:00-17:00'} />
 							</InfoCard>
 						</li>

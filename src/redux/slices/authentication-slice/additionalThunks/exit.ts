@@ -1,7 +1,7 @@
+import { getAuthErrorInfo } from '@/shared/utils/functions/get/get-auth-error-info'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { FirebaseError } from 'firebase/app'
 import { getAuth, signOut } from 'firebase/auth'
-import { getAuthErrorInfo } from '@/assets/functions/get-auth-error-info'
 
 export const exit = createAsyncThunk(
 	'authentication/exit',

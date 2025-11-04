@@ -1,5 +1,5 @@
-import { getAuthErrorInfo } from '@/assets/functions/get-auth-error-info'
-import { userConnectToServer } from '@/redux/slices/appointments-slice/additionalThunks/serverUserCommunication/userConnectToServer'
+import { patientConnectToServer } from '@/redux/slices/patient-slice/additionalThunks/serverPatientCommunication/patientConnectToServer'
+import { getAuthErrorInfo } from '@/shared/utils/functions/get/get-auth-error-info'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { getDatabase, ref, set } from 'firebase/database'
@@ -22,7 +22,7 @@ export const signUp = createAsyncThunk(
 			await set(ref(getDatabase(), `users-info/${id}/rights`), 'user')
 			await set(ref(getDatabase(), `users-info/${id}/name`), name)
 
-			dispatch(userConnectToServer(id))
+			dispatch(patientConnectToServer(id))
 
 			return {
 				email: user.email,

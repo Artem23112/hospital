@@ -1,9 +1,8 @@
-import { AlternativeChoice } from '@/components/UI/alternative-choice/AlternativeChoice'
+import { Input } from '@/components/UI/Input/Input'
+import { AlternativeChoice } from '@/components/UI/buttons/alternative-choice/AlternativeChoice'
 import { Form } from '@/components/UI/form/Form'
-import { Input } from '@/components/UI/input/Input'
-import { CentredContainer } from '@/components/layout/centred-container/CentredContainer'
-import { Loader } from '@/components/utils/components/Loader/Loader'
-import { PATHS } from '@/paths'
+import { Loader } from '@/components/utility-components/Loader/Loader'
+import { CentredContainer } from '@/components/utility-components/centred-container/CentredContainer'
 import { signUp } from '@/redux/slices/authentication-slice/additionalThunks/signUp'
 import {
 	clearError,
@@ -11,6 +10,7 @@ import {
 	selectorLoading,
 } from '@/redux/slices/authentication-slice/authenticationSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
+import { PATHS } from '@/shared/constants/paths'
 import { ChangeEvent, useState } from 'react'
 import s from './SignUpPage.module.scss'
 

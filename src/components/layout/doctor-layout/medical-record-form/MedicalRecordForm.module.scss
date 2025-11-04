@@ -1,0 +1,28 @@
+.back-button {
+	margin-bottom: 20px;
+}
+
+.title {
+	font-size: 30px;
+	color: rgb(97, 95, 95);
+
+	span {
+		font-size: 28px;
+		color: #afafaf;
+	}
+
+	padding-bottom: 20px;
+}
+
+.btn-wrapper {
+	margin-top: 60px;
+	display: flex;
+}
+.btn {
+	align-self: flex-end;
+}
+.loader-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

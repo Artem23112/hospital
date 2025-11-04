@@ -1,0 +1,54 @@
+.container {
+}
+
+.record {
+	margin-bottom: 30px;
+	font-size: 18px;
+}
+
+.name {
+	font-size: 24px;
+	color: #006ed0;
+}
+
+.additional {
+	font-size: 20px;
+	color: #afafaf;
+	margin-bottom: 10px;
+}
+
+.report-header {
+	text-align: center;
+	border-bottom: 2px solid #4aa0ec;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+}
+
+.name {
+	font-size: 24px;
+	margin: 0;
+	color: #308cdd;
+}
+
+.additional {
+	font-size: 20px;
+	color: #666;
+}
+
+.html-wrapper {
+	p:nth-child(1) {
+		strong {
+			&:nth-child(1) {
+				font-size: 20px;
+				color: #555;
+				font-weight: bold;
+			}
+		}
+		margin-bottom: 10px;
+	}
+	p > strong {
+		&:nth-child(1) {
+			color: #5996cc;
+		}
+	}
+}

@@ -1,5 +1,5 @@
 import closeImg from '@/assets/images/icons/close.svg'
-import { deleteAppointment } from '@/redux/slices/appointments-slice/additionalThunks/deleteAppointment'
+import { deleteAppointment } from '@/redux/slices/patient-slice/additionalThunks/deleteAppointment'
 import { useAppDispatch } from '@/redux/store'
 import { FC } from 'react'
 import s from './index.module.scss'

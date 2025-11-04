@@ -1,13 +1,16 @@
-import { Value } from '@/components/UI/styled-calendar/StyledCalendar'
+import { Value } from '@/components/utility-components/styled-calendar/StyledCalendar'
 import {
 	selectorBusyDates,
 	selectorChosenDate,
 	setChosenAppointmentData,
-} from '@/redux/slices/appointments-slice/appointmentsSlice'
+} from '@/redux/slices/patient-slice/patientSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
 import moment from 'moment'
 import { useMemo } from 'react'
-import { StyledCalendar, valuePiece } from '../styled-calendar/StyledCalendar'
+import {
+	StyledCalendar,
+	valuePiece,
+} from '../../utility-components/styled-calendar/StyledCalendar'
 import { TimeSelector } from '../time-selector/TimeSelector'
 import s from './DateTimePicker.module.scss'
 
@@ -48,7 +51,9 @@ export const DateTimePicker = () => {
 						choosingDate(v)
 					}}
 					tileDisabled={({ date, view }) => {
-						return view === 'month' && (date.getDay() === 0 || date.getDay() === 6)
+						return (
+							view === 'month' && (date.getDay() === 0 || date.getDay() === 6)
+						)
 					}}
 				/>
 				{chosenDate && <TimeSelector {...timeSelectorProps} />}

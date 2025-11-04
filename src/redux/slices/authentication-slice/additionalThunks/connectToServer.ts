@@ -1,8 +1,8 @@
 import { RootState } from '@/redux/store'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { get, getDatabase, ref } from 'firebase/database'
-import { doctorConnectToServer } from '../../appointments-slice/additionalThunks/serverDoctorCommunication/doctorConnectToServer'
-import { userConnectToServer } from '../../appointments-slice/additionalThunks/serverUserCommunication/userConnectToServer'
+import { doctorConnectToServer } from '../../doctorSlice/serverDoctorCommunication/doctorConnectToServer'
+import { patientConnectToServer } from '../../patient-slice/additionalThunks/serverPatientCommunication/patientConnectToServer'
 
 export const connectToServer = createAsyncThunk(
 	'authentication/connect',
@@ -18,7 +18,7 @@ export const connectToServer = createAsyncThunk(
 				dispatch(doctorConnectToServer(uid))
 				return 'admin'
 			} else {
-				dispatch(userConnectToServer(uid))
+				dispatch(patientConnectToServer(uid))
 				return 'user'
 			}
 		} catch (err: any) {

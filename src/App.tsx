@@ -6,8 +6,8 @@ import { subscribeToUserAvailability } from './firebase/subscribe-to-user-availa
 import { LoginPage } from './pages/login-page/LoginPage'
 import { ProfilePage } from './pages/profile-page/ProfilePage'
 import { SignUpPage } from './pages/signup-page/SignUpPage'
-import { PATHS } from './paths'
 import { useAppDispatch, useAppSelector } from './redux/store'
+import { PATHS } from './shared/constants/paths'
 
 export const App = () => {
 	const dispatch = useAppDispatch()

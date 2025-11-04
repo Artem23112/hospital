@@ -1,6 +1,6 @@
 import calendarIcon from '@/assets/images/icons/calendar.svg'
 import clockIcon from '@/assets/images/icons/time.svg'
-import { useParseDate } from '@/hooks/useParseDate'
+import { useParseDate } from '@/shared/hooks/useParseDate'
 import clsx from 'clsx'
 import { FC } from 'react'
 import s from './index.module.scss'

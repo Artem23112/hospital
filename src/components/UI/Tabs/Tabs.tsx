@@ -10,7 +10,7 @@ export const Tabs = ({ tabsConfig }: TabsPropsT) => {
 	const { pathname } = useLocation()
 
 	function isActive(link: string): boolean {
-		return link === pathname
+		return pathname.includes(link)
 	}
 
 	return (

@@ -1,5 +1,5 @@
-import { IAuthErrorInfo } from '@/assets/functions/get-auth-error-info'
-import { Roles } from '@/main-types'
+import { Roles } from '@/shared/types/main-types'
+import { IAuthErrorInfo } from '@/shared/utils/functions/get/get-auth-error-info'
 
 export interface IAuthInitialState {
 	email: string | null
@@ -8,7 +8,6 @@ export interface IAuthInitialState {
 	rights: Roles | null
 	loading: boolean
 	error: IAuthErrorInfo | null
-	doctorPatients: string[]
 }
 
 export type AuthInfoT = {

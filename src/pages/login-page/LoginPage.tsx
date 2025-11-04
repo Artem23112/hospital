@@ -1,8 +1,7 @@
-import { AlternativeChoice } from '@/components/UI/alternative-choice/AlternativeChoice'
+import { AlternativeChoice } from '@/components/UI/buttons/alternative-choice/AlternativeChoice'
 import { Form } from '@/components/UI/form/Form'
-import { CentredContainer } from '@/components/layout/centred-container/CentredContainer'
-import { Loader } from '@/components/utils/components/Loader/Loader'
-import { PATHS } from '@/paths'
+import { Loader } from '@/components/utility-components/Loader/Loader'
+import { CentredContainer } from '@/components/utility-components/centred-container/CentredContainer'
 import { signIn } from '@/redux/slices/authentication-slice/additionalThunks/signIn'
 import {
 	clearError,
@@ -10,6 +9,7 @@ import {
 	selectorLoading,
 } from '@/redux/slices/authentication-slice/authenticationSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
+import { PATHS } from '@/shared/constants/paths'
 import s from './LoginPage.module.scss'
 
 export const LoginPage = () => {
