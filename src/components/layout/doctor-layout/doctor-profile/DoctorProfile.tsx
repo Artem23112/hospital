@@ -12,7 +12,7 @@ export const DoctorProfile = () => {
     (state) => state.doctorSlice.appointments,
   );
 
-  let tabsConfig = [
+  const tabsConfig = [
     {
       id: 1,
       tabText: "Список записей",
