@@ -13,22 +13,19 @@ export const usePagination = <T>({
 }: UsePaginationArgs<T>) => {
   const [currentPage, setCurrentPage] = useState<number>(page);
   const [itemsToRender, setFilterData] = useState<T[]>([]);
+  
 
   useEffect(() => void setCurrentPage(0), [data]);
   useEffect(() => {
     setFilterData(
-      data.filter((_, index) => {
-        return (
-          index >= currentPage * countItemsOnPage &&
-          index < (currentPage + 1) * countItemsOnPage
-        );
-      }),
+      data.slice( currentPage * countItemsOnPage, (currentPage + 1) * countItemsOnPage )
     );
-  }, [currentPage, data]);
+  }, [currentPage, data, countItemsOnPage]);
 
   return {
     setCurrentPage,
     itemsToRender,
     currentPage,
+    pageCount: Math.ceil(data.length / countItemsOnPage),
   };
 };
