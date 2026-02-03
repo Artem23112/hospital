@@ -14,7 +14,6 @@
   "homepage": "https://Artem23122.github.io/hospital",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
-    "@types/firebase": "^3.2.1",
     "@types/react-redux": "^7.1.28",
     "@types/react-router-dom": "^5.3.3",
     "clsx": "^2.0.0",
