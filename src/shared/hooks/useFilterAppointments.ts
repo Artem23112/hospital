@@ -19,15 +19,14 @@ export const useFilterAppointments = <
   };
 
   useEffect(() => {
-    if (chosenFilter === "all") {
-      setHandleList(list.filter(filtrateByDateFilter));
-    } else {
-      setHandleList(
-        list
-          .filter((item) => item.status === chosenFilter)
-          .filter(filtrateByDateFilter),
-      );
-    }
+    const filtered =
+      chosenFilter === "all"
+        ? list.filter(filtrateByDateFilter)
+        : list
+            .filter((item) => item.status === chosenFilter)
+            .filter(filtrateByDateFilter);
+
+    setHandleList(filtered);
   }, [chosenFilter, dateFilter, list]);
 
   return { handledList, chosenFilter, setChosenFilter };
