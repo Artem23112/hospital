@@ -6,7 +6,7 @@ import { paginationClassNames } from "@/shared/configs/pagination-styling.config
 import { usePagination } from "@/shared/hooks/usePagination";
 import { getPatientInfoById } from "@/shared/utils/functions/get/getPatientInfoById";
 import clsx from "clsx";
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 import ReactPaginate from "react-paginate";
 import s from "./PatientList.module.scss";
@@ -22,12 +22,22 @@ export const PatientList = ({
 }: PatientListPropsT) => {
   const usersInfo = useAppSelector((state) => state.doctorSlice.usersInfo);
   const countItemsOnPage = 4;
+
+  const validAppointments = useMemo(() => {
+    return doctorAppointments.filter((item) => {
+      const user = getPatientInfoById(usersInfo, item.userId);
+      return uniquePatientInfo.guard(user);
+    });
+  }, [doctorAppointments, usersInfo]);
+
   const { itemsToRender, currentPage, setCurrentPage } =
     usePagination<UniqueDoctorAppointmentT>({
-      data: doctorAppointments,
+      data: validAppointments,
       countItemsOnPage,
       page: 0,
     });
+  const pageCount = Math.ceil(doctorAppointments.length / countItemsOnPage);
+
   return (
     <ul className={clsx(s["appointments-list"], className)}>
       {itemsToRender.map((item, index) => {
@@ -52,20 +62,16 @@ export const PatientList = ({
           </li>
         );
       })}
-      <ReactPaginate
-        forcePage={Math.min(currentPage, Math.max(0, Math.ceil(doctorAppointments.length / countItemsOnPage) - 1))}
-        pageCount={Math.max(1, Math.ceil(doctorAppointments.length / countItemsOnPage))}
-        onPageChange={(event) => setCurrentPage(event.selected)}
-        renderOnZeroPageCount={() => (
-          <p className={s["message"]}>
-            {!doctorAppointments.length &&
-              "Нет записей за выбранную дату и сортировку"}
-          </p>
-        )}
-        nextLabel={<BiSolidRightArrow />}
-        previousLabel={<BiSolidLeftArrow />}
-        {...paginationClassNames}
-      />
+      {validAppointments.length > countItemsOnPage && (
+        <ReactPaginate
+          forcePage={currentPage}
+          pageCount={pageCount}
+          onPageChange={(event) => setCurrentPage(event.selected)}
+          nextLabel={<BiSolidRightArrow />}
+          previousLabel={<BiSolidLeftArrow />}
+          {...paginationClassNames}
+        />
+      )}
     </ul>
   );
 };
