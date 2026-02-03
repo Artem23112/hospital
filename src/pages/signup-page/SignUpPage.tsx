@@ -1,5 +1,5 @@
 import { AlternativeChoice } from "@/components/UI/buttons/alternative-choice/AlternativeChoice";
-import { Form } from "@/components/UI/form/Form";
+import { Form } from "@/components/UI/form/form";
 import { Input } from "@/components/UI/input/Input";
 import { Loader } from "@/components/utility-components/Loader/Loader";
 import { CentredContainer } from "@/components/utility-components/centred-container/CentredContainer";
