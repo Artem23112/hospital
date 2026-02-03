@@ -26,7 +26,7 @@ export const PatientList = ({
     usePagination<UniqueDoctorAppointmentT>({
       data: doctorAppointments,
       countItemsOnPage,
-      page: 1,
+      page: 0,
     });
   return (
     <ul className={clsx(s["appointments-list"], className)}>
@@ -53,8 +53,8 @@ export const PatientList = ({
         );
       })}
       <ReactPaginate
-        forcePage={currentPage}
-        pageCount={Math.ceil(doctorAppointments.length / countItemsOnPage)}
+        forcePage={Math.min(currentPage, Math.max(0, Math.ceil(doctorAppointments.length / countItemsOnPage) - 1))}
+        pageCount={Math.max(1, Math.ceil(doctorAppointments.length / countItemsOnPage))}
         onPageChange={(event) => setCurrentPage(event.selected)}
         renderOnZeroPageCount={() => (
           <p className={s["message"]}>
