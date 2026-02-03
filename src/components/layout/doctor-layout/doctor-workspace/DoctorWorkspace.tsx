@@ -37,6 +37,7 @@ export const DoctorWorkspace = ({
           handleClick={setChosenFilter}
         />
         <PatientList
+          key={handledList.length}
           className={s["appointment-list"]}
           doctorAppointments={handledList}
         />
