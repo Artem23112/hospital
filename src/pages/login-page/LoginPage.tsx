@@ -1,5 +1,5 @@
 import { AlternativeChoice } from "@/components/UI/buttons/alternative-choice/AlternativeChoice";
-import { Form } from "@/components/UI/form/Form";
+import { Form } from "@/components/UI/form/form";
 import { Loader } from "@/components/utility-components/Loader/Loader";
 import { CentredContainer } from "@/components/utility-components/centred-container/CentredContainer";
 import { signIn } from "@/redux/slices/authentication-slice/additionalThunks/signIn";
