@@ -36,7 +36,6 @@ export const PatientList = ({
       countItemsOnPage,
       page: 0,
     });
-  const pageCount = Math.ceil(doctorAppointments.length / countItemsOnPage);
 
   return (
     <ul className={clsx(s["appointments-list"], className)}>
@@ -65,8 +64,9 @@ export const PatientList = ({
       {validAppointments.length > countItemsOnPage && (
         <ReactPaginate
           forcePage={currentPage}
-          pageCount={pageCount}
+          pageCount={Math.floor(doctorAppointments.length / countItemsOnPage)}
           onPageChange={(event) => setCurrentPage(event.selected)}
+          renderOnZeroPageCount={null}
           nextLabel={<BiSolidRightArrow />}
           previousLabel={<BiSolidLeftArrow />}
           {...paginationClassNames}

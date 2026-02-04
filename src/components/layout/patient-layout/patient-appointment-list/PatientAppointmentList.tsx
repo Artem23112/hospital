@@ -22,7 +22,7 @@ export const PatientAppointmentList = ({
 }: PatientAppointmentListPropsT) => {
   const doctorsInfo = useAppSelector(selectorDoctorsInfo);
   const countItemsOnPage = 5;
-  const { itemsToRender, setCurrentPage } =
+  const { itemsToRender, currentPage, setCurrentPage } =
     usePagination<UniquePatientAppointmentT>({
       page: 0,
       countItemsOnPage,
@@ -55,8 +55,9 @@ export const PatientAppointmentList = ({
         })}
       </ul>
       <ReactPaginate
-        pageCount={Math.ceil(userAppointments.length / countItemsOnPage)}
+        pageCount={Math.floor(userAppointments.length / countItemsOnPage)}
         onPageChange={(event) => setCurrentPage(event.selected)}
+        forcePage={currentPage}
         renderOnZeroPageCount={null}
         nextLabel={<BiSolidRightArrow />}
         previousLabel={<BiSolidLeftArrow />}
