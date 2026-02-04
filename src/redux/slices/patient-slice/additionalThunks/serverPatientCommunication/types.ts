@@ -10,6 +10,7 @@ export type UniquePatientInfoT = Static<typeof uniquePatientInfo>;
 const userInfo = Record({
   name: String,
 });
+
 export const uniquePatientInfo = unique(userInfo);
 export const usersInfoFromServer = Dictionary(userInfo, String);
 
